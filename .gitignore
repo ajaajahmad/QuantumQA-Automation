@@ -1,17 +1,70 @@
+# =========================
+# Maven / Build Files
+# =========================
 target/
+dependency-reduced-pom.xml
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
-dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-# https://maven.apache.org/wrapper/#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
-# Eclipse m2e generated files
-# Eclipse Core
+# =========================
+# IDE / Editor Files
+# =========================
+# Eclipse
 .project
-# JDT-specific (Eclipse Java Development Tools)
 .classpath
+.settings/
+.factorypath
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# VS Code
+.vscode/
+
+# =========================
+# Logs & Reports
+# =========================
+*.log
+logs/
+test-output/
+surefire-reports/
+
+# =========================
+# OS Files
+# =========================
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# =========================
+# Temporary / Backup Files
+# =========================
+*.tmp
+*.temp
+*.bak
+
+# =========================
+# Drivers / External Binaries
+# =========================
+drivers/
+chromedriver
+geckodriver
+
+# =========================
+# Data & Config Files
+# =========================
+*.json
+*.xlsx
+*.xls
+*.csv
+*.txt
+*.xml
+*.properties
