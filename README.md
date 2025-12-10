@@ -21,4 +21,4 @@ It supports dynamic tests using Excel, centralized DataProviders, and reusable p
 ## How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/QuantumQA-Automation.git
+   git clone https://github.com/ajaajahmad/QuantumQA-Automation.git
