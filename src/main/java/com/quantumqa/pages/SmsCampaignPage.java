@@ -20,6 +20,8 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignsDltPopup;
 	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
 	private WebElement smsCreateCampaign;
+	@FindBy(xpath = "//div[@class='col-md-3 campaign-name ng-star-inserted']//input[@type='text']")
+	private WebElement smsCampaignName;
 	
 
 }
