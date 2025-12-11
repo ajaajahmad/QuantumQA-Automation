@@ -26,5 +26,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignCategory;
 	@FindBy(xpath = "//input[@placeholder='Create New']")
 	private WebElement smsCampaignCreateCategoryInput;
+	@FindBy(xpath = "//*[@id='Layer_1']")
+	private WebElement smsCampaignCreateCategoryAddIcon;
 
 }
