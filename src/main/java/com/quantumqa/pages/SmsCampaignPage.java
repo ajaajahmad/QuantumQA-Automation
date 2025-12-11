@@ -24,5 +24,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignName;
 	@FindBy(xpath = "//div[@class='ui floating dropdown labeled icon button ng-star-inserted']//span[contains(text(),'Select')]")
 	private WebElement smsCampaignCategory;
+	@FindBy(xpath = "//input[@placeholder='Create New']")
+	private WebElement smsCampaignCreateCategoryInput;
 
 }
