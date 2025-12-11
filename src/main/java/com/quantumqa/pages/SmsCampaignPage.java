@@ -32,4 +32,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignSelectCategory;
 	@FindBy(xpath = "//input[@placeholder='Search ...']")
 	private WebElement smsCampaignCategorySearchInput;
+	@FindBy(xpath = "//div[@title='Auto SMS']") // "//div[@title='" + categoryName + "']"; could be used for dynamic category search.
+	private WebElement smsCampaignSelectSearchedCategory;
+	
 }
