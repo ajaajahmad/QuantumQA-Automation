@@ -28,5 +28,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignCreateCategoryInput;
 	@FindBy(xpath = "//*[@id='Layer_1']")
 	private WebElement smsCampaignCreateCategoryAddIcon;
+	@FindBy(xpath = "//div[@class='scrolling menu']//div[@title='AutoSMS']")
+	private WebElement smsCampaignSelectCategory;
 
 }
