@@ -1,6 +1,25 @@
 package com.quantumqa.pages;
 
-public class SmsCampaignPage {
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
+import com.quantumqa.base.BasePage;
+
+public class SmsCampaignPage extends BasePage {
+
+	public SmsCampaignPage(WebDriver driver) {
+		super(driver);
+	}
+
+	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'SMS')]")
+	private WebElement smsMenu;
+	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
+	private WebElement smsCampaignsMenu;
+	@FindBy(xpath = "//button[contains(text(),'OK')]")
+	private WebElement smsCampaignsDltPopup;
+	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
+	private WebElement smsCreateCampaign;
 	
+
 }
