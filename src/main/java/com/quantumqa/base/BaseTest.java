@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.quantumqa.pages.ErrorValidation;
+import com.quantumqa.pages.ErrorValidationPage;
 import com.quantumqa.pages.LoginPage;
 import com.quantumqa.utils.ConfigReader;
 
@@ -15,7 +15,7 @@ public class BaseTest {
 
 	protected WebDriver driver;
 	protected LoginPage loginPage;
-	protected ErrorValidation errorValidation;
+	protected ErrorValidationPage errorValidationPage;
 
 	@BeforeSuite
 	public void setUp() {
@@ -29,7 +29,7 @@ public class BaseTest {
 			driver.get(appUrl);
 
 			loginPage = new LoginPage(driver);
-			errorValidation = new ErrorValidation(driver);
+			errorValidationPage = new ErrorValidationPage(driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();

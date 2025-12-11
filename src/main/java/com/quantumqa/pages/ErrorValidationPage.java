@@ -7,9 +7,9 @@ import org.testng.Assert;
 
 import com.quantumqa.base.BasePage;
 
-public class ErrorValidation extends BasePage {
+public class ErrorValidationPage extends BasePage {
 
-	public ErrorValidation(WebDriver driver) {
+	public ErrorValidationPage(WebDriver driver) {
 		super(driver);
 	}
 
