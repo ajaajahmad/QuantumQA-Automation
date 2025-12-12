@@ -36,5 +36,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignSelectSearchedCategory;
 	@FindBy(xpath = "//input[@value='Personalised']") // for common campaing just replace Personalised with Common
 	private WebElement smsCampaignType;
+	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
+	private WebElement smsCampaignImportContacts;
 
 }
