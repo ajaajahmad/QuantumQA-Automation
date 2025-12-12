@@ -38,5 +38,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignType;
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
 	private WebElement smsCampaignImportContacts;
+	@FindBy(xpath = "//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]")
+	private WebElement smsCampaignListTab;
 
 }
