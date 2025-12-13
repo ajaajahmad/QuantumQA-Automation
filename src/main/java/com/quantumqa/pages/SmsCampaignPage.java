@@ -50,5 +50,8 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignContactsImportBtn;
 	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
 	private WebElement smsCampaignChooseTemplateBtn;
+	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
+	private WebElement smsCampaingSearchTemplate;
+	
 
 }
