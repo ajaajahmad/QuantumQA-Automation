@@ -66,5 +66,4 @@ geckodriver
 *.xls
 *.csv
 *.txt
-*.xml
 *.properties
