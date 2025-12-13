@@ -42,6 +42,9 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignListTab;
 	@FindBy(xpath = "//input[@placeholder='Search List']")
 	private WebElement smsCampaignListSearchInput;
+	@FindBy(xpath = "//button[contains(text(),'Go')]")
+	private WebElement smsCampaignListGoBtn;
+	
 	
 
 }
