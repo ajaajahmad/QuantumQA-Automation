@@ -56,5 +56,8 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignChooseTemplateRadioBtn;
 	@FindBy(css = "button.import-btn.btn-design")
 	private WebElement smsCampaignTempmateSaveBtn;
+	@FindBy(css = "button.import-btn.btn-design-white")
+	private WebElement smsCampaignTemplateCancelBtn;
+	
 
 }
