@@ -20,17 +20,17 @@ public class BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void waitForElementToAppear(By findBy) {
+	public void waitForElementToAppear(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	public void waitForWebElementToAppear(WebElement element) {
+	public void waitForElementToAppear(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
-	public void waitForWebElementToBeClickable(WebElement element) {
+	public void waitForElementToBeClickable(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}

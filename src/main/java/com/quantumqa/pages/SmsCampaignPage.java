@@ -15,7 +15,7 @@ public class SmsCampaignPage extends BasePage {
 	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'SMS')]")
 	private WebElement smsMenu;
 	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
-	private WebElement smsCampaignsMenu;
+	private WebElement smsCampaignsSubMenu;
 	@FindBy(xpath = "//button[contains(text(),'OK')]")
 	private WebElement smsCampaignsDltPopup;
 	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
@@ -62,5 +62,45 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaingSendBtn;
 	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
 	private WebElement smsCampaignSendNowBtn;
+
+	public void clickOnSmsMenu() {
+		waitForElementToBeClickable(smsMenu);
+		smsMenu.click();
+	}
+
+	public void clickOnCampaignsSubMenu() {
+		waitForElementToBeClickable(smsCampaignsSubMenu);
+		smsCampaignsSubMenu.click();
+	}
+
+	public void acknowledgeDltPopupWindow() {
+		waitForElementToBeClickable(smsCampaignsDltPopup);
+		smsCampaignsDltPopup.click();
+	}
+
+	public void clickOnCreateCampaignButton() {
+		waitForElementToBeClickable(smsCreateCampaign);
+		smsCreateCampaign.click();
+	}
+
+	public void enterCampaignName(String campaignName) {
+		waitForElementToAppear(smsCampaignName);
+		smsCampaignName.sendKeys(campaignName);
+	}
+
+	public void clickONCanpaignCategory() {
+		waitForElementToBeClickable(smsCampaignCategory);
+		smsCampaignCategory.click();
+	}
+
+	public void selectCampaingCategory() {
+		waitForElementToAppear(smsCampaignSelectCategory);
+		smsCampaignSelectCategory.click();
+	}
+
+	public void selectCampaignTyep() {
+		waitForElementToBeClickable(smsCampaignType);
+		smsCampaignType.click();
+	}
 
 }
