@@ -44,7 +44,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignListSearchInput;
 	@FindBy(xpath = "//button[contains(text(),'Go')]")
 	private WebElement smsCampaignListGoBtn;
-	@FindBy(id = "id=\"mat-mdc-checkbox-14-input\"")
+	@FindBy(id = "mat-mdc-checkbox-14-input")
 	private WebElement smsCampaingSearchedListCheckBox;
 	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
 	private WebElement smsCampaignContactsImportBtn;
@@ -52,6 +52,8 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignChooseTemplateBtn;
 	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
 	private WebElement smsCampaingSearchTemplate;
+	@FindBy(id = "mat-radio-28-input")
+	private WebElement smsCampaignChooseTemplateRadioBtn;
 	
 
 }
