@@ -54,6 +54,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaingSearchTemplate;
 	@FindBy(id = "mat-radio-28-input")
 	private WebElement smsCampaignChooseTemplateRadioBtn;
-	
+	@FindBy(css = "button.import-btn.btn-design")
+	private WebElement smsCampaignTempmateSaveBtn;
 
 }
