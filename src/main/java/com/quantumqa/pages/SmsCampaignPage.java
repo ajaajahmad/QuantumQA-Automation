@@ -60,6 +60,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignTemplateCancelBtn;
 	@FindBy(css = "button.btn-design.btn-send")
 	private WebElement smsCampaingSendBtn;
-
+	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
+	private WebElement smsCampaignSendNowBtn;
 
 }
