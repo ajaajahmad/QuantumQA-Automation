@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 
 import com.quantumqa.pages.ErrorValidationPage;
 import com.quantumqa.pages.LoginPage;
+import com.quantumqa.pages.SmsCampaignPage;
 import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
@@ -16,6 +17,7 @@ public class BaseTest {
 	protected WebDriver driver;
 	protected LoginPage loginPage;
 	protected ErrorValidationPage errorValidationPage;
+	protected SmsCampaignPage smsCampaignPage;
 
 	@BeforeSuite
 	public void setUp() {
@@ -30,6 +32,7 @@ public class BaseTest {
 
 			loginPage = new LoginPage(driver);
 			errorValidationPage = new ErrorValidationPage(driver);
+			smsCampaignPage = new SmsCampaignPage(driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();
