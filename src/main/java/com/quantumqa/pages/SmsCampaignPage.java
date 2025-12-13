@@ -42,9 +42,9 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignListTab;
 	@FindBy(xpath = "//input[@placeholder='Search List']")
 	private WebElement smsCampaignListSearchInput;
+	@FindBy(xpath = "id=\"mat-mdc-checkbox-14-input\"")
+	private WebElement smsCampaingSearchedListCheckBox;
 	@FindBy(xpath = "//button[contains(text(),'Go')]")
 	private WebElement smsCampaignListGoBtn;
-	
-	
 
 }
