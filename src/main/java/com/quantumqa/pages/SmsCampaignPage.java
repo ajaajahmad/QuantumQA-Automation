@@ -104,4 +104,13 @@ public class SmsCampaignPage extends BasePage {
 		smsCampaignType.click();
 	}
 
+	public void clickOnImportContacts() {
+		waitForElementToAppear(smsCampaignImportContacts);
+		smsCampaignImportContacts.click();
+	}
+
+	public void clickOnListTab() {
+		waitForElementToAppear(smsCampaignListTab);
+		smsCampaignListTab.click();
+	}
 }
