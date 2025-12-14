@@ -18,5 +18,9 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnCanpaignCategory();
 		smsCampaignPage.selectCampaingCategory();
 		smsCampaignPage.selectCampaignTyep();
+		smsCampaignPage.clickOnImportContacts();
+		smsCampaignPage.clickOnListTab();
+		smsCampaignPage.enterListName("ajaaj");
+		smsCampaignPage.clickOnImportButton();
 	}
 }
