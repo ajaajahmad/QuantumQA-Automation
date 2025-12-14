@@ -117,4 +117,19 @@ public class SmsCampaignPage extends BasePage {
 	public void enterListName(String listName) {
 		smsCampaignListSearchInput.sendKeys(listName);
 	}
+
+	public void clickOnSearchButton() {
+		waitForElementToBeClickable(smsCampaignListGoBtn);
+		smsCampaignListGoBtn.click();
+	}
+
+	public void selectListName() {
+		waitForElementToAppear(smsCampaingSearchedListCheckBox);
+		smsCampaingSearchedListCheckBox.click();
+	}
+
+	public void clickOnImportButton() {
+		waitForElementToBeClickable(smsCampaignContactsImportBtn);
+		smsCampaignContactsImportBtn.click();
+	}
 }
