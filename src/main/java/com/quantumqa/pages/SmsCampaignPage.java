@@ -12,7 +12,7 @@ public class SmsCampaignPage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'SMS')]")
+	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
 	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
 	private WebElement smsCampaignsSubMenu;
@@ -64,32 +64,33 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement smsCampaignSendNowBtn;
 
 	public void clickOnSmsMenu() {
-		waitForElementToBeClickable(smsMenu);
+		waitForElementToAppear(smsMenu);
 		smsMenu.click();
 	}
 
 	public void clickOnCampaignsSubMenu() {
-		waitForElementToBeClickable(smsCampaignsSubMenu);
+		waitForElementToAppear(smsCampaignsSubMenu);
 		smsCampaignsSubMenu.click();
 	}
 
 	public void acknowledgeDltPopupWindow() {
-		waitForElementToBeClickable(smsCampaignsDltPopup);
+		waitForElementToAppear(smsCampaignsDltPopup);
 		smsCampaignsDltPopup.click();
 	}
 
 	public void clickOnCreateCampaignButton() {
-		waitForElementToBeClickable(smsCreateCampaign);
+		waitForElementToAppear(smsCreateCampaign);
 		smsCreateCampaign.click();
 	}
 
 	public void enterCampaignName(String campaignName) {
 		waitForElementToAppear(smsCampaignName);
+		smsCampaignName.clear();
 		smsCampaignName.sendKeys(campaignName);
 	}
 
 	public void clickONCanpaignCategory() {
-		waitForElementToBeClickable(smsCampaignCategory);
+		waitForElementToAppear(smsCampaignCategory);
 		smsCampaignCategory.click();
 	}
 
@@ -99,7 +100,7 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void selectCampaignTyep() {
-		waitForElementToBeClickable(smsCampaignType);
+		waitForElementToAppear(smsCampaignType);
 		smsCampaignType.click();
 	}
 
