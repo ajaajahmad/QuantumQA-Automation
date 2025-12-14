@@ -113,4 +113,8 @@ public class SmsCampaignPage extends BasePage {
 		waitForElementToAppear(smsCampaignListTab);
 		smsCampaignListTab.click();
 	}
+
+	public void enterListName(String listName) {
+		smsCampaignListSearchInput.sendKeys(listName);
+	}
 }
