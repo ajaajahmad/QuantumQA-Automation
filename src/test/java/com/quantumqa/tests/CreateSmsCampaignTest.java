@@ -8,7 +8,7 @@ import com.quantumqa.dataprovider.TestDataProvider;
 public class CreateSmsCampaignTest extends BaseTest {
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifySmsCampaignCreation(String username, String password, String campaingName) {
+	public void verifySmsCampaignCreation(String username, String password) {
 		loginPage.userLogin(username, password);
 		smsCampaignPage.clickOnSmsMenu();
 		smsCampaignPage.clickOnCampaignsSubMenu();
