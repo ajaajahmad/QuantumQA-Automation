@@ -89,7 +89,7 @@ public class SmsCampaignPage extends BasePage {
 		smsCampaignName.sendKeys(campaignName);
 	}
 
-	public void clickONCanpaignCategory() {
+	public void clickOnCanpaignCategory() {
 		waitForElementToAppear(smsCampaignCategory);
 		smsCampaignCategory.click();
 	}

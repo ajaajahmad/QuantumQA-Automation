@@ -15,7 +15,8 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.acknowledgeDltPopupWindow();
 		smsCampaignPage.clickOnCreateCampaignButton();
 		smsCampaignPage.enterCampaignName("Selenium Flow");
-		smsCampaignPage.clickONCanpaignCategory();
+		smsCampaignPage.clickOnCanpaignCategory();
+		smsCampaignPage.selectCampaingCategory();
 		smsCampaignPage.selectCampaignTyep();
 	}
 }
