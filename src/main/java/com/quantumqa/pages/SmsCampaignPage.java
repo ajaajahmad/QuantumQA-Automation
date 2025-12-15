@@ -14,7 +14,7 @@ public class SmsCampaignPage extends BasePage {
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
-	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
+	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'Campaigns')]")
 	private WebElement smsCampaignsSubMenu;
 	@FindBy(xpath = "//button[contains(text(),'OK')]")
 	private WebElement smsCampaignsDltPopup;
