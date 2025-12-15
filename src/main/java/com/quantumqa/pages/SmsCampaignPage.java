@@ -1,7 +1,9 @@
 package com.quantumqa.pages;
 
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
@@ -9,12 +11,14 @@ import com.quantumqa.base.BasePage;
 public class SmsCampaignPage extends BasePage {
 
 	public SmsCampaignPage(WebDriver driver) {
+
 		super(driver);
+
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
-	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'Campaigns')]")
+	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
 	private WebElement smsCampaignsSubMenu;
 	@FindBy(xpath = "//button[contains(text(),'OK')]")
 	private WebElement smsCampaignsDltPopup;
@@ -115,6 +119,7 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void enterListName(String listName) {
+		waitForElementToAppear(smsCampaignListSearchInput);
 		smsCampaignListSearchInput.sendKeys(listName);
 	}
 
@@ -132,4 +137,5 @@ public class SmsCampaignPage extends BasePage {
 		waitForElementToBeClickable(smsCampaignContactsImportBtn);
 		smsCampaignContactsImportBtn.click();
 	}
+
 }

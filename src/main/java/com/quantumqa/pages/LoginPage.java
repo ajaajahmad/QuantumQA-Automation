@@ -20,21 +20,28 @@ public class LoginPage extends BasePage {
 	private WebElement loginButton;
 
 	public void enterUsername(String username) {
+		waitForElementToAppear(userName);
 		userName.sendKeys(username);
 	}
 
 	public void enterPassword(String password) {
+		waitForElementToAppear(passWord);
 		passWord.sendKeys(password);
 	}
 
 	public void clickLoginButton() {
+		waitForElementToBeClickable(loginButton);
 		loginButton.click();
 	}
 
 	public void userLogin(String username, String password) {
-		enterUsername(username);
-		enterPassword(password);
-		clickLoginButton();
+		if (isLoginPageDisplayed()) {
+			enterUsername(username);
+			enterPassword(password);
+			clickLoginButton();
+		} else {
+			System.out.println("Already logged in, skipping login");
+		}
 	}
 
 	public boolean isLoginPageDisplayed() {

@@ -8,7 +8,7 @@ public class TestDataProvider {
 
 	@DataProvider(name = "loginData")
 	public Object[][] loginData() {
-		return ExcelUtils.getExcelData("Sheet1", null);
+		return ExcelUtils.getExcelData();
 	}
 
 }

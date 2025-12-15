@@ -3,53 +3,49 @@ package com.quantumqa.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.*;
-import org.testng.annotations.Test;
 
 public class ExcelUtils {
+	public static Object[][] getExcelData() {
 
-	@Test
-	public static Object[][] getExcelData(String filePath, String sheetName) {
+		String filePath = ExcelUtils.class.getClassLoader().getResource("testdata/userdata.xlsx").getPath();
 
-		filePath = ExcelUtils.class.getClassLoader().getResource("testdata/userdata.xlsx").getPath();
+		String sheetName = ConfigReader.get("excel_sheet_name");
 
-		sheetName = ConfigReader.get("excel_sheet_name");
+		try (FileInputStream fis = new FileInputStream(new File(filePath));
+				Workbook workbook = WorkbookFactory.create(fis)) {
 
-		Object[][] data = null;
-
-		try {
-			FileInputStream fis = new FileInputStream(new File(filePath));
-			Workbook workbook = WorkbookFactory.create(fis);
 			Sheet sheet = workbook.getSheet(sheetName);
-
-			int rowCount = sheet.getLastRowNum();
-
-			int colCount = sheet.getRow(0).getLastCellNum();
-
-			data = new Object[rowCount][colCount];
-
 			DataFormatter formatter = new DataFormatter();
 
-			for (int i = 1; i <= rowCount; i++) {
-				Row row = sheet.getRow(i);
+			int lastRow = sheet.getLastRowNum();
+			int colCount = sheet.getRow(0).getLastCellNum();
 
-				for (int j = 0; j < colCount; j++) {
-					Cell cell = row.getCell(j);
-
-					if (cell != null) {
-						data[i - 1][j] = formatter.formatCellValue(cell);
-					} else {
-						data[i - 1][j] = "";
-					}
+			int actualRowCount = 0;
+			for (int i = 1; i <= lastRow; i++) {
+				if (sheet.getRow(i) != null) {
+					actualRowCount++;
 				}
 			}
 
-			workbook.close();
-			fis.close();
+			Object[][] data = new Object[actualRowCount][colCount];
+			int dataIndex = 0;
+
+			for (int i = 1; i <= lastRow; i++) {
+				Row row = sheet.getRow(i);
+				if (row == null)
+					continue;
+
+				for (int j = 0; j < colCount; j++) {
+					Cell cell = row.getCell(j);
+					data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
+				}
+				dataIndex++;
+			}
+
+			return data;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("Failed to read Excel data", e);
 		}
-
-		return data;
 	}
 }
