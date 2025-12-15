@@ -8,14 +8,19 @@ import com.quantumqa.dataprovider.TestDataProvider;
 public class CreateSmsCampaignTest extends BaseTest {
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifySmsCampaignCreation(String username, String password) throws InterruptedException {
+	public void verifySmsCampaignCreation(String username, String password) {
 		loginPage.userLogin(username, password);
 		smsCampaignPage.clickOnSmsMenu();
 		smsCampaignPage.clickOnCampaignsSubMenu();
+		smsCampaignPage.acknowledgeDltPopupWindow();
+		smsCampaignPage.clickOnCreateCampaignButton();
 		smsCampaignPage.enterCampaignName("Selenium Flow");
-		smsCampaignPage.clickONCanpaignCategory();
+		smsCampaignPage.clickOnCanpaignCategory();
+		smsCampaignPage.selectCampaingCategory();
 		smsCampaignPage.selectCampaignTyep();
-		
-		Thread.sleep(5000);
+		smsCampaignPage.clickOnImportContacts();
+		smsCampaignPage.clickOnListTab();
+		smsCampaignPage.enterListName("ajaaj");
+		smsCampaignPage.clickOnImportButton();
 	}
 }

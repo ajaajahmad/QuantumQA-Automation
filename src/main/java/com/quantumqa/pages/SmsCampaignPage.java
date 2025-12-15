@@ -12,7 +12,7 @@ public class SmsCampaignPage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//div[@class='d-flex menu-event parent-menu-active-class']//div[@class='label-with-wrrow-wrapper']")
+	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
 	@FindBy(xpath = "//span[@class='menu-heading active-menu'][contains(text(),'Campaigns')]")
 	private WebElement smsCampaignsSubMenu;
@@ -85,11 +85,12 @@ public class SmsCampaignPage extends BasePage {
 
 	public void enterCampaignName(String campaignName) {
 		waitForElementToAppear(smsCampaignName);
+		smsCampaignName.clear();
 		smsCampaignName.sendKeys(campaignName);
 	}
 
-	public void clickONCanpaignCategory() {
-		waitForElementToBeClickable(smsCampaignCategory);
+	public void clickOnCanpaignCategory() {
+		waitForElementToAppear(smsCampaignCategory);
 		smsCampaignCategory.click();
 	}
 
@@ -99,8 +100,36 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void selectCampaignTyep() {
-		waitForElementToBeClickable(smsCampaignType);
+		waitForElementToAppear(smsCampaignType);
 		smsCampaignType.click();
 	}
 
+	public void clickOnImportContacts() {
+		waitForElementToAppear(smsCampaignImportContacts);
+		smsCampaignImportContacts.click();
+	}
+
+	public void clickOnListTab() {
+		waitForElementToAppear(smsCampaignListTab);
+		smsCampaignListTab.click();
+	}
+
+	public void enterListName(String listName) {
+		smsCampaignListSearchInput.sendKeys(listName);
+	}
+
+	public void clickOnSearchButton() {
+		waitForElementToBeClickable(smsCampaignListGoBtn);
+		smsCampaignListGoBtn.click();
+	}
+
+	public void selectListName() {
+		waitForElementToAppear(smsCampaingSearchedListCheckBox);
+		smsCampaingSearchedListCheckBox.click();
+	}
+
+	public void clickOnImportButton() {
+		waitForElementToBeClickable(smsCampaignContactsImportBtn);
+		smsCampaignContactsImportBtn.click();
+	}
 }
