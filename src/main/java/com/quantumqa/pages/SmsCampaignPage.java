@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.quantumqa.base.BasePage;
 
@@ -102,14 +103,25 @@ public class SmsCampaignPage extends BasePage {
 
 	public void selectListByName(String listName) {
 		String checkboxXpath = String.format("//span[normalize-space()='%s']/ancestor::tr//mat-checkbox", listName);
-		WebElement checkbox = wait.until(driver -> driver.findElement(By.xpath(checkboxXpath)));
+		WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(checkboxXpath)));
+
 		safeClick(checkbox);
+
+		try {
+			wait.until(d -> checkbox.getAttribute("class").contains("mat-mdc-checkbox-checked"));
+		} catch (Exception e) {
+			WebElement inputParams = checkbox.findElement(By.cssSelector("input"));
+			safeClick(inputParams);
+			wait.until(d -> checkbox.getAttribute("class").contains("mat-mdc-checkbox-checked"));
+		}
 	}
 
 	public boolean isListSelected(String listName) {
 		String checkboxXpath = String.format("//span[normalize-space()='%s']/ancestor::tr//mat-checkbox", listName);
-		WebElement checkbox = driver.findElement(By.xpath(checkboxXpath));
-		return checkbox.getAttribute("class").contains("mat-mdc-checkbox-checked");
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(checkboxXpath)));
+
+		String classAttribute = checkbox.getAttribute("class");
+		return classAttribute != null && classAttribute.contains("mat-mdc-checkbox-checked");
 	}
 
 	public void clickOnImportButton() {
