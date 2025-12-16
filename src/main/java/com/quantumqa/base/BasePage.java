@@ -1,6 +1,7 @@
 package com.quantumqa.base;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,24 +15,50 @@ public class BasePage {
 	protected WebDriver driver;
 	protected WebDriverWait wait;
 
+	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
+
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
 		PageFactory.initElements(driver, this);
 	}
 
-	public void waitForElementToAppear(By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	protected WebElement waitForVisible(By locator) {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	public void waitForElementToAppear(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(element));
+	protected WebElement waitForVisible(WebElement element) {
+		return wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
-	public void waitForElementToBeClickable(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+	protected WebElement waitForClickable(WebElement element) {
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	protected WebElement waitForClickable(By locator) {
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+
+	protected boolean waitForInvisible(By locator) {
+		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
+
+	protected boolean isElementPresent(By locator) {
+		return !driver.findElements(locator).isEmpty();
+	}
+
+	protected boolean isElementDisplayed(By locator) {
+		List<WebElement> elements = driver.findElements(locator);
+		return !elements.isEmpty() && elements.get(0).isDisplayed();
+	}
+
+	protected void click(WebElement element) {
+		waitForClickable(element).click();
+	}
+
+	protected void type(WebElement element, String text) {
+		waitForVisible(element);
+		element.clear();
+		element.sendKeys(text);
 	}
 }
