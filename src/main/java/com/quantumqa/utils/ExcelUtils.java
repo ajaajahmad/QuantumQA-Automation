@@ -5,10 +5,9 @@ import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.*;
 
 public class ExcelUtils {
+
 	public static Object[][] getExcelData() {
-
 		String filePath = ExcelUtils.class.getClassLoader().getResource("testdata/userdata.xlsx").getPath();
-
 		String sheetName = ConfigReader.get("excel_sheet_name");
 
 		try (FileInputStream fis = new FileInputStream(new File(filePath));
@@ -20,14 +19,19 @@ public class ExcelUtils {
 			int lastRow = sheet.getLastRowNum();
 			int colCount = sheet.getRow(0).getLastCellNum();
 
-			int actualRowCount = 0;
+			int validRowCount = 0;
 			for (int i = 1; i <= lastRow; i++) {
-				if (sheet.getRow(i) != null) {
-					actualRowCount++;
+				Row row = sheet.getRow(i);
+				if (row != null) {
+					String username = getCellValue(row.getCell(0), formatter);
+					String password = getCellValue(row.getCell(1), formatter);
+					if (!username.isEmpty() && !password.isEmpty()) {
+						validRowCount++;
+					}
 				}
 			}
 
-			Object[][] data = new Object[actualRowCount][colCount];
+			Object[][] data = new Object[validRowCount][colCount];
 			int dataIndex = 0;
 
 			for (int i = 1; i <= lastRow; i++) {
@@ -35,11 +39,16 @@ public class ExcelUtils {
 				if (row == null)
 					continue;
 
-				for (int j = 0; j < colCount; j++) {
-					Cell cell = row.getCell(j);
-					data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
+				String username = getCellValue(row.getCell(0), formatter);
+				String password = getCellValue(row.getCell(1), formatter);
+
+				if (!username.isEmpty() && !password.isEmpty()) {
+					for (int j = 0; j < colCount; j++) {
+						Cell cell = row.getCell(j);
+						data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
+					}
+					dataIndex++;
 				}
-				dataIndex++;
 			}
 
 			return data;
@@ -47,5 +56,11 @@ public class ExcelUtils {
 		} catch (Exception e) {
 			throw new RuntimeException("Failed to read Excel data", e);
 		}
+	}
+
+	private static String getCellValue(Cell cell, DataFormatter formatter) {
+		if (cell == null)
+			return "";
+		return formatter.formatCellValue(cell).trim();
 	}
 }
