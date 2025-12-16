@@ -1,5 +1,6 @@
 package com.quantumqa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,25 +17,33 @@ public class LoginPage extends BasePage {
 	private WebElement userName;
 	@FindBy(xpath = "//input[@formcontrolname='password']")
 	private WebElement passWord;
-	@FindBy(css = "button[class='submit']")
+	@FindBy(css = "button.submit")
 	private WebElement loginButton;
+	
+	By usernameLocator = By.xpath("//input[@formcontrolname='username']");
+
+	public boolean isLoginPageDisplayed() {
+		return isElementDisplayed(usernameLocator);
+	}
 
 	public void enterUsername(String username) {
-		waitForElementToAppear(userName);
-		userName.sendKeys(username);
+		type(userName, username);
 	}
 
 	public void enterPassword(String password) {
-		waitForElementToAppear(passWord);
-		passWord.sendKeys(password);
+		type(passWord, password);
 	}
 
 	public void clickLoginButton() {
-		waitForElementToBeClickable(loginButton);
-		loginButton.click();
+		click(loginButton);
 	}
 
 	public void userLogin(String username, String password) {
+
+		if (username == null || username.isBlank() || password == null || password.isBlank()) {
+			throw new IllegalArgumentException("Username or Password cannot be empty");
+		}
+
 		if (isLoginPageDisplayed()) {
 			enterUsername(username);
 			enterPassword(password);
@@ -42,9 +51,5 @@ public class LoginPage extends BasePage {
 		} else {
 			System.out.println("Already logged in, skipping login");
 		}
-	}
-
-	public boolean isLoginPageDisplayed() {
-		return userName.isDisplayed() && passWord.isDisplayed() && loginButton.isDisplayed();
 	}
 }
