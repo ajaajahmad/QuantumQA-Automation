@@ -33,5 +33,7 @@ public class CreateSmsCampaignTest extends BaseTest {
 
 		boolean isSelected = smsCampaignPage.isListSelected("Automation");
 		Assert.assertTrue(isSelected, "List 'Automation' is not selected.");
+		
+		smsCampaignPage.clickOnImportButton();
 	}
 }
