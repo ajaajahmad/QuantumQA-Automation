@@ -20,7 +20,7 @@ public class BaseTest {
 	protected SmsCampaignPage smsCampaignPage;
 
 	@BeforeSuite
-	public void setUp() throws InterruptedException {
+	public void setUp() {
 		try {
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
