@@ -3,7 +3,7 @@
 <suite name="Suite">
 	<test name="Testing">
 		<classes>
-			<class name="com.quantumqa.tests.CreateSmsCampaignTest"/>
+			<class name="com.quantumqa.tests.CreateCampaignTest"/>
 		</classes>
 	</test>
 </suite>
