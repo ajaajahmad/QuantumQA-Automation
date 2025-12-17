@@ -2,22 +2,20 @@ package com.quantumqa.pages;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.quantumqa.base.BasePage;
+import com.quantumqa.utils.TableSelectionUtil;
 
 public class SmsCampaignPage extends BasePage {
 
+	private TableSelectionUtil tableSelectionUtil;
+
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
+		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
@@ -129,44 +127,20 @@ public class SmsCampaignPage extends BasePage {
 		click(smsCampaignListTab);
 	}
 
-	public void enterListName(String listName) {
+	public void searchContactList(String listName) {
 		type(smsCampaignListSearchInput, listName);
+	}
+
+	public void selectContactList(String contactListName) {
+		tableSelectionUtil.selectContactListByName(contactListName);
 	}
 
 	public void clickOnGoButton() {
 		click(smsCampaignListGoBtn);
 	}
 
-	public void selectListByName(String listName) {
-		String checkboxXpath = String.format("//span[normalize-space()='%s']/ancestor::tr//mat-checkbox", listName);
-		WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(checkboxXpath)));
-
-		safeClick(checkbox);
-
-		try {
-			wait.until(d -> checkbox.getAttribute("class").contains("mat-mdc-checkbox-checked"));
-		} catch (Exception e) {
-			WebElement inputParams = checkbox.findElement(By.cssSelector("input"));
-			safeClick(inputParams);
-			wait.until(d -> checkbox.getAttribute("class").contains("mat-mdc-checkbox-checked"));
-		}
-	}
-
-	public boolean isListSelected(String listName) {
-		String checkboxXpath = String.format("//span[normalize-space()='%s']/ancestor::tr//mat-checkbox", listName);
-		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(checkboxXpath)));
-
-		String classAttribute = checkbox.getAttribute("class");
-		return classAttribute != null && classAttribute.contains("mat-mdc-checkbox-checked");
-	}
-
 	public void clickOnImportButton() {
 		click(smsCampaignContactsImportBtn);
-	}
-
-	private void safeClick(WebElement element) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", element);
 	}
 
 	public void clickOnChooseTemplate() {
@@ -179,46 +153,8 @@ public class SmsCampaignPage extends BasePage {
 		smsCampaingSearchTemplate.sendKeys(Keys.ENTER);
 	}
 
-	public void chooseTemplateByName(String templateName) {
-
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-
-		waitForVisible(By.xpath("//tbody//tr"));
-
-		for (WebElement templateRow : templateTableRows) {
-			try {
-				WebElement templateNameLabel = templateRow
-						.findElement(By.xpath(".//td[2]//span[contains(@class,'table-data-row')]"));
-
-				if (templateNameLabel.getText().trim().equalsIgnoreCase(templateName)) {
-
-					WebElement templateSelectRadio = templateRow
-							.findElement(By.xpath(".//div[contains(@class,'mat-mdc-radio-touch-target')]"));
-
-					js.executeScript("arguments[0].scrollIntoView({block:'center'});", templateSelectRadio);
-					js.executeScript("arguments[0].click();", templateSelectRadio);
-
-					wait.until(d -> {
-						try {
-							WebElement templateSelectionInput = d
-									.findElement(By.xpath("//tbody//tr[.//span[normalize-space()='" + templateName
-											+ "']]//input[@type='radio']"));
-							return templateSelectionInput.isSelected();
-						} catch (StaleElementReferenceException e) {
-							return false;
-						}
-					});
-
-					return;
-				}
-
-			} catch (StaleElementReferenceException e) {
-				chooseTemplateByName(templateName);
-				return;
-			}
-		}
-
-		throw new NoSuchElementException("Template not found: " + templateName);
+	public void selectTemplate(String templateName) {
+		tableSelectionUtil.selectTemplateByName(templateName);
 	}
 
 	public void clickOnSaveButton() {

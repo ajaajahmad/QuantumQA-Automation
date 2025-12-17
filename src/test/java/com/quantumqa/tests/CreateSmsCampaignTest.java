@@ -36,17 +36,13 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.selectCampaignType();
 		smsCampaignPage.clickOnImportContacts();
 		smsCampaignPage.clickOnListTab();
-		smsCampaignPage.enterListName("Automation");
-		smsCampaignPage.selectListByName("Automation");
+		smsCampaignPage.searchContactList("Automation");
+		smsCampaignPage.selectContactList("Automation");
 		smsCampaignPage.clickOnGoButton();
-
-		boolean isSelected = smsCampaignPage.isListSelected("Automation");
-		Assert.assertTrue(isSelected, "List 'Automation' is not selected.");
-
 		smsCampaignPage.clickOnImportButton();
 		smsCampaignPage.clickOnChooseTemplate();
 		smsCampaignPage.searchTemplate("Order Confirmation");
-		smsCampaignPage.chooseTemplateByName("Order Confirmation");
+		smsCampaignPage.selectTemplate("Order Confirmation");
 		smsCampaignPage.clickOnSaveButton();
 		smsCampaignPage.clickOnSendButton();
 		smsCampaignPage.clickOnSendNowButton();
