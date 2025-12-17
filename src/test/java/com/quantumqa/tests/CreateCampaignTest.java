@@ -8,7 +8,7 @@ import com.quantumqa.base.BaseTest;
 import com.quantumqa.dataprovider.TestDataProvider;
 import com.quantumqa.utils.DateTimeUtils;
 
-public class CreateSmsCampaignTest extends BaseTest {
+public class CreateCampaignTest extends BaseTest {
 
 	private String campaignName;
 
@@ -17,7 +17,7 @@ public class CreateSmsCampaignTest extends BaseTest {
 		campaignName = DateTimeUtils.appendLocalDateTime("Selenium_Flow");
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	@Test(groups = { "sms campaign" }, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifySmsCampaignCreation(String username, String password) {
 
 		try {
@@ -46,5 +46,38 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnSaveButton();
 		smsCampaignPage.clickOnSendButton();
 		smsCampaignPage.clickOnSendNowButton();
+	}
+
+	@Test(groups = {
+			"whatsapp campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	public void verifyWhatsappCampaignCreation(String username, String password) {
+		try {
+			loginPage.userLogin(username, password);
+		} catch (IllegalArgumentException e) {
+			Assert.fail("Login failed: " + e.getMessage());
+		}
+
+	}
+
+	@Test(groups = {
+			"rcs campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	public void verifyRcsCampaignCreation(String username, String password) {
+		try {
+			loginPage.userLogin(username, password);
+		} catch (IllegalArgumentException e) {
+			Assert.fail("Login failed: " + e.getMessage());
+		}
+
+	}
+
+	@Test(groups = {
+			"truecaller campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	public void verifyTrueCallerCampaignCreation(String username, String password) {
+		try {
+			loginPage.userLogin(username, password);
+		} catch (IllegalArgumentException e) {
+			Assert.fail("Login failed: " + e.getMessage());
+		}
+
 	}
 }
