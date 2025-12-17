@@ -1,12 +1,21 @@
 package com.quantumqa.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.quantumqa.base.BaseTest;
 import com.quantumqa.dataprovider.TestDataProvider;
+import com.quantumqa.utils.DateTimeUtils;
 
 public class CreateSmsCampaignTest extends BaseTest {
+
+	private String campaignName;
+
+	@BeforeMethod
+	public void generateCampaignName() {
+		campaignName = DateTimeUtils.appendLocalDateTime("Selenium_Flow");
+	}
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifySmsCampaignCreation(String username, String password) {
@@ -21,7 +30,7 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnCampaignsSubMenu();
 		smsCampaignPage.acknowledgeDltPopupWindow();
 		smsCampaignPage.clickOnCreateCampaignButton();
-		smsCampaignPage.enterCampaignName("Selenium Flow 2");
+		smsCampaignPage.enterCampaignName(campaignName);
 		smsCampaignPage.clickOnCampaignCategory();
 		smsCampaignPage.selectCampaignCategory();
 		smsCampaignPage.selectCampaignType();
