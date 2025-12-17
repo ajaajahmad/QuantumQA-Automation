@@ -21,7 +21,7 @@ public class CreateSmsCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnCampaignsSubMenu();
 		smsCampaignPage.acknowledgeDltPopupWindow();
 		smsCampaignPage.clickOnCreateCampaignButton();
-		smsCampaignPage.enterCampaignName("Selenium Flow");
+		smsCampaignPage.enterCampaignName("Selenium Flow 2");
 		smsCampaignPage.clickOnCampaignCategory();
 		smsCampaignPage.selectCampaignCategory();
 		smsCampaignPage.selectCampaignType();
@@ -33,7 +33,13 @@ public class CreateSmsCampaignTest extends BaseTest {
 
 		boolean isSelected = smsCampaignPage.isListSelected("Automation");
 		Assert.assertTrue(isSelected, "List 'Automation' is not selected.");
-		
+
 		smsCampaignPage.clickOnImportButton();
+		smsCampaignPage.clickOnChooseTemplate();
+		smsCampaignPage.searchTemplate("Order Confirmation");
+		smsCampaignPage.chooseTemplateByName("Order Confirmation");
+		smsCampaignPage.clickOnSaveButton();
+		smsCampaignPage.clickOnSendButton();
+		smsCampaignPage.clickOnSendNowButton();
 	}
 }
