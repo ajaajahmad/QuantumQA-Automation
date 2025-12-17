@@ -1,10 +1,18 @@
 package com.quantumqa.pages;
 
+import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.quantumqa.base.BasePage;
 
@@ -52,6 +60,36 @@ public class SmsCampaignPage extends BasePage {
 
 	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
 	private WebElement smsCampaignContactsImportBtn;
+
+	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
+	private WebElement smsCampaignChooseTemplateBtn;
+
+	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
+	private WebElement smsCampaingSearchTemplate;
+
+	@FindBy(id = "mat-radio-28-input")
+	private WebElement smsCampaignChooseTemplateRadioBtn;
+
+	@FindBy(xpath = "//tbody//tr")
+	private List<WebElement> templateTableRows;
+
+	@FindBy(xpath = ".//td[2]//span[contains(@class,'table-data-row')]")
+	private WebElement row;
+
+	@FindBy(xpath = ".//div[contains(@class,'mat-mdc-radio-touch-target')]")
+	private WebElement radioTouchTarget;
+
+	@FindBy(css = "button.import-btn.btn-design")
+	private WebElement smsCampaignTempmateSaveBtn;
+
+	@FindBy(css = "button.import-btn.btn-design-white")
+	private WebElement smsCampaignTemplateCancelBtn;
+
+	@FindBy(css = "button.btn-design.btn-send")
+	private WebElement smsCampaingSendBtn;
+
+	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
+	private WebElement smsCampaignSendNowBtn;
 
 	public void clickOnSmsMenu() {
 		click(smsMenu);
@@ -129,6 +167,72 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	private void safeClick(WebElement element) {
-		((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", element);
 	}
+
+	public void clickOnChooseTemplate() {
+		click(smsCampaignChooseTemplateBtn);
+	}
+
+	public void searchTemplate(String templateName) {
+		click(smsCampaingSearchTemplate);
+		type(smsCampaingSearchTemplate, templateName);
+		smsCampaingSearchTemplate.sendKeys(Keys.ENTER);
+	}
+
+	public void chooseTemplateByName(String templateName) {
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		waitForVisible(By.xpath("//tbody//tr"));
+
+		for (WebElement templateRow : templateTableRows) {
+			try {
+				WebElement templateNameLabel = templateRow
+						.findElement(By.xpath(".//td[2]//span[contains(@class,'table-data-row')]"));
+
+				if (templateNameLabel.getText().trim().equalsIgnoreCase(templateName)) {
+
+					WebElement templateSelectRadio = templateRow
+							.findElement(By.xpath(".//div[contains(@class,'mat-mdc-radio-touch-target')]"));
+
+					js.executeScript("arguments[0].scrollIntoView({block:'center'});", templateSelectRadio);
+					js.executeScript("arguments[0].click();", templateSelectRadio);
+
+					wait.until(d -> {
+						try {
+							WebElement templateSelectionInput = d
+									.findElement(By.xpath("//tbody//tr[.//span[normalize-space()='" + templateName
+											+ "']]//input[@type='radio']"));
+							return templateSelectionInput.isSelected();
+						} catch (StaleElementReferenceException e) {
+							return false;
+						}
+					});
+
+					return;
+				}
+
+			} catch (StaleElementReferenceException e) {
+				chooseTemplateByName(templateName);
+				return;
+			}
+		}
+
+		throw new NoSuchElementException("Template not found: " + templateName);
+	}
+
+	public void clickOnSaveButton() {
+		click(smsCampaignTempmateSaveBtn);
+	}
+
+	public void clickOnSendButton() {
+		click(smsCampaingSendBtn);
+	}
+
+	public void clickOnSendNowButton() {
+		click(smsCampaignSendNowBtn);
+	}
+
 }
