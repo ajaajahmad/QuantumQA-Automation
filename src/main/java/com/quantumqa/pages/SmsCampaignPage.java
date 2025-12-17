@@ -15,7 +15,7 @@ public class SmsCampaignPage extends BasePage {
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
-		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
+		this.tableSelectionUtil = new TableSelectionUtil(driver);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
