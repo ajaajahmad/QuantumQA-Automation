@@ -20,22 +20,22 @@ public class CampaignCommonComponent extends BasePage {
 	private WebElement campaignNameInputBox;
 
 	@FindBy(xpath = "//div[@class='ui floating dropdown labeled icon button ng-star-inserted']//span[contains(text(),'Select')]")
-	private WebElement campaignCategoryDropdown;
+	private WebElement categoryDropdown;
 
 	@FindBy(xpath = "//input[@placeholder='Create New']")
-	private WebElement campaignCreateCategoryInput;
+	private WebElement createCategoryInput;
 
 	@FindBy(xpath = "//*[@id='Layer_1']")
-	private WebElement campaignCreateCategoryAddIcon;
+	private WebElement createCategoryAddIcon;
 
 	@FindBy(xpath = "//div[@class='scrolling menu']//div[@title='AutowSMS']")
-	private WebElement campaignSelectCategory;
+	private WebElement selectCategory;
 
 	@FindBy(xpath = "//input[@placeholder='Search ...']")
-	private WebElement campaignCategorySearchInputBox;
+	private WebElement categorySearchInputBox;
 
 	@FindBy(xpath = "//div[@title='Auto SMS']")
-	private WebElement campaignSelectSearchedCategory;
+	private WebElement selectSearchedCategory;
 
 	public void clickOnCreateCampaignButton() {
 		click(createCampaignButton);
@@ -46,9 +46,9 @@ public class CampaignCommonComponent extends BasePage {
 	}
 
 	public void selectCampaignCategory(String categoryText) {
-		click(campaignCategoryDropdown);
-		type(campaignCreateCategoryInput, categoryText);
-		click(campaignCreateCategoryAddIcon);
+		click(categoryDropdown);
+		type(createCategoryInput, categoryText);
+		click(createCategoryAddIcon);
 	}
 
 }
