@@ -39,31 +39,28 @@ public class WhatsAppCampaignPage extends BasePage {
 	private WebElement contactsListSearchInput;
 
 	@FindBy(xpath = "//button[contains(text(),'Go')]")
-	private WebElement campaignListGoBtn;
+	private WebElement contactsListGoButton;
 
 	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
-	private WebElement wabaCampaignContactsImportBtn;
+	private WebElement contactsImportButton;
 
 	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
-	private WebElement wabaCampaignChooseTemplateBtn;
+	private WebElement chooseTemplateButton;
 
 	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
-	private WebElement wabaCampaignSearchTemplate;
-
-	@FindBy(id = "mat-radio-28-input")
-	private WebElement wabaCampaignChooseTemplateRadioBtn;
+	private WebElement searchTemplate;
 
 	@FindBy(css = "button.import-btn.btn-design")
-	private WebElement wabaCampaignTemplateSaveBtn;
+	private WebElement templateSaveButton;
 
 	@FindBy(css = "button.import-btn.btn-design-white")
-	private WebElement wabaCampaignTemplateCancelBtn;
+	private WebElement templateCancelButton;
 
 	@FindBy(css = "button.btn-design.btn-send")
-	private WebElement wabaCampaignSendBtn;
+	private WebElement campaignSendButton;
 
 	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
-	private WebElement wabaCampaignSendNowBtn;
+	private WebElement campaignSendNowButton;
 
 	public void clickOnWabaMenu() {
 		click(whatsappMenu);
@@ -102,21 +99,21 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnGoButton() {
-		click(campaignListGoBtn);
+		click(contactsListGoButton);
 	}
 
 	public void clickOnImportButton() {
-		click(wabaCampaignContactsImportBtn);
+		click(contactsImportButton);
 	}
 
 	public void clickOnChooseTemplate() {
-		click(wabaCampaignChooseTemplateBtn);
+		click(chooseTemplateButton);
 	}
 
 	public void searchTemplate(String templateName) {
-		click(wabaCampaignSearchTemplate);
-		type(wabaCampaignSearchTemplate, templateName);
-		wabaCampaignSearchTemplate.sendKeys(Keys.ENTER);
+		click(searchTemplate);
+		type(searchTemplate, templateName);
+		searchTemplate.sendKeys(Keys.ENTER);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -124,15 +121,15 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnSaveButton() {
-		click(wabaCampaignTemplateSaveBtn);
+		click(templateSaveButton);
 	}
 
 	public void clickOnSendButton() {
-		click(wabaCampaignSendBtn);
+		click(campaignSendButton);
 	}
 
 	public void clickOnSendNowButton() {
-		click(wabaCampaignSendNowBtn);
+		click(campaignSendNowButton);
 	}
 
 }
