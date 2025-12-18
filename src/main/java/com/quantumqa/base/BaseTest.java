@@ -9,9 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.quantumqa.pages.ErrorValidationPage;
-import com.quantumqa.pages.LoginPage;
-import com.quantumqa.pages.SmsCampaignPage;
+import com.quantumqa.pages.login.ErrorValidationPage;
+import com.quantumqa.pages.login.LoginPage;
+import com.quantumqa.pages.sms.SmsCampaignPage;
+import com.quantumqa.pages.whatsapp.WhatsAppCampaignPage;
 import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
@@ -20,6 +21,7 @@ public class BaseTest {
 	protected LoginPage loginPage;
 	protected ErrorValidationPage errorValidationPage;
 	protected SmsCampaignPage smsCampaignPage;
+	protected WhatsAppCampaignPage wabaCampaignPage;
 
 	@BeforeSuite
 	public void setUp() {
@@ -47,6 +49,7 @@ public class BaseTest {
 			loginPage = new LoginPage(driver);
 			errorValidationPage = new ErrorValidationPage(driver);
 			smsCampaignPage = new SmsCampaignPage(driver);
+			wabaCampaignPage = new WhatsAppCampaignPage(driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();
