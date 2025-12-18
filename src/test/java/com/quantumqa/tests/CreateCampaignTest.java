@@ -32,8 +32,7 @@ public class CreateCampaignTest extends BaseTest {
 		smsCampaignPage.acknowledgeDltPopupWindow();
 		smsCampaignPage.clickOnCreateCampaignButton();
 		smsCampaignPage.enterCampaignName(campaignName);
-		smsCampaignPage.clickOnCampaignCategory();
-		smsCampaignPage.selectCampaignCategory();
+		smsCampaignPage.selectCampaignCategory("automation");
 		smsCampaignPage.selectCampaignType();
 		smsCampaignPage.clickOnImportContacts();
 		smsCampaignPage.clickOnListTab();
