@@ -1,102 +1,85 @@
 package com.quantumqa.pages.sms;
 
-import java.util.List;
-
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
+import com.quantumqa.pages.components.CampaignCommonComponent;
 import com.quantumqa.utils.TableSelectionUtil;
 
 public class SmsCampaignPage extends BasePage {
 
 	private TableSelectionUtil tableSelectionUtil;
+	public CampaignCommonComponent campaignCommonComponent;
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
+		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
 
 	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
-	private WebElement smsCampaignsSubMenu;
+	private WebElement campaignsSubMenu;
 
 	@FindBy(xpath = "//button[contains(text(),'OK')]")
-	private WebElement smsCampaignsDltPopup;
+	private WebElement campaignsDltPopup;
 
 	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
 	private WebElement smsCreateCampaign;
 
-	@FindBy(xpath = "//div[@class='col-md-3 campaign-name ng-star-inserted']//input[@type='text']")
-	private WebElement smsCampaignName;
-
-	@FindBy(xpath = "//div[@class='ui floating dropdown labeled icon button ng-star-inserted']//span[contains(text(),'Select')]")
-	private WebElement smsCampaignCategory;
-
-	@FindBy(xpath = "//div[@class='scrolling menu']//div[@title='AutoSMS']")
-	private WebElement smsCampaignSelectCategory;
-
 	@FindBy(xpath = "//input[@value='Personalised']")
-	private WebElement smsCampaignType;
+	private WebElement campaignType;
 
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
-	private WebElement smsCampaignImportContacts;
+	private WebElement importContacts;
 
 	@FindBy(xpath = "//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]")
-	private WebElement smsCampaignListTab;
+	private WebElement contactsListTab;
 
 	@FindBy(xpath = "//input[@placeholder='Search List']")
-	private WebElement smsCampaignListSearchInput;
+	private WebElement contactsListSearchInput;
 
 	@FindBy(xpath = "//button[contains(text(),'Go')]")
-	private WebElement smsCampaignListGoBtn;
+	private WebElement contactsListGoButton;
 
 	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
-	private WebElement smsCampaignContactsImportBtn;
+	private WebElement contactsImportButton;
 
 	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
-	private WebElement smsCampaignChooseTemplateBtn;
+	private WebElement chooseTemplateButton;
 
 	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
-	private WebElement smsCampaingSearchTemplate;
+	private WebElement searchTemplate;
 
 	@FindBy(id = "mat-radio-28-input")
-	private WebElement smsCampaignChooseTemplateRadioBtn;
-
-	@FindBy(xpath = "//tbody//tr")
-	private List<WebElement> templateTableRows;
-
-	@FindBy(xpath = ".//td[2]//span[contains(@class,'table-data-row')]")
-	private WebElement row;
-
-	@FindBy(xpath = ".//div[contains(@class,'mat-mdc-radio-touch-target')]")
-	private WebElement radioTouchTarget;
+	private WebElement chooseTemplateRadioButton;
 
 	@FindBy(css = "button.import-btn.btn-design")
-	private WebElement smsCampaignTempmateSaveBtn;
+	private WebElement tempmateSaveButton;
 
 	@FindBy(css = "button.import-btn.btn-design-white")
-	private WebElement smsCampaignTemplateCancelBtn;
+	private WebElement templateCancelButton;
 
 	@FindBy(css = "button.btn-design.btn-send")
-	private WebElement smsCampaingSendBtn;
+	private WebElement campaingSendButton;
 
 	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
-	private WebElement smsCampaignSendNowBtn;
+	private WebElement campaignSendNowButton;
 
 	public void clickOnSmsMenu() {
 		click(smsMenu);
 	}
 
 	public void clickOnCampaignsSubMenu() {
-		click(smsCampaignsSubMenu);
+		click(campaignsDltPopup);
 	}
 
 	public void acknowledgeDltPopupWindow() {
-		click(smsCampaignsDltPopup);
+		click(campaignsSubMenu);
 	}
 
 	public void clickOnCreateCampaignButton() {
@@ -104,31 +87,27 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void enterCampaignName(String campaignName) {
-		type(smsCampaignName, campaignName);
+		campaignCommonComponent.enterCampaignName(campaignName);
 	}
 
-	public void clickOnCampaignCategory() {
-		click(smsCampaignCategory);
-	}
-
-	public void selectCampaignCategory() {
-		click(smsCampaignSelectCategory);
+	public void selectCampaignCategory(String categoryText) {
+		campaignCommonComponent.selectCampaignCategory(categoryText);
 	}
 
 	public void selectCampaignType() {
-		click(smsCampaignType);
+		click(campaignType);
 	}
 
 	public void clickOnImportContacts() {
-		click(smsCampaignImportContacts);
+		click(importContacts);
 	}
 
 	public void clickOnListTab() {
-		click(smsCampaignListTab);
+		click(contactsListTab);
 	}
 
 	public void searchContactList(String listName) {
-		type(smsCampaignListSearchInput, listName);
+		type(contactsListSearchInput, listName);
 	}
 
 	public void selectContactList(String contactListName) {
@@ -136,21 +115,21 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void clickOnGoButton() {
-		click(smsCampaignListGoBtn);
+		click(contactsListGoButton);
 	}
 
 	public void clickOnImportButton() {
-		click(smsCampaignContactsImportBtn);
+		click(contactsImportButton);
 	}
 
 	public void clickOnChooseTemplate() {
-		click(smsCampaignChooseTemplateBtn);
+		click(chooseTemplateButton);
 	}
 
 	public void searchTemplate(String templateName) {
-		click(smsCampaingSearchTemplate);
-		type(smsCampaingSearchTemplate, templateName);
-		smsCampaingSearchTemplate.sendKeys(Keys.ENTER);
+		click(searchTemplate);
+		type(searchTemplate, templateName);
+		searchTemplate.sendKeys(Keys.ENTER);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -158,15 +137,15 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void clickOnSaveButton() {
-		click(smsCampaignTempmateSaveBtn);
+		click(tempmateSaveButton);
 	}
 
 	public void clickOnSendButton() {
-		click(smsCampaingSendBtn);
+		click(campaingSendButton);
 	}
 
 	public void clickOnSendNowButton() {
-		click(smsCampaignSendNowBtn);
+		click(campaignSendNowButton);
 	}
 
 }
