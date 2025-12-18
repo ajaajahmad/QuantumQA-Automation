@@ -59,11 +59,10 @@ public class CreateCampaignTest extends BaseTest {
 
 		wabaCampaignPage.clickOnWabaMenu();
 		wabaCampaignPage.clickOnCampaignsSubMenu();
-//		wabaCampaignPage.clickOnCreateCampaignButton();
-//		wabaCampaignPage.enterCampaignName(campaignName);
-//		wabaCampaignPage.clickOnCampaignCategory();
-//		wabaCampaignPage.selectCampaignCategory();
-		
+		wabaCampaignPage.clickOnCreateCampaignButton();
+		wabaCampaignPage.enterCampaignName(campaignName);
+		wabaCampaignPage.selectCampaignCategory("automation");
+
 	}
 
 	@Test(groups = {
