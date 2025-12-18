@@ -7,13 +7,17 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.quantumqa.base.BasePage;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TableSelectionUtil extends BasePage {
+public class TableSelectionUtil {
 
-	public TableSelectionUtil(WebDriver driver) {
-		super(driver);
-	}
+	private WebDriver driver;
+    private WebDriverWait wait;
+
+    public TableSelectionUtil(WebDriver driver, WebDriverWait wait) {
+        this.driver = driver;
+        this.wait = wait;
+    }
 
 	public void selectContactListByName(String displayedName) {
 
