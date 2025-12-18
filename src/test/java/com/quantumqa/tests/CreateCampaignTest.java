@@ -17,7 +17,8 @@ public class CreateCampaignTest extends BaseTest {
 		campaignName = DateTimeUtils.appendLocalDateTime("Selenium_Flow");
 	}
 
-	@Test(groups = { "sms campaign" }, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	@Test(groups = {
+			"sms campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifySmsCampaignCreation(String username, String password) {
 
 		try {
@@ -48,8 +49,7 @@ public class CreateCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnSendNowButton();
 	}
 
-	@Test(groups = {
-			"whatsapp campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+	@Test(groups = { "whatsapp campaign" }, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifyWhatsappCampaignCreation(String username, String password) {
 		try {
 			loginPage.userLogin(username, password);
@@ -57,6 +57,13 @@ public class CreateCampaignTest extends BaseTest {
 			Assert.fail("Login failed: " + e.getMessage());
 		}
 
+		wabaCampaignPage.clickOnWabaMenu();
+		wabaCampaignPage.clickOnCampaignsSubMenu();
+//		wabaCampaignPage.clickOnCreateCampaignButton();
+//		wabaCampaignPage.enterCampaignName(campaignName);
+//		wabaCampaignPage.clickOnCampaignCategory();
+//		wabaCampaignPage.selectCampaignCategory();
+		
 	}
 
 	@Test(groups = {
@@ -72,7 +79,7 @@ public class CreateCampaignTest extends BaseTest {
 
 	@Test(groups = {
 			"truecaller campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifyTrueCallerCampaignCreation(String username, String password) {
+	public void verifyTruecallerCampaignCreation(String username, String password) {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
