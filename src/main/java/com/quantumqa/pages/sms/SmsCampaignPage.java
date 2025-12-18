@@ -1,4 +1,4 @@
-package com.quantumqa.pages;
+package com.quantumqa.pages.sms;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class SmsCampaignPage extends BasePage {
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
-		this.tableSelectionUtil = new TableSelectionUtil(driver);
+		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
