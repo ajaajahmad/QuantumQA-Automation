@@ -1,4 +1,4 @@
-package com.quantumqa.pages;
+package com.quantumqa.pages.login;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
