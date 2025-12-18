@@ -1,21 +1,23 @@
 package com.quantumqa.pages.whatsapp;
 
-import java.util.List;
-
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
+import com.quantumqa.pages.components.CampaignCommonComponent;
 import com.quantumqa.utils.TableSelectionUtil;
 
 public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionUtil tableSelectionUtil;
 
+	public CampaignCommonComponent campaignCommonComponent;
+
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
+		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_WhatsApp')]]")
@@ -24,17 +26,20 @@ public class WhatsAppCampaignPage extends BasePage {
 	@FindBy(xpath = "//span[normalize-space()='Templates']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
 	private WebElement campaignsSubMenu;
 
+	@FindBy(css = ".wa-business-number")
+	private WebElement whatsappBusinessNumber;
+
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
-	private WebElement wabaCampaignImportContacts;
+	private WebElement importContactsButton;
 
 	@FindBy(xpath = "//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]")
-	private WebElement wabaCampaignListTab;
+	private WebElement contactsListTab;
 
 	@FindBy(xpath = "//input[@placeholder='Search List']")
-	private WebElement wabaCampaignListSearchInput;
+	private WebElement contactsListSearchInput;
 
 	@FindBy(xpath = "//button[contains(text(),'Go')]")
-	private WebElement wabaCampaignListGoBtn;
+	private WebElement campaignListGoBtn;
 
 	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
 	private WebElement wabaCampaignContactsImportBtn;
@@ -43,28 +48,19 @@ public class WhatsAppCampaignPage extends BasePage {
 	private WebElement wabaCampaignChooseTemplateBtn;
 
 	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
-	private WebElement wabaCampaingSearchTemplate;
+	private WebElement wabaCampaignSearchTemplate;
 
 	@FindBy(id = "mat-radio-28-input")
 	private WebElement wabaCampaignChooseTemplateRadioBtn;
 
-	@FindBy(xpath = "//tbody//tr")
-	private List<WebElement> templateTableRows;
-
-	@FindBy(xpath = ".//td[2]//span[contains(@class,'table-data-row')]")
-	private WebElement row;
-
-	@FindBy(xpath = ".//div[contains(@class,'mat-mdc-radio-touch-target')]")
-	private WebElement radioTouchTarget;
-
 	@FindBy(css = "button.import-btn.btn-design")
-	private WebElement wabaCampaignTempmateSaveBtn;
+	private WebElement wabaCampaignTemplateSaveBtn;
 
 	@FindBy(css = "button.import-btn.btn-design-white")
 	private WebElement wabaCampaignTemplateCancelBtn;
 
 	@FindBy(css = "button.btn-design.btn-send")
-	private WebElement wabaCampaingSendBtn;
+	private WebElement wabaCampaignSendBtn;
 
 	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
 	private WebElement wabaCampaignSendNowBtn;
@@ -76,25 +72,29 @@ public class WhatsAppCampaignPage extends BasePage {
 	public void clickOnCampaignsSubMenu() {
 		click(campaignsSubMenu);
 	}
-	
-//	public void clickOnCreateCampaignButton() {
-//		campaignCommonComponent.clickOnCreateCampaignButton();
-//	}
-//	
-//	public void selectCampaignCategory(String categoryText) {
-//		campaignCommonComponent.selectCampaignCategory(categoryText);
-//	}
+
+	public void clickOnCreateCampaignButton() {
+		campaignCommonComponent.clickOnCreateCampaignButton();
+	}
+
+	public void enterCampaignName(String campaignName) {
+		campaignCommonComponent.enterCampaignName(campaignName);
+	}
+
+	public void selectCampaignCategory(String categoryText) {
+		campaignCommonComponent.selectCampaignCategory(categoryText);
+	}
 
 	public void clickOnImportContacts() {
-		click(wabaCampaignImportContacts);
+		click(importContactsButton);
 	}
 
 	public void clickOnListTab() {
-		click(wabaCampaignListTab);
+		click(contactsListTab);
 	}
 
 	public void searchContactList(String listName) {
-		type(wabaCampaignListSearchInput, listName);
+		type(contactsListSearchInput, listName);
 	}
 
 	public void selectContactList(String contactListName) {
@@ -102,7 +102,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnGoButton() {
-		click(wabaCampaignListGoBtn);
+		click(campaignListGoBtn);
 	}
 
 	public void clickOnImportButton() {
@@ -114,9 +114,9 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void searchTemplate(String templateName) {
-		click(wabaCampaingSearchTemplate);
-		type(wabaCampaingSearchTemplate, templateName);
-		wabaCampaingSearchTemplate.sendKeys(Keys.ENTER);
+		click(wabaCampaignSearchTemplate);
+		type(wabaCampaignSearchTemplate, templateName);
+		wabaCampaignSearchTemplate.sendKeys(Keys.ENTER);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -124,11 +124,11 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnSaveButton() {
-		click(wabaCampaignTempmateSaveBtn);
+		click(wabaCampaignTemplateSaveBtn);
 	}
 
 	public void clickOnSendButton() {
-		click(wabaCampaingSendBtn);
+		click(wabaCampaignSendBtn);
 	}
 
 	public void clickOnSendNowButton() {
