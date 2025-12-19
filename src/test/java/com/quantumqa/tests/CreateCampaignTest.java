@@ -61,6 +61,10 @@ public class CreateCampaignTest extends BaseTest {
 		wabaCampaignPage.clickOnCreateCampaignButton();
 		wabaCampaignPage.enterCampaignName(campaignName);
 		wabaCampaignPage.selectCampaignCategory("automation");
+		wabaCampaignPage.selectWhatsappBusinessNumber();
+		wabaCampaignPage.importContactsList("Automation", "Automation");
+		
+		
 
 	}
 
