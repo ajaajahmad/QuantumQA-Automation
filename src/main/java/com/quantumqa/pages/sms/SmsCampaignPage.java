@@ -11,7 +11,7 @@ import com.quantumqa.utils.TableSelectionUtil;
 public class SmsCampaignPage extends BasePage {
 
 	private TableSelectionUtil tableSelectionUtil;
-	public CampaignCommonComponent campaignCommonComponent;
+	private CampaignCommonComponent campaignCommonComponent;
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
