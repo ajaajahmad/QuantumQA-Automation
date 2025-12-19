@@ -12,7 +12,7 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionUtil tableSelectionUtil;
 
-	public CampaignCommonComponent campaignCommonComponent;
+	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
@@ -27,7 +27,10 @@ public class WhatsAppCampaignPage extends BasePage {
 	private WebElement campaignsSubMenu;
 
 	@FindBy(css = ".wa-business-number")
-	private WebElement whatsappBusinessNumber;
+	private WebElement wabaNumberDropdown;
+	
+	@FindBy(xpath = "//span[normalize-space()='+91-8448098748']")
+	private WebElement chooseWabaNumber;
 
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
 	private WebElement importContactsButton;
@@ -82,21 +85,25 @@ public class WhatsAppCampaignPage extends BasePage {
 		campaignCommonComponent.selectCampaignCategory(categoryText);
 	}
 
-	public void clickOnImportContacts() {
+	public void selectWhatsappBusinessNumber() {
+		click(wabaNumberDropdown);
+		click(chooseWabaNumber);
+	}
+
+	public void importContactsList(String listName, String contactListName) {
 		click(importContactsButton);
-	}
-
-	public void clickOnListTab() {
 		click(contactsListTab);
-	}
-
-	public void searchContactList(String listName) {
 		type(contactsListSearchInput, listName);
-	}
-
-	public void selectContactList(String contactListName) {
 		tableSelectionUtil.selectContactListByName(contactListName);
 	}
+
+//	public void searchContactList(String listName) {
+//		type(contactsListSearchInput, listName);
+//	}
+//
+//	public void selectContactList(String contactListName) {
+//		tableSelectionUtil.selectContactListByName(contactListName);
+//	}
 
 	public void clickOnGoButton() {
 		click(contactsListGoButton);
