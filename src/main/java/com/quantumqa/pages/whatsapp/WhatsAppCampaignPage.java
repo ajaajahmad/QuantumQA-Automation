@@ -29,7 +29,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	@FindBy(css = ".wa-business-number")
 	private WebElement wabaNumberDropdown;
 	
-	@FindBy(xpath = "//span[normalize-space()='+91-8448098748']")
+	@FindBy(xpath = "//span[normalize-space()='+91-8448098743']")
 	private WebElement chooseWabaNumber;
 
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
@@ -58,6 +58,12 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	@FindBy(css = "button.import-btn.btn-design-white")
 	private WebElement templateCancelButton;
+	
+	@FindBy(xpath = "//span[@class='ellipsis-text custom-placement-ltr'][contains(text(),'English')]")
+	private WebElement selectLanguageDropdown;
+	
+	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(text(),'English')]")
+	private WebElement selectEnglishOption;
 
 	@FindBy(css = "button.btn-design.btn-send")
 	private WebElement campaignSendButton;
@@ -129,6 +135,12 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	public void clickOnSaveButton() {
 		click(templateSaveButton);
+	}
+	
+	public void selectLanguage() {
+		click(selectLanguageDropdown);
+		click(selectEnglishOption);
+		
 	}
 
 	public void clickOnSendButton() {
