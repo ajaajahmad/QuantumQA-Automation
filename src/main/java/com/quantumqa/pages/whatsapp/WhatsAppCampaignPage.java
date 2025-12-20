@@ -59,10 +59,10 @@ public class WhatsAppCampaignPage extends BasePage {
 	@FindBy(css = "button.import-btn.btn-design-white")
 	private WebElement templateCancelButton;
 	
-	@FindBy(xpath = "//span[@class='ellipsis-text custom-placement-ltr'][contains(text(),'English')]")
+	@FindBy(xpath = "//span[@class='ellipsis-text custom-placement-ltr'][contains(text(),'Select')]")
 	private WebElement selectLanguageDropdown;
 	
-	@FindBy(xpath = "//span[@class='ng-star-inserted'][contains(text(),'English')]")
+	@FindBy(xpath = "//div[contains(@class, 'drop-item') and .//span[contains(text(), 'English')]]")
 	private WebElement selectEnglishOption;
 
 	@FindBy(css = "button.btn-design.btn-send")
@@ -102,14 +102,6 @@ public class WhatsAppCampaignPage extends BasePage {
 		type(contactsListSearchInput, listName);
 		tableSelectionUtil.selectContactListByName(contactListName);
 	}
-
-//	public void searchContactList(String listName) {
-//		type(contactsListSearchInput, listName);
-//	}
-//
-//	public void selectContactList(String contactListName) {
-//		tableSelectionUtil.selectContactListByName(contactListName);
-//	}
 
 	public void clickOnGoButton() {
 		click(contactsListGoButton);
