@@ -60,12 +60,18 @@ public class CreateCampaignTest extends BaseTest {
 		wabaCampaignPage.clickOnCampaignsSubMenu();
 		wabaCampaignPage.clickOnCreateCampaignButton();
 		wabaCampaignPage.enterCampaignName(campaignName);
-		wabaCampaignPage.selectCampaignCategory("automation");
+		wabaCampaignPage.selectCampaignCategory("20122025");
 		wabaCampaignPage.selectWhatsappBusinessNumber();
 		wabaCampaignPage.importContactsList("Automation", "Automation");
-		
-		
-
+		wabaCampaignPage.clickOnGoButton();
+		wabaCampaignPage.clickOnImportButton();
+		wabaCampaignPage.clickOnChooseTemplate();
+		wabaCampaignPage.searchTemplate("sample_template_010");
+		wabaCampaignPage.selectTemplate("sample_template_010");
+		wabaCampaignPage.clickOnSaveButton();
+		wabaCampaignPage.selectLanguage();
+		wabaCampaignPage.clickOnSendButton();
+		wabaCampaignPage.clickOnSendNowButton();
 	}
 
 	@Test(groups = {
