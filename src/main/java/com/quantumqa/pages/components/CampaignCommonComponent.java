@@ -34,7 +34,7 @@ public class CampaignCommonComponent extends BasePage {
 	@FindBy(xpath = "//input[@placeholder='Search ...']")
 	private WebElement categorySearchInputBox;
 
-	@FindBy(xpath = "//div[@title='Auto SMS']")
+	@FindBy(xpath = "//div[@title='automation']")
 	private WebElement selectSearchedCategory;
 
 	public void clickOnCreateCampaignButton() {
@@ -47,8 +47,9 @@ public class CampaignCommonComponent extends BasePage {
 
 	public void selectCampaignCategory(String categoryText) {
 		click(categoryDropdown);
-		type(createCategoryInput, categoryText);
-		click(createCategoryAddIcon);
+		type(categorySearchInputBox, categoryText);
+		click(selectSearchedCategory);
+
 	}
 
 }
