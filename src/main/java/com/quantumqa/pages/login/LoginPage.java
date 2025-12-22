@@ -29,12 +29,22 @@ public class LoginPage extends BasePage {
 
 	public boolean isOtpPageDisplayed() {
 		try {
+
 			waitForVisible(otpInputBox);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
+
+//	public boolean isOtpPageDisplayed() {
+//		try {
+//			waitForVisible(otpInputBox);
+//			return true;
+//		} catch (Exception e) {
+//			return false;
+//		}
+//	}
 
 	public void enterUsername(String username) {
 		type(driver.findElement(usernameInputBox), username);
@@ -54,6 +64,7 @@ public class LoginPage extends BasePage {
 	}
 
 	public void userLogin(String username, String password) {
+
 		if (username == null || username.isBlank() || password == null || password.isBlank()) {
 			throw new IllegalArgumentException("Username or Password cannot be empty");
 		}
@@ -63,9 +74,38 @@ public class LoginPage extends BasePage {
 			enterPassword(password);
 			clickLoginButton();
 
-			if (isOtpPageDisplayed()) {
-				enterOtpAndValidate("666666");
+			int attempts = 0;
+			while (attempts < 5) {
+				if (isOtpPageDisplayed()) {
+					System.out.println("OTP Page found on attempt: " + (attempts + 1));
+					enterOtpAndValidate("666666");
+					break;
+				}
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				attempts++;
 			}
 		}
 	}
+
+//	public void userLogin(String username, String password) {
+//		if (username == null || username.isBlank() || password == null || password.isBlank()) {
+//			throw new IllegalArgumentException("Username or Password cannot be empty");
+//		}
+//
+//		if (isLoginPageDisplayed()) {
+//			enterUsername(username);
+//			enterPassword(password);
+//			clickLoginButton();
+//
+//			if (isOtpPageDisplayed()) {
+//				enterOtpAndValidate("666666");
+//			}
+//		}
+//	}
 }
