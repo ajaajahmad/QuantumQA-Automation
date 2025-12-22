@@ -29,7 +29,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	@FindBy(css = ".wa-business-number")
 	private WebElement wabaNumberDropdown;
 	
-	@FindBy(xpath = "//span[normalize-space()='+91-8448098743']")
+	@FindBy(xpath = "//span[normalize-space()='+91-8448098743 (TestDG)']")
 	private WebElement chooseWabaNumber;
 
 	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
