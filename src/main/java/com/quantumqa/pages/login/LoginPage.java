@@ -13,33 +13,47 @@ public class LoginPage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
-	private WebElement userName;
-	@FindBy(xpath = "//input[@formcontrolname='password']")
-	private WebElement passWord;
+	private final By usernameInputBox = By.xpath("//input[@formcontrolname='username']");
+	private final By passwordInputBox = By.xpath("//input[@formcontrolname='password']");
+	private final By otpInputBox = By.xpath("//input[@formcontrolname='otp']");
+
 	@FindBy(css = "button.submit")
 	private WebElement loginButton;
-	
-	By usernameLocator = By.xpath("//input[@formcontrolname='username']");
+
+	@FindBy(xpath = "//button[contains(text(),'Validate')]")
+	private WebElement validateOtpButton;
 
 	public boolean isLoginPageDisplayed() {
-		return isElementDisplayed(usernameLocator);
+		return isElementDisplayed(usernameInputBox);
+	}
+
+	public boolean isOtpPageDisplayed() {
+		try {
+			waitForVisible(otpInputBox);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public void enterUsername(String username) {
-		type(userName, username);
+		type(driver.findElement(usernameInputBox), username);
 	}
 
 	public void enterPassword(String password) {
-		type(passWord, password);
+		type(driver.findElement(passwordInputBox), password);
 	}
 
 	public void clickLoginButton() {
 		click(loginButton);
 	}
 
-	public void userLogin(String username, String password) {
+	public void enterOtpAndValidate(String otp) {
+		type(driver.findElement(otpInputBox), otp);
+		click(validateOtpButton);
+	}
 
+	public void userLogin(String username, String password) {
 		if (username == null || username.isBlank() || password == null || password.isBlank()) {
 			throw new IllegalArgumentException("Username or Password cannot be empty");
 		}
@@ -48,8 +62,10 @@ public class LoginPage extends BasePage {
 			enterUsername(username);
 			enterPassword(password);
 			clickLoginButton();
-		} else {
-			System.out.println("Already logged in, skipping login");
+
+			if (isOtpPageDisplayed()) {
+				enterOtpAndValidate("666666");
+			}
 		}
 	}
 }
