@@ -13,54 +13,29 @@ public class LoginPage extends BasePage {
 		super(driver);
 	}
 
-	private final By usernameInputBox = By.xpath("//input[@formcontrolname='username']");
-	private final By passwordInputBox = By.xpath("//input[@formcontrolname='password']");
-	private final By otpInputBox = By.xpath("//input[@formcontrolname='otp']");
-
+	@FindBy(xpath = "//input[@formcontrolname='username']")
+	private WebElement usernameInputBox;
+	@FindBy(xpath = "//input[@formcontrolname='password']")
+	private WebElement passwordInputBox;
 	@FindBy(css = "button.submit")
 	private WebElement loginButton;
-
-	@FindBy(xpath = "//button[contains(text(),'Validate')]")
-	private WebElement validateOtpButton;
+	
+	By usernameLocator = By.xpath("//input[@formcontrolname='username']");
 
 	public boolean isLoginPageDisplayed() {
-		return isElementDisplayed(usernameInputBox);
+		return isElementDisplayed(usernameLocator);
 	}
-
-	public boolean isOtpPageDisplayed() {
-		try {
-
-			waitForVisible(otpInputBox);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-//	public boolean isOtpPageDisplayed() {
-//		try {
-//			waitForVisible(otpInputBox);
-//			return true;
-//		} catch (Exception e) {
-//			return false;
-//		}
-//	}
 
 	public void enterUsername(String username) {
-		type(driver.findElement(usernameInputBox), username);
+		type(usernameInputBox, username);
 	}
 
 	public void enterPassword(String password) {
-		type(driver.findElement(passwordInputBox), password);
+		type(passwordInputBox, password);
 	}
 
 	public void clickLoginButton() {
 		click(loginButton);
-	}
-
-	public void enterOtpAndValidate(String otp) {
-		type(driver.findElement(otpInputBox), otp);
-		click(validateOtpButton);
 	}
 
 	public void userLogin(String username, String password) {
@@ -73,39 +48,8 @@ public class LoginPage extends BasePage {
 			enterUsername(username);
 			enterPassword(password);
 			clickLoginButton();
-
-			int attempts = 0;
-			while (attempts < 5) {
-				if (isOtpPageDisplayed()) {
-					System.out.println("OTP Page found on attempt: " + (attempts + 1));
-					enterOtpAndValidate("666666");
-					break;
-				}
-
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-				attempts++;
-			}
+		} else {
+			System.out.println("Already logged in, skipping login");
 		}
 	}
-
-//	public void userLogin(String username, String password) {
-//		if (username == null || username.isBlank() || password == null || password.isBlank()) {
-//			throw new IllegalArgumentException("Username or Password cannot be empty");
-//		}
-//
-//		if (isLoginPageDisplayed()) {
-//			enterUsername(username);
-//			enterPassword(password);
-//			clickLoginButton();
-//
-//			if (isOtpPageDisplayed()) {
-//				enterOtpAndValidate("666666");
-//			}
-//		}
-//	}
 }
