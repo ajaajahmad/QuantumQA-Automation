@@ -29,7 +29,7 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	@FindBy(css = ".wa-business-number")
 	private WebElement wabaNumberDropdown;
-	
+
 	@FindBy(xpath = "//span[normalize-space()='+91-8448098743 (TestDG)']")
 	private WebElement chooseWabaNumber;
 
@@ -59,15 +59,27 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	@FindBy(css = "button.import-btn.btn-design-white")
 	private WebElement templateCancelButton;
-	
+
 	@FindBy(xpath = "//span[@class='ellipsis-text custom-placement-ltr'][contains(text(),'Select')]")
 	private WebElement selectLanguageDropdown;
-	
+
 	@FindBy(xpath = "//div[contains(@class, 'drop-item') and .//span[contains(text(), 'English')]]")
 	private WebElement selectEnglishOption;
-	
+
 	@FindBy(xpath = "//a[contains(@class,'variable-text')][1]")
 	private WebElement variable;
+
+	@FindBy(xpath = "//span[contains(text(),'Personalise')]")
+	private WebElement personaliseText;
+
+	@FindBy(xpath = "//span[normalize-space()='All Variables']")
+	private WebElement allVariableText;
+	
+	@FindBy(xpath = "//input[@placeholder='Static text goes here']")
+	private WebElement variableInputBox;
+	
+	@FindBy(xpath = "//button[normalize-space()='Save' and not(contains(@class,'import-btn'))]")
+	private WebElement saveButton;
 
 	@FindBy(css = "button.btn-design.btn-send")
 	private WebElement campaignSendButton;
@@ -132,15 +144,21 @@ public class WhatsAppCampaignPage extends BasePage {
 	public void clickOnSaveButton() {
 		click(templateSaveButton);
 	}
-	
+
 	public void selectLanguage() {
 		click(selectLanguageDropdown);
 		click(selectEnglishOption);
-		
+
 	}
-	
-	public void variablePersonalisation() {
-		new Actions(driver).contextClick(variable).perform();
+
+	public void variablePersonalisation(String value) {
+		Actions action = new Actions(driver);
+		action.contextClick(variable).perform();
+		action.moveToElement(personaliseText).perform();
+		action.moveToElement(allVariableText).click().perform();
+		type(variableInputBox, value);
+		click(saveButton);
+
 	}
 
 	public void clickOnSendButton() {
