@@ -3,6 +3,7 @@ package com.quantumqa.pages.whatsapp;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
@@ -64,6 +65,9 @@ public class WhatsAppCampaignPage extends BasePage {
 	
 	@FindBy(xpath = "//div[contains(@class, 'drop-item') and .//span[contains(text(), 'English')]]")
 	private WebElement selectEnglishOption;
+	
+	@FindBy(xpath = "//a[contains(@class,'variable-text')][1]")
+	private WebElement variable;
 
 	@FindBy(css = "button.btn-design.btn-send")
 	private WebElement campaignSendButton;
@@ -133,6 +137,10 @@ public class WhatsAppCampaignPage extends BasePage {
 		click(selectLanguageDropdown);
 		click(selectEnglishOption);
 		
+	}
+	
+	public void variablePersonalisation() {
+		new Actions(driver).contextClick(variable).perform();
 	}
 
 	public void clickOnSendButton() {
