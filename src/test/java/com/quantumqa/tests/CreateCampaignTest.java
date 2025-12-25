@@ -75,7 +75,7 @@ public class CreateCampaignTest extends BaseTest {
 		wabaCampaignPage.selectTemplate(wabaTemplateName);
 		wabaCampaignPage.clickOnSaveButton();
 		wabaCampaignPage.selectLanguage();
-		wabaCampaignPage.variablePersonalisation();
+		wabaCampaignPage.variablePersonalisation("test");
 		wabaCampaignPage.clickOnSendButton();
 		wabaCampaignPage.clickOnSendNowButton();
 	}
