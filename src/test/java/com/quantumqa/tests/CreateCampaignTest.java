@@ -6,11 +6,16 @@ import org.testng.annotations.Test;
 
 import com.quantumqa.base.BaseTest;
 import com.quantumqa.dataprovider.TestDataProvider;
+import com.quantumqa.utils.ConfigReader;
 import com.quantumqa.utils.DateTimeUtils;
 
 public class CreateCampaignTest extends BaseTest {
 
 	private String campaignName;
+	private String smsListName = ConfigReader.get("sms_list_name");
+	private String smsTemplateName = ConfigReader.get("sms_template_name");
+	private String wabaListName = ConfigReader.get("waba_list_name");
+	private String wabaTemplateName = ConfigReader.get("waba_template_name");
 
 	@BeforeMethod
 	public void generateCampaignName() {
@@ -36,13 +41,13 @@ public class CreateCampaignTest extends BaseTest {
 		smsCampaignPage.selectCampaignType();
 		smsCampaignPage.clickOnImportContacts();
 		smsCampaignPage.clickOnListTab();
-		smsCampaignPage.searchContactList("Automation");
-		smsCampaignPage.selectContactList("Automation");
+		smsCampaignPage.searchContactList(smsListName);
+		smsCampaignPage.selectContactList(smsListName);
 		smsCampaignPage.clickOnGoButton();
 		smsCampaignPage.clickOnImportButton();
 		smsCampaignPage.clickOnChooseTemplate();
-		smsCampaignPage.searchTemplate("Order Confirmation");
-		smsCampaignPage.selectTemplate("Order Confirmation");
+		smsCampaignPage.searchTemplate(smsTemplateName);
+		smsCampaignPage.selectTemplate(smsTemplateName);
 		smsCampaignPage.clickOnSaveButton();
 		smsCampaignPage.clickOnSendButton();
 		smsCampaignPage.clickOnSendNowButton();
@@ -62,12 +67,12 @@ public class CreateCampaignTest extends BaseTest {
 		wabaCampaignPage.enterCampaignName(campaignName);
 		wabaCampaignPage.selectCampaignCategory("automation");
 		wabaCampaignPage.selectWhatsappBusinessNumber();
-		wabaCampaignPage.importContactsList("Automation", "Automation");
+		wabaCampaignPage.importContactsList(wabaListName, wabaListName);
 		wabaCampaignPage.clickOnGoButton();
 		wabaCampaignPage.clickOnImportButton();
 		wabaCampaignPage.clickOnChooseTemplate();
-		wabaCampaignPage.searchTemplate("raymond_issue_1");
-		wabaCampaignPage.selectTemplate("raymond_issue_1");
+		wabaCampaignPage.searchTemplate(wabaTemplateName);
+		wabaCampaignPage.selectTemplate(wabaTemplateName);
 		wabaCampaignPage.clickOnSaveButton();
 		wabaCampaignPage.selectLanguage();
 		wabaCampaignPage.clickOnSendButton();
