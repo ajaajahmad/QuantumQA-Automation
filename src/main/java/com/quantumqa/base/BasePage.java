@@ -15,7 +15,7 @@ public class BasePage {
 	protected WebDriver driver;
 	protected WebDriverWait wait;
 
-	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
+	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
