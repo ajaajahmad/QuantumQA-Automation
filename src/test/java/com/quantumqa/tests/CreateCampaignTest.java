@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import com.quantumqa.base.BaseTest;
 import com.quantumqa.dataprovider.TestDataProvider;
 import com.quantumqa.utils.ConfigReader;
-import com.quantumqa.utils.DateTimeUtils;
+import com.quantumqa.utils.DateTimeManager;
 
 public class CreateCampaignTest extends BaseTest {
 
@@ -19,11 +19,11 @@ public class CreateCampaignTest extends BaseTest {
 
 	@BeforeMethod
 	public void generateCampaignName() {
-		campaignName = DateTimeUtils.appendLocalDateTime("Selenium_Flow");
+		campaignName = DateTimeManager.appendLocalDateTime("Selenium_Flow");
 	}
 
 	@Test(groups = {
-			"sms campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+			"sms_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
 	public void verifySmsCampaignCreation(String username, String password) {
 
 		try {
@@ -53,8 +53,9 @@ public class CreateCampaignTest extends BaseTest {
 		smsCampaignPage.clickOnSendNowButton();
 	}
 
-	@Test(groups = { "whatsapp campaign" }, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifyWhatsappCampaignCreation(String username, String password) {
+	@Test(groups = {
+			"whatsapp_campaign" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
+	public void verifyWhatsappCampaignCreation(String username, String password) throws InterruptedException {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
