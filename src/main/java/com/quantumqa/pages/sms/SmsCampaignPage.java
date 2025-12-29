@@ -6,16 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
-import com.quantumqa.utils.TableSelectionUtil;
+import com.quantumqa.utils.TableSelectionManager;
 
 public class SmsCampaignPage extends BasePage {
 
-	private TableSelectionUtil tableSelectionUtil;
+	private TableSelectionManager tableSelectionManager;
 	private CampaignCommonComponent campaignCommonComponent;
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
-		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
+		this.tableSelectionManager = new TableSelectionManager(driver, wait);
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
@@ -29,7 +29,7 @@ public class SmsCampaignPage extends BasePage {
 	private WebElement campaignsDltPopup;
 
 	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
-	private WebElement smsCreateCampaign;
+	private WebElement createCampaign;
 
 	@FindBy(xpath = "//input[@value='Personalised']")
 	private WebElement campaignType;
@@ -75,15 +75,15 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void clickOnCampaignsSubMenu() {
-		click(campaignsDltPopup);
-	}
-
-	public void acknowledgeDltPopupWindow() {
 		click(campaignsSubMenu);
 	}
 
+	public void acknowledgeDltPopupWindow() {
+		click(campaignsDltPopup);
+	}
+
 	public void clickOnCreateCampaignButton() {
-		click(smsCreateCampaign);
+		click(createCampaign);
 	}
 
 	public void enterCampaignName(String campaignName) {
@@ -111,7 +111,7 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void selectContactList(String contactListName) {
-		tableSelectionUtil.selectContactListByName(contactListName);
+		tableSelectionManager.selectContactListByName(contactListName);
 	}
 
 	public void clickOnGoButton() {
@@ -133,7 +133,7 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void selectTemplate(String templateName) {
-		tableSelectionUtil.selectTemplateByName(templateName);
+		tableSelectionManager.selectTemplateByName(templateName);
 	}
 
 	public void clickOnSaveButton() {
