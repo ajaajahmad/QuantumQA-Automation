@@ -3,9 +3,9 @@ package com.quantumqa.utils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateTimeUtils {
+public class DateTimeManager {
 
-	private DateTimeUtils() {
+	private DateTimeManager() {
 
 	}
 
