@@ -11,11 +11,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TableSelectionUtil {
+public class TableSelectionManager {
 
 	private WebDriver driver;
 
-	public TableSelectionUtil(WebDriver driver, WebDriverWait webDriverWait) {
+	public TableSelectionManager(WebDriver driver, WebDriverWait webDriverWait) {
 		this.driver = driver;
 	}
 
