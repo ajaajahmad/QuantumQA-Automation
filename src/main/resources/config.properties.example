@@ -1,4 +1,4 @@
-base.url=https://example.com
+app_url=https://example.com
 browser=chrome
 timeout=30
 excel_sheet_name=Sheet1
