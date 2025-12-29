@@ -46,7 +46,7 @@ public class TestDataProvider {
 	public Object[][] getJsonUserData() throws IOException {
 
 		JsonDataReader jsonReader = new JsonDataReader();
-		String filePath = System.getProperty("user.dir") + "/src/test/resources/testdata/usercredentials.json";
+		String filePath = System.getProperty("user.dir") + "/src/test/resources/testdata/userdata.json";
 
 		List<HashMap<String, String>> dataList = jsonReader.getJsonDataToMap(filePath);
 
