@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import org.apache.poi.ss.usermodel.*;
 
-public class ExcelUtils {
+public class ExcelDataReader {
 
 	public static Object[][] getExcelData() {
-		String filePath = ExcelUtils.class.getClassLoader().getResource("testdata/userdata.xlsx").getPath();
+		String filePath = ExcelDataReader.class.getClassLoader().getResource("testdata/userdata.xlsx").getPath();
 		String sheetName = ConfigReader.get("excel_sheet_name");
 
 		try (FileInputStream fis = new FileInputStream(new File(filePath));
