@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import com.quantumqa.pages.components.LogoutCommonComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
 import com.quantumqa.pages.sms.SmsCampaignPage;
@@ -22,6 +23,7 @@ public class BaseTest {
 	protected ErrorValidationPage errorValidationPage;
 	protected SmsCampaignPage smsCampaignPage;
 	protected WhatsAppCampaignPage wabaCampaignPage;
+	protected LogoutCommonComponent logoutCommonComponent;
 
 	@BeforeSuite
 	public void setUp() {
@@ -41,7 +43,6 @@ public class BaseTest {
 
 			driver.manage().window().maximize();
 			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
 
 			String appUrl = ConfigReader.get("app_url");
@@ -51,6 +52,7 @@ public class BaseTest {
 			errorValidationPage = new ErrorValidationPage(driver);
 			smsCampaignPage = new SmsCampaignPage(driver);
 			wabaCampaignPage = new WhatsAppCampaignPage(driver);
+			logoutCommonComponent = new LogoutCommonComponent(driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +62,7 @@ public class BaseTest {
 
 	@AfterSuite
 	public void tearDown() {
+		logoutCommonComponent.userLogout();
 		if (driver != null) {
 			driver.quit();
 		}
