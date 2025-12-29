@@ -7,17 +7,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
-import com.quantumqa.utils.TableSelectionUtil;
+import com.quantumqa.utils.TableSelectionManager;
 
 public class WhatsAppCampaignPage extends BasePage {
 
-	private TableSelectionUtil tableSelectionUtil;
+	private TableSelectionManager tableSelectionManager;
 
 	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
-		this.tableSelectionUtil = new TableSelectionUtil(driver, wait);
+		this.tableSelectionManager = new TableSelectionManager(driver, wait);
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
@@ -116,7 +116,7 @@ public class WhatsAppCampaignPage extends BasePage {
 		click(importContactsButton);
 		click(contactsListTab);
 		type(contactsListSearchInput, listName);
-		tableSelectionUtil.selectContactListByName(contactListName);
+		tableSelectionManager.selectContactListByName(contactListName);
 	}
 
 	public void clickOnGoButton() {
@@ -131,14 +131,16 @@ public class WhatsAppCampaignPage extends BasePage {
 		click(chooseTemplateButton);
 	}
 
-	public void searchTemplate(String templateName) {
+	public void searchTemplate(String templateName) throws InterruptedException {
 		click(searchTemplate);
 		type(searchTemplate, templateName);
 		searchTemplate.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
 	}
 
+	
 	public void selectTemplate(String templateName) {
-		tableSelectionUtil.selectTemplateByName(templateName);
+		tableSelectionManager.selectTemplateByName(templateName);
 	}
 
 	public void clickOnSaveButton() {
@@ -151,10 +153,11 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	}
 
-	public void variablePersonalisation(String value) {
+	public void variablePersonalisation(String value) throws InterruptedException {
 		Actions action = new Actions(driver);
 		action.contextClick(variable).perform();
 		action.moveToElement(personaliseText).perform();
+		Thread.sleep(3000);
 		action.moveToElement(allVariableText).click().perform();
 		type(variableInputBox, value);
 		click(saveButton);
