@@ -82,7 +82,7 @@ public class CreateCampaignTest extends BaseTest {
 	}
 
 	@Test(groups = {
-			"rcs campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+			"rcs_campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifyRcsCampaignCreation(String username, String password) {
 		try {
 			loginPage.userLogin(username, password);
@@ -93,7 +93,7 @@ public class CreateCampaignTest extends BaseTest {
 	}
 
 	@Test(groups = {
-			"truecaller campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
+			"truecaller_campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void verifyTruecallerCampaignCreation(String username, String password) {
 		try {
 			loginPage.userLogin(username, password);
