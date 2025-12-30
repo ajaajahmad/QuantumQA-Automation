@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.quantumqa.base.BasePage;
 
-public class CampaignCommonComponents extends BasePage {
+public class CampaignCommonComponent extends BasePage {
 
-	public CampaignCommonComponents(WebDriver driver, WebDriverWait wait) {
+	public CampaignCommonComponent(WebDriver driver, WebDriverWait wait) {
 		super(driver);
 	}
 
