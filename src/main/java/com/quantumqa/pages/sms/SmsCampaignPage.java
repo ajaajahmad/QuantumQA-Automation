@@ -5,18 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
-import com.quantumqa.pages.components.CampaignCommonComponent;
+import com.quantumqa.pages.components.CampaignCommonComponents;
 import com.quantumqa.utils.TableSelectionManager;
 
 public class SmsCampaignPage extends BasePage {
 
 	private TableSelectionManager tableSelectionManager;
-	private CampaignCommonComponent campaignCommonComponent;
+	private CampaignCommonComponents campaignCommonComponents;
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver, wait);
-		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
+		this.campaignCommonComponents = new CampaignCommonComponents(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
@@ -87,11 +87,11 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void enterCampaignName(String campaignName) {
-		campaignCommonComponent.enterCampaignName(campaignName);
+		campaignCommonComponents.enterCampaignName(campaignName);
 	}
 
 	public void selectCampaignCategory(String categoryText) {
-		campaignCommonComponent.selectCampaignCategory(categoryText);
+		campaignCommonComponents.selectCampaignCategory(categoryText);
 	}
 
 	public void selectCampaignType() {
