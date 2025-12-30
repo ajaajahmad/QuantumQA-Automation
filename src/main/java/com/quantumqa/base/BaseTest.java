@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.quantumqa.pages.components.LogoutCommonComponent;
+import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
 import com.quantumqa.pages.sms.SmsCampaignPage;
@@ -23,7 +23,7 @@ public class BaseTest {
 	protected ErrorValidationPage errorValidationPage;
 	protected SmsCampaignPage smsCampaignPage;
 	protected WhatsAppCampaignPage wabaCampaignPage;
-	protected LogoutCommonComponent logoutCommonComponent;
+	protected LogoutComponent logoutComponent;
 
 	@BeforeSuite
 	public void setUp() {
@@ -52,7 +52,7 @@ public class BaseTest {
 			errorValidationPage = new ErrorValidationPage(driver);
 			smsCampaignPage = new SmsCampaignPage(driver);
 			wabaCampaignPage = new WhatsAppCampaignPage(driver);
-			logoutCommonComponent = new LogoutCommonComponent(driver);
+			logoutComponent = new LogoutComponent(driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +62,7 @@ public class BaseTest {
 
 	@AfterSuite
 	public void tearDown() {
-		logoutCommonComponent.userLogout();
+		logoutComponent.userLogout();
 		if (driver != null) {
 			driver.quit();
 		}
