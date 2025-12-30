@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
-import com.quantumqa.pages.components.CampaignCommonComponents;
+import com.quantumqa.pages.components.CampaignCommonComponent;
 import com.quantumqa.utils.TableSelectionManager;
 
 public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionManager tableSelectionManager;
 
-	private CampaignCommonComponents campaignCommonComponents;
+	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver, wait);
-		this.campaignCommonComponents = new CampaignCommonComponents(driver, wait);
+		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_WhatsApp')]]")
@@ -96,15 +96,15 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnCreateCampaignButton() {
-		campaignCommonComponents.clickOnCreateCampaignButton();
+		campaignCommonComponent.clickOnCreateCampaignButton();
 	}
 
 	public void enterCampaignName(String campaignName) {
-		campaignCommonComponents.enterCampaignName(campaignName);
+		campaignCommonComponent.enterCampaignName(campaignName);
 	}
 
 	public void selectCampaignCategory(String categoryText) {
-		campaignCommonComponents.selectCampaignCategory(categoryText);
+		campaignCommonComponent.selectCampaignCategory(categoryText);
 	}
 
 	public void selectWhatsappBusinessNumber() {
