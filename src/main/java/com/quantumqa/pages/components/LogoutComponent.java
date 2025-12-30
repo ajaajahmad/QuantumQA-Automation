@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
 
-public class LogoutCommonComponent extends BasePage {
+public class LogoutComponent extends BasePage {
 
-	public LogoutCommonComponent(WebDriver driver) {
+	public LogoutComponent(WebDriver driver) {
 		super(driver);
 	}
 
