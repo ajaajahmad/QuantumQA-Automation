@@ -1,5 +1,5 @@
 package com.quantumqa.pages.components;
 
-public class MenuComponents {
+public class MainMenuComponent {
 
 }
