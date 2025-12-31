@@ -3,6 +3,7 @@ package com.quantumqa.pages.components;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.quantumqa.base.BasePage;
 
 public class MainMenuComponent extends BasePage {
+
+	private WebDriverWait wait;
 
 	public MainMenuComponent(WebDriver driver) {
 		super(driver);
@@ -24,15 +27,26 @@ public class MainMenuComponent extends BasePage {
 	}
 
 	public void clickMainMenu(String menuName) {
-		WebElement menu = getSidebar()
-				.findElement(By.xpath(".//span[@class='menu-heading' and normalize-space()='" + menuName + "']"));
-		menu.click();
+
+		WebElement menuEvent = getSidebar().findElement(By.xpath(
+				".//span[normalize-space()='" + menuName + "']" + "/ancestor::div[contains(@class,'menu-event')]"));
+
+		wait.until(ExpectedConditions.elementToBeClickable(menuEvent)).click();
 	}
 
 	public void clickSubMenu(String parentMenu, String childMenu) {
-		WebElement subMenu = getSidebar().findElement(By.xpath(
+
+		clickMainMenu(parentMenu);
+
+		By subMenuBy = By.xpath(
 				".//span[normalize-space()='" + parentMenu + "']" + "/ancestor::li[contains(@class,'menu-list-items')]"
-						+ "//span[normalize-space()='" + childMenu + "']"));
+						+ "//div[contains(@class,'collapse') and not(contains(@style,'display: none'))]"
+						+ "//span[@class='menu-heading' and normalize-space()='" + childMenu + "']");
+
+		WebElement subMenu = wait.until(ExpectedConditions.elementToBeClickable(subMenuBy));
+
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", subMenu);
+
 		subMenu.click();
 	}
 }
