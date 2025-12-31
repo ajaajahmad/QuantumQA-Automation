@@ -7,18 +7,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
+import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.utils.TableSelectionManager;
 
 public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionManager tableSelectionManager;
-
+	private MainMenuComponent mainMenuComponent;
 	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver, wait);
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
+		this.mainMenuComponent = new MainMenuComponent(driver);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_WhatsApp')]]")
@@ -74,10 +76,10 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	@FindBy(xpath = "//span[normalize-space()='All Variables']")
 	private WebElement allVariableText;
-	
+
 	@FindBy(xpath = "//input[@placeholder='Static text goes here']")
 	private WebElement variableInputBox;
-	
+
 	@FindBy(xpath = "//button[normalize-space()='Save' and not(contains(@class,'import-btn'))]")
 	private WebElement saveButton;
 
@@ -88,7 +90,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	private WebElement campaignSendNowButton;
 
 	public void clickOnWabaMenu() {
-		click(whatsappMenu);
+		mainMenuComponent.clickMainMenu("WhatsApp");
 	}
 
 	public void clickOnCampaignsSubMenu() {
@@ -138,7 +140,6 @@ public class WhatsAppCampaignPage extends BasePage {
 		Thread.sleep(2000);
 	}
 
-	
 	public void selectTemplate(String templateName) {
 		tableSelectionManager.selectTemplateByName(templateName);
 	}
