@@ -94,7 +94,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void clickOnCampaignsSubMenu() {
-		click(campaignsSubMenu);
+		mainMenuComponent.clickSubMenu("WhatsApp", "Campaigns");
 	}
 
 	public void clickOnCreateCampaignButton() {
