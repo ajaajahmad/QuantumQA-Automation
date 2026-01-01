@@ -40,8 +40,7 @@ public class MainMenuComponent extends BasePage {
 
 		By subMenuBy = By.xpath(
 				".//span[normalize-space()='" + parentMenu + "']" + "/ancestor::li[contains(@class,'menu-list-items')]"
-						+ "//div[contains(@class,'collapse') and not(contains(@style,'display: none'))]"
-						+ "//span[@class='menu-heading' and normalize-space()='" + childMenu + "']");
+						+ "//span[normalize-space()='" + childMenu + "']");
 
 		WebElement subMenu = wait.until(ExpectedConditions.elementToBeClickable(subMenuBy));
 
