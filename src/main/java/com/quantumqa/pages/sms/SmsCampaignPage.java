@@ -15,7 +15,7 @@ public class SmsCampaignPage extends BasePage {
 
 	public SmsCampaignPage(WebDriver driver) {
 		super(driver);
-		this.tableSelectionManager = new TableSelectionManager(driver, wait);
+		this.tableSelectionManager = new TableSelectionManager(driver);
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
