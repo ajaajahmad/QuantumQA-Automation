@@ -16,6 +16,7 @@ public class BasePage {
 	protected WebDriverWait wait;
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
+	private static final long HARD_SLEEP_MS = 1000;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -53,12 +54,24 @@ public class BasePage {
 	}
 
 	protected void click(WebElement element) {
+		hardSleep();
 		waitForClickable(element).click();
+		hardSleep();
 	}
 
 	protected void type(WebElement element, String text) {
+		hardSleep();
 		waitForVisible(element);
 		element.clear();
 		element.sendKeys(text);
+		hardSleep();
+	}
+
+	private void hardSleep() {
+		try {
+			Thread.sleep(HARD_SLEEP_MS);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 }
