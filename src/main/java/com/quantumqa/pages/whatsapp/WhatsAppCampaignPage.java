@@ -133,17 +133,14 @@ public class WhatsAppCampaignPage extends BasePage {
 		click(chooseTemplateButton);
 	}
 
-	public void searchTemplate(String templateName) throws InterruptedException {
+	public void searchTemplate(String templateName) {
 		click(searchTemplate);
 		type(searchTemplate, templateName);
 		searchTemplate.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
 	}
 
-	public void selectTemplate(String templateName) throws InterruptedException {
+	public void selectTemplate(String templateName) {
 		tableSelectionManager.selectTemplateByName(templateName);
-		Thread.sleep(1000);
-
 	}
 
 	public void clickOnSaveButton() {
