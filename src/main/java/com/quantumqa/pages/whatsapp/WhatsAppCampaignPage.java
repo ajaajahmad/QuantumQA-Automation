@@ -133,11 +133,10 @@ public class WhatsAppCampaignPage extends BasePage {
 		click(chooseTemplateButton);
 	}
 
-	public void searchTemplate(String templateName) throws InterruptedException {
+	public void searchTemplate(String templateName) {
 		click(searchTemplate);
 		type(searchTemplate, templateName);
 		searchTemplate.sendKeys(Keys.ENTER);
-		Thread.sleep(2000);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -157,8 +156,9 @@ public class WhatsAppCampaignPage extends BasePage {
 	public void variablePersonalisation(String value) throws InterruptedException {
 		Actions action = new Actions(driver);
 		action.contextClick(variable).perform();
+		Thread.sleep(500);
 		action.moveToElement(personaliseText).perform();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		action.moveToElement(allVariableText).click().perform();
 		type(variableInputBox, value);
 		click(saveButton);
