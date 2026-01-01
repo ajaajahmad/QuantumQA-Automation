@@ -16,120 +16,103 @@ public class TableSelectionManager {
 		this.driver = driver;
 	}
 
-	public void selectContactListByName(String expectedRowText) {
+	public void selectContactListByName(String listName) {
 
-		try {
-			Thread.sleep(2000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			List<WebElement> rows = driver.findElements(By.xpath("//tbody//tr"));
-			if (rows.isEmpty()) {
-				throw new RuntimeException("Contact list table is empty");
-			}
+		sleep(1500);
 
-			for (WebElement row : rows) {
-				try {
+		for (int attempt = 1; attempt <= 3; attempt++) {
+			try {
+				List<WebElement> tableRows = driver.findElements(By.xpath("//tbody//tr"));
+
+				for (WebElement row : tableRows) {
+
 					WebElement nameCell = row
 							.findElement(By.xpath(".//td[2]//span[contains(@class,'table-data-row')]"));
 
-					if (nameCell.getText().trim().equalsIgnoreCase(expectedRowText)) {
+					if (nameCell.getText().trim().equalsIgnoreCase(listName)) {
 
-						WebElement checkboxInput = row.findElement(By.cssSelector("mat-checkbox input"));
+						WebElement checkboxTouchTarget = row
+								.findElement(By.xpath(".//div[contains(@class,'mat-mdc-checkbox-touch-target')]"));
 
-						scrollToElement(checkboxInput);
-						Thread.sleep(500);
+						js.executeScript("arguments[0].scrollIntoView({block:'center'});", checkboxTouchTarget);
+						js.executeScript("arguments[0].click();", checkboxTouchTarget);
 
-						checkboxInput.click();
-						Thread.sleep(1000);
+						sleep(300);
 
-						WebElement freshCheckbox = driver.findElement(By.id(checkboxInput.getAttribute("id")));
+						WebElement freshCheckbox = driver.findElement(
+								By.xpath("//tbody//tr[.//span[normalize-space()='" + listName + "']]//mat-checkbox"));
 
-						if (!freshCheckbox.isSelected()) {
-							Thread.sleep(600);
-							freshCheckbox.click();
-							Thread.sleep(800);
+						if (freshCheckbox.getAttribute("class").contains("mat-mdc-checkbox-checked")) {
+							return;
 						}
 
-						if (!driver.findElement(By.id(checkboxInput.getAttribute("id"))).isSelected()) {
-							throw new RuntimeException("Contact list checkbox reverted by Angular: " + expectedRowText);
-						}
-
+						js.executeScript("arguments[0].click();", checkboxTouchTarget);
+						sleep(300);
 						return;
 					}
-
-				} catch (StaleElementReferenceException ignored) {
 				}
+
+			} catch (StaleElementReferenceException ignored) {
+				sleep(500);
 			}
-
-			throw new RuntimeException("Contact list not found in table: " + expectedRowText);
-
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-			throw new RuntimeException(e);
 		}
+
+		throw new RuntimeException("Contact list not selected: " + listName);
 	}
 
 	public void selectTemplateByName(String templateName) {
 
-		try {
-			Thread.sleep(2500);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			List<WebElement> rows = driver.findElements(By.xpath("//tbody//tr"));
-			if (rows.isEmpty()) {
-				throw new RuntimeException("Template table is empty");
-			}
+		sleep(1500);
 
-			for (WebElement row : rows) {
-				try {
+		for (int attempt = 1; attempt <= 3; attempt++) {
+			try {
+				List<WebElement> tableRows = driver.findElements(By.xpath("//tbody//tr"));
+
+				for (WebElement row : tableRows) {
+
 					WebElement nameCell = row
 							.findElement(By.xpath(".//td[2]//span[contains(@class,'table-data-row')]"));
 
 					if (nameCell.getText().trim().equalsIgnoreCase(templateName)) {
 
-						WebElement radioInput = row.findElement(By.cssSelector("input[type='radio']"));
+						WebElement radioTouchTarget = row
+								.findElement(By.xpath(".//div[contains(@class,'mat-mdc-radio-touch-target')]"));
 
-						scrollToElement(radioInput);
-						Thread.sleep(600);
+						js.executeScript("arguments[0].scrollIntoView({block:'center'});", radioTouchTarget);
+						js.executeScript("arguments[0].click();", radioTouchTarget);
 
-						radioInput.click();
-						Thread.sleep(300);
-						radioInput.sendKeys(" "); // SPACE key
-						Thread.sleep(1200);
+						sleep(300);
 
-						WebElement freshRadio = driver.findElement(By.id(radioInput.getAttribute("id")));
+						WebElement freshRadio = driver.findElement(By.xpath("//tbody//tr[.//span[normalize-space()='"
+								+ templateName + "']]//input[@type='radio']"));
 
-						if (!isRadioSelected(freshRadio)) {
-							Thread.sleep(700);
-							freshRadio.click();
-							Thread.sleep(300);
-							freshRadio.sendKeys(" ");
-							Thread.sleep(1000);
+						if ("true".equalsIgnoreCase(freshRadio.getAttribute("aria-checked"))) {
+							return;
 						}
 
-						if (!isRadioSelected(driver.findElement(By.id(radioInput.getAttribute("id"))))) {
-							throw new RuntimeException("Template radio reverted by Angular: " + templateName);
-						}
-
+						js.executeScript("arguments[0].click();", radioTouchTarget);
+						sleep(300);
 						return;
 					}
-
-				} catch (StaleElementReferenceException ignored) {
 				}
+
+			} catch (StaleElementReferenceException ignored) {
+				sleep(500);
 			}
+		}
 
-			throw new RuntimeException("Template not found in table: " + templateName);
+		throw new RuntimeException("Template not selected: " + templateName);
+	}
 
+	private void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
-			throw new RuntimeException(e);
 		}
-	}
-
-	private void scrollToElement(WebElement element) {
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
-	}
-
-	private boolean isRadioSelected(WebElement radioInput) {
-		String ariaChecked = radioInput.getAttribute("aria-checked");
-		return "true".equalsIgnoreCase(ariaChecked) || radioInput.isSelected();
 	}
 }
