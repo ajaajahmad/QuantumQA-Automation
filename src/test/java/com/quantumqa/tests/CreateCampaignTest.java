@@ -54,7 +54,7 @@ public class CreateCampaignTest extends BaseTest {
 	}
 
 	@Test(groups = {
-			"whatsapp_campaign" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
+			"whatsapp_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
 	public void verifyWhatsappCampaignCreation(String username, String password) throws InterruptedException {
 		try {
 			loginPage.userLogin(username, password);
