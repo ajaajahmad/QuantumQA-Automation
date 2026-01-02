@@ -16,7 +16,7 @@ public class BasePage {
 	protected WebDriverWait wait;
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-	private static final long HARD_SLEEP_MS = 500;
+	private static final long HARD_SLEEP_MS = 200;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
