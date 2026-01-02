@@ -1,51 +1,67 @@
 package com.quantumqa.pages.components;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.*;
 import com.quantumqa.base.BasePage;
 
 public class MainMenuComponent extends BasePage {
 
-	private WebDriverWait wait;
-
 	public MainMenuComponent(WebDriver driver) {
 		super(driver);
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 	}
 
-	private By sideBar = By.xpath("//div[contains(@class,'custom-new-menu-wrapper')]");
+	private By sidebar = By.xpath("//div[contains(@class,'custom-new-menu-wrapper')]");
 
-	private WebElement getSidebar() {
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(sideBar));
+	private WebElement root() {
+		sleep(1000);
+		return driver.findElement(sidebar);
 	}
 
-	public void clickMainMenu(String menuName) {
+	private WebElement expand(WebElement scope, String text) {
 
-		WebElement menuEvent = getSidebar().findElement(By.xpath(
-				".//span[normalize-space()='" + menuName + "']" + "/ancestor::div[contains(@class,'menu-event')]"));
+		WebElement li = scope.findElement(By.xpath(".//span[normalize-space()='" + text + "']/ancestor::li[1]"));
 
-		wait.until(ExpectedConditions.elementToBeClickable(menuEvent)).click();
+		WebElement toggle = li
+				.findElement(By.xpath("./div[contains(@class,'menu-event') or contains(@class,'child-menu-event')]"));
+
+		WebElement collapse = li.findElement(By.xpath("./div[contains(@class,'collapse')]"));
+
+		if (!collapse.isDisplayed()) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", toggle);
+			sleep(800);
+			toggle.click();
+			sleep(1000);
+		}
+
+		return collapse;
 	}
 
-	public void clickSubMenu(String parentMenu, String childMenu) {
+	private void clickFinal(WebElement scope, String text) {
 
-		clickMainMenu(parentMenu);
+		WebElement target = scope.findElement(By.xpath(".//span[normalize-space()='" + text + "']"));
 
-		By subMenuBy = By.xpath(
-				".//span[normalize-space()='" + parentMenu + "']" + "/ancestor::li[contains(@class,'menu-list-items')]"
-						+ "//span[normalize-space()='" + childMenu + "']");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", target);
 
-		WebElement subMenu = wait.until(ExpectedConditions.elementToBeClickable(subMenuBy));
+		sleep(800);
+		target.click();
+		sleep(1000);
+	}
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", subMenu);
+	public void navigate(String... menuPath) {
 
-		subMenu.click();
+		WebElement currentScope = root();
+
+		for (int i = 0; i < menuPath.length - 1; i++) {
+			currentScope = expand(currentScope, menuPath[i]);
+		}
+
+		clickFinal(currentScope, menuPath[menuPath.length - 1]);
+	}
+
+	private void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 }
