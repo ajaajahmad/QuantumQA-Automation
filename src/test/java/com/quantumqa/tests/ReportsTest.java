@@ -18,5 +18,6 @@ public class ReportsTest extends BaseTest {
 		}
 
 		smsSummaryPage.clickOnSmsSummary();
+		smsSummaryPage.clickOnViewBy("Date");
 	}
 }
