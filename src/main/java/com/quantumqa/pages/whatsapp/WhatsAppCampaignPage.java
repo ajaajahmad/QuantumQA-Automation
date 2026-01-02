@@ -13,14 +13,14 @@ import com.quantumqa.utils.TableSelectionManager;
 public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionManager tableSelectionManager;
-	private MainMenuComponent mainMenuComponent;
+	private MainMenuComponent menu;
 	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver);
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
-		this.mainMenuComponent = new MainMenuComponent(driver);
+		this.menu = new MainMenuComponent(driver);
 	}
 
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_WhatsApp')]]")
@@ -90,11 +90,11 @@ public class WhatsAppCampaignPage extends BasePage {
 	private WebElement campaignSendNowButton;
 
 	public void clickOnWabaMenu() {
-		mainMenuComponent.clickMainMenu("WhatsApp");
+		menu.navigate("Whatsapp");
 	}
 
 	public void clickOnCampaignsSubMenu() {
-		mainMenuComponent.clickSubMenu("WhatsApp", "Campaigns");
+		menu.navigate("WhatsApp", "Campaigns");
 	}
 
 	public void clickOnCreateCampaignButton() {
