@@ -1,7 +1,7 @@
 # QuantumQA Automation Framework
 
 ## Overview
-QuantumQA Automation is a **data-driven Selenium framework** built with **Java 21, Maven, TestNG, and Page Object Model (POM)**.  
+QuantumQA Automation is a **data-driven Selenium framework** built with **Java, Maven, TestNG, and Page Object Model (POM)**.  
 It supports dynamic tests using Excel and JSON, centralized DataProviders, and reusable page objects.
 
 ## Features
