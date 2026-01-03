@@ -13,7 +13,7 @@ It supports dynamic tests using Excel and JSON, centralized DataProviders, and r
 - Easy to extend and maintain
 
 ## Prerequisites
-- Java 21+
+- Java 11+
 - Maven 3.8+
 - Chrome browser installed
 - ChromeDriver managed via WebDriverManager (optional)
