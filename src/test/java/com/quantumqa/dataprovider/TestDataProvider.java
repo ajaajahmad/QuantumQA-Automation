@@ -28,7 +28,7 @@ public class TestDataProvider {
 	}
 
 	private boolean isValidLoginRow(Object[] row) {
-		if (row == null || row.length < 2) {
+		if (row == null || row.length < 3) {
 			return false;
 		}
 		Object usernameObj = row[0];
@@ -40,7 +40,7 @@ public class TestDataProvider {
 			return false;
 		}
 
-		Object viewObj = row[1];
+		Object viewObj = row[2];
 		if (viewObj == null || viewObj.toString().isBlank()) {
 			return false;
 		}
@@ -55,7 +55,7 @@ public class TestDataProvider {
 
 		List<HashMap<String, String>> dataList = jsonReader.getJsonDataToMap(filePath);
 
-		Object[][] dataArray = new Object[dataList.size()][2];
+		Object[][] dataArray = new Object[dataList.size()][3];
 
 		for (int i = 0; i < dataList.size(); i++) {
 			HashMap<String, String> userData = dataList.get(i);
