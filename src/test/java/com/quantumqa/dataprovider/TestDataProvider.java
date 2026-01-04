@@ -39,6 +39,11 @@ public class TestDataProvider {
 		if (passwordObj == null || passwordObj.toString().isBlank()) {
 			return false;
 		}
+
+		Object viewObj = row[1];
+		if (viewObj == null || viewObj.toString().isBlank()) {
+			return false;
+		}
 		return true;
 	}
 
@@ -57,6 +62,7 @@ public class TestDataProvider {
 
 			dataArray[i][0] = userData.get("username");
 			dataArray[i][1] = userData.get("password");
+			dataArray[i][2] = userData.get("view");
 		}
 
 		return dataArray;
