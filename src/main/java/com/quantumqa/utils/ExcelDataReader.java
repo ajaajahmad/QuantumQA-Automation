@@ -25,7 +25,9 @@ public class ExcelDataReader {
 				if (row != null) {
 					String username = getCellValue(row.getCell(0), formatter);
 					String password = getCellValue(row.getCell(1), formatter);
-					if (!username.isEmpty() && !password.isEmpty()) {
+					String view = getCellValue(row.getCell(2), formatter);
+
+					if (!username.isEmpty() && !password.isEmpty() && !view.isEmpty()) {
 						validRowCount++;
 					}
 				}
@@ -41,8 +43,9 @@ public class ExcelDataReader {
 
 				String username = getCellValue(row.getCell(0), formatter);
 				String password = getCellValue(row.getCell(1), formatter);
+				String view = getCellValue(row.getCell(2), formatter);
 
-				if (!username.isEmpty() && !password.isEmpty()) {
+				if (!username.isEmpty() && !password.isEmpty() && !view.isEmpty()) {
 					for (int j = 0; j < colCount; j++) {
 						Cell cell = row.getCell(j);
 						data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
