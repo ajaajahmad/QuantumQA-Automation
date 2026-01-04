@@ -67,4 +67,17 @@ public class TestDataProvider {
 
 		return dataArray;
 	}
+
+	@DataProvider(name = "smsViewsData")
+	public Object[][] smsViewsData() {
+		Object[][] allData = ExcelDataReader.getExcelData();
+
+		Stream<Object[]> validRows = Stream.of(allData).filter(this::isValidRow);
+
+		return validRows.map(row -> new Object[] { row[2] }).toArray(Object[][]::new);
+	}
+
+	private boolean isValidRow(Object[] row) {
+		return row != null && row.length >= 3 && row[2] != null && !row[2].toString().isBlank();
+	}
 }
