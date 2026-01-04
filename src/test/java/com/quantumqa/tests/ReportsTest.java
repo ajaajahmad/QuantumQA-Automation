@@ -10,7 +10,7 @@ public class ReportsTest extends BaseTest {
 
 	@Test(groups = {
 			"sms_summary" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
-	public void verifySmsSummary(String username, String password) {
+	public void verifySmsSummary(String username, String password, String view) {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
@@ -18,6 +18,6 @@ public class ReportsTest extends BaseTest {
 		}
 
 		smsSummaryPage.clickOnSmsSummary();
-		smsSummaryPage.clickOnViewBy("Date");
+		smsSummaryPage.clickOnViewBy(view);
 	}
 }
