@@ -25,9 +25,8 @@ public class ExcelDataReader {
 				if (row != null) {
 					String username = getCellValue(row.getCell(0), formatter);
 					String password = getCellValue(row.getCell(1), formatter);
-					String view = getCellValue(row.getCell(2), formatter);
 
-					if (!username.isBlank() && !password.isBlank() && !view.isBlank()) {
+					if (!username.isBlank() && !password.isBlank()) {
 						validRowCount++;
 					}
 				}
@@ -43,9 +42,61 @@ public class ExcelDataReader {
 
 				String username = getCellValue(row.getCell(0), formatter);
 				String password = getCellValue(row.getCell(1), formatter);
-				String view = getCellValue(row.getCell(2), formatter);
 
-				if (!username.isBlank() && !password.isBlank() && !view.isBlank()) {
+				if (!username.isBlank() && !password.isBlank()) {
+					for (int j = 0; j < colCount; j++) {
+						Cell cell = row.getCell(j);
+						data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
+					}
+					dataIndex++;
+				}
+			}
+
+			return data;
+
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to read Excel data", e);
+		}
+	}
+
+	public static Object[][] getSmsSummaryViewPanelData() {
+		String filePath = ExcelDataReader.class.getClassLoader()
+				.getResource("testdata/sms_summary_view_panel_data.xlsx").getPath();
+		String sheetName = ConfigReader.get("excel_sheet_name");
+
+		try (FileInputStream fis = new FileInputStream(new File(filePath));
+				Workbook workbook = WorkbookFactory.create(fis)) {
+
+			Sheet sheet = workbook.getSheet(sheetName);
+			DataFormatter formatter = new DataFormatter();
+
+			int lastRow = sheet.getLastRowNum();
+			int colCount = 1;
+
+			int validRowCount = 0;
+			for (int i = 1; i <= lastRow; i++) {
+				Row row = sheet.getRow(i);
+				if (row != null) {
+
+					String view = getCellValue(row.getCell(0), formatter);
+
+					if (!view.isBlank()) {
+						validRowCount++;
+					}
+				}
+			}
+
+			Object[][] data = new Object[validRowCount][colCount];
+			int dataIndex = 0;
+
+			for (int i = 1; i <= lastRow; i++) {
+				Row row = sheet.getRow(i);
+				if (row == null)
+					continue;
+
+				String view = getCellValue(row.getCell(0), formatter);
+
+				if (!view.isBlank()) {
 					for (int j = 0; j < colCount; j++) {
 						Cell cell = row.getCell(j);
 						data[dataIndex][j] = (cell == null) ? "" : formatter.formatCellValue(cell);
