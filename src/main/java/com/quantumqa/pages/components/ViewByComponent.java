@@ -7,15 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import com.quantumqa.base.BasePage;
 
 public class ViewByComponent extends BasePage {
 
 	public ViewByComponent(WebDriver driver) {
 		super(driver);
-		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(id = "mis_sel")
@@ -26,17 +23,17 @@ public class ViewByComponent extends BasePage {
 
 	public boolean selectViewByIfPresent(String excelViewBy) {
 
-		log("Excel View By value: " + excelViewBy);
+		log.info("Excel View By value: " + excelViewBy);
 
 		if (excelViewBy.equalsIgnoreCase("More")) {
-			log("Skipping 'More' (not selectable)");
+			log.info("Skipping 'More' (not selectable)");
 			return false;
 		}
 
 		List<String> uiViewByOptions = getAllViewByFromUI();
 
 		if (!uiViewByOptions.contains(excelViewBy)) {
-			log("UI does not contain View By: " + excelViewBy);
+			log.info("UI does not contain View By: " + excelViewBy);
 			return false;
 		}
 
@@ -103,29 +100,26 @@ public class ViewByComponent extends BasePage {
 	}
 
 	private void verifyTopLevelActive(String option) {
-		log("Verifying active top-level View By: " + option);
+		log.info("Verifying active top-level View By: " + option);
 
 		boolean active = !viewByContainer
 				.findElements(By.xpath(".//li[contains(@class,'active')]/span[normalize-space()='" + option + "']"))
 				.isEmpty();
 
 		if (!active) {
-			log("WARNING -> View By not visually active: " + option);
+			log.warn("WARNING -> View By not visually active: " + option);
 		}
 	}
 
 	private void verifyDropdownApplied(String option) {
-		log("Verifying dropdown View By applied: " + option);
+		log.info("Verifying dropdown View By applied: " + option);
 
 		boolean dropdownClosed = viewByContainer.findElements(By.xpath(".//ul[contains(@class,'bottom_drop')]"))
 				.isEmpty();
 
 		if (!dropdownClosed) {
-			log("WARNING -> Dropdown still open after selection");
+			log.warn("WARNING -> Dropdown still open after selection");
 		}
 	}
 
-	private void log(String msg) {
-		System.out.println("[VIEW-BY] " + msg);
-	}
 }
