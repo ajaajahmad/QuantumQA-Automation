@@ -1,34 +1,29 @@
 package com.quantumqa.pages.reports;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.MainMenuComponent;
+import com.quantumqa.pages.components.ViewByComponent;
 
 public class SmsSummaryPage extends BasePage {
 
 	private MainMenuComponent menu;
+	private ViewByComponent viewBy;
 
 	public SmsSummaryPage(WebDriver driver) {
 		super(driver);
 		this.menu = new MainMenuComponent(driver);
+		this.viewBy = new ViewByComponent(driver);
 	}
 
-	private By header = By.xpath("//div[contains(@class,'mis_table_header')]");
-
-	private By viewOption(String view) {
-		return By.xpath(".//li[span[normalize-space()='" + view + "']]");
-	}
-
-	public void clickOnSmsSummary() {
+	public void openSmsSummary() {
 		menu.navigate("Reports", "SMS", "Summary");
+		sleep();
 	}
 
-	public void clickOnViewBy(String view) {
-		WebElement headerEl = driver.findElement(header);
-		WebElement option = headerEl.findElement(viewOption(view));
-		click(option);
+	public boolean selectViewByIfPresent(String option) {
+		return viewBy.selectViewByIfPresent(option);
 	}
+
 }
