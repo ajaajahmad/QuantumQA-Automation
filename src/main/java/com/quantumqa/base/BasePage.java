@@ -10,16 +10,21 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.quantumqa.base.BasePage;
+import com.quantumqa.utils.LogUtils;
+
 public class BasePage {
 
 	protected WebDriver driver;
 	protected WebDriverWait wait;
+	protected static LogUtils log;
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 	private static final long HARD_SLEEP_MS = 200;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
+		BasePage.log = new LogUtils();
 		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
 		PageFactory.initElements(driver, this);
 	}
