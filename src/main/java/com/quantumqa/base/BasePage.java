@@ -54,20 +54,20 @@ public class BasePage {
 	}
 
 	protected void click(WebElement element) {
-		hardSleep();
+		sleep();
 		waitForClickable(element).click();
-		hardSleep();
+		sleep();
 	}
 
 	protected void type(WebElement element, String text) {
-		hardSleep();
+		sleep();
 		waitForVisible(element);
 		element.clear();
 		element.sendKeys(text);
-		hardSleep();
+		sleep();
 	}
 
-	private void hardSleep() {
+	protected void sleep() {
 		try {
 			Thread.sleep(HARD_SLEEP_MS);
 		} catch (InterruptedException e) {
