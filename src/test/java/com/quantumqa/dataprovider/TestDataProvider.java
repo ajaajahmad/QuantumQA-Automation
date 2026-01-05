@@ -3,7 +3,6 @@ package com.quantumqa.dataprovider;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.testng.annotations.DataProvider;
 
@@ -14,37 +13,22 @@ public class TestDataProvider {
 
 	@DataProvider(name = "excelUserData")
 	public Object[][] excelUserData() {
-		Object[][] allData = ExcelDataReader.getExcelData();
+		Object[][] data = ExcelDataReader.getExcelData();
 
-		Stream<Object[]> validDataStream = Stream.of(allData).filter(this::isValidLoginRow);
-
-		Object[][] validData = validDataStream.toArray(Object[][]::new);
-
-		if (validData.length == 0) {
+		if (data.length == 0) {
 			throw new RuntimeException("No valid login data found in Excel. Please check the Excel file.");
 		}
-
-		return validData;
+		return data;
 	}
 
-	private boolean isValidLoginRow(Object[] row) {
-		if (row == null || row.length < 3) {
-			return false;
-		}
-		Object usernameObj = row[0];
-		if (usernameObj == null || usernameObj.toString().isBlank()) {
-			return false;
-		}
-		Object passwordObj = row[1];
-		if (passwordObj == null || passwordObj.toString().isBlank()) {
-			return false;
-		}
+	@DataProvider(name = "smsSummaryViewPanelData")
+	public Object[][] smsSummaryViewPanelData() {
+		Object[][] data = ExcelDataReader.getSmsSummaryViewPanelData();
 
-		Object viewObj = row[2];
-		if (viewObj == null || viewObj.toString().isBlank()) {
-			return false;
+		if (data.length == 0) {
+			throw new RuntimeException("No valid SMS summary view panel data found in Excel.");
 		}
-		return true;
+		return data;
 	}
 
 	@DataProvider(name = "jsonUserData")
@@ -55,29 +39,14 @@ public class TestDataProvider {
 
 		List<HashMap<String, String>> dataList = jsonReader.getJsonDataToMap(filePath);
 
-		Object[][] dataArray = new Object[dataList.size()][3];
+		Object[][] dataArray = new Object[dataList.size()][2];
 
 		for (int i = 0; i < dataList.size(); i++) {
 			HashMap<String, String> userData = dataList.get(i);
-
 			dataArray[i][0] = userData.get("username");
 			dataArray[i][1] = userData.get("password");
-			dataArray[i][2] = userData.get("view");
 		}
 
 		return dataArray;
-	}
-
-	@DataProvider(name = "smsViewsData")
-	public Object[][] smsViewsData() {
-		Object[][] allData = ExcelDataReader.getExcelData();
-
-		Stream<Object[]> validRows = Stream.of(allData).filter(this::isValidRow);
-
-		return validRows.map(row -> new Object[] { row[2] }).toArray(Object[][]::new);
-	}
-
-	private boolean isValidRow(Object[] row) {
-		return row != null && row.length >= 3 && row[2] != null && !row[2].toString().isBlank();
 	}
 }
