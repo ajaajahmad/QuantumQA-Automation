@@ -1,5 +1,7 @@
 package com.quantumqa.tests;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,7 +26,7 @@ public class CreateCampaignTest extends BaseTest {
 
 	@Test(groups = {
 			"sms_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
-	public void verifySmsCampaignCreation(String username, String password) {
+	public void verifySmsCampaignCreation(String username, String password) throws IOException {
 
 		try {
 			loginPage.userLogin(username, password);
@@ -54,8 +56,9 @@ public class CreateCampaignTest extends BaseTest {
 	}
 
 	@Test(groups = {
-			"whatsapp_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
-	public void verifyWhatsappCampaignCreation(String username, String password) throws InterruptedException {
+			"whatsapp_campaign" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
+	public void verifyWhatsappCampaignCreation(String username, String password)
+			throws InterruptedException, IOException {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
@@ -83,7 +86,7 @@ public class CreateCampaignTest extends BaseTest {
 
 	@Test(groups = {
 			"rcs_campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifyRcsCampaignCreation(String username, String password) {
+	public void verifyRcsCampaignCreation(String username, String password) throws IOException {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
@@ -94,7 +97,7 @@ public class CreateCampaignTest extends BaseTest {
 
 	@Test(groups = {
 			"truecaller_campaign" }, enabled = false, dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void verifyTruecallerCampaignCreation(String username, String password) {
+	public void verifyTruecallerCampaignCreation(String username, String password) throws IOException {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
