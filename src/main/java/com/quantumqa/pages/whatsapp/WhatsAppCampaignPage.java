@@ -15,7 +15,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	private TableSelectionManager tableSelectionManager;
 	private MainMenuComponent menu;
 	private CampaignCommonComponent campaignCommonComponent;
-
+	
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver);
@@ -123,6 +123,7 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	public void clickOnGoButton() {
 		click(contactsListGoButton);
+
 	}
 
 	public void clickOnImportButton() {
