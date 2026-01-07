@@ -1,5 +1,7 @@
 package com.quantumqa.tests;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
@@ -10,7 +12,7 @@ import com.quantumqa.dataprovider.TestDataProvider;
 public class ReportsTest extends BaseTest {
 
 	@Test(groups = "user_login", dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
-	public void userLogin(String username, String password) {
+	public void userLogin(String username, String password) throws IOException {
 		try {
 			loginPage.userLogin(username, password);
 		} catch (IllegalArgumentException e) {
