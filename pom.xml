@@ -89,6 +89,14 @@
 			<version>2.16.0</version>
 		</dependency>
 
+		<!-- Common.io for FileUtility-->
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+
 		<!-- SLF4J Bridge for Selenium -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -96,6 +104,7 @@
 			<version>${log4j.version}</version>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
