@@ -1,6 +1,9 @@
 package com.quantumqa.tests;
 
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+
 import org.testng.Assert;
 
 import com.quantumqa.base.BaseTest;
@@ -9,7 +12,7 @@ import com.quantumqa.dataprovider.TestDataProvider;
 public class LoginTest extends BaseTest {
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-	public void validLoginTest(String username, String password) {
+	public void validLoginTest(String username, String password) throws IOException {
 		Assert.assertTrue(loginPage.isLoginPageDisplayed(), "Login page is not displayed");
 		loginPage.userLogin(username, password);
 		System.out.println("Valid login test passed successfully");
