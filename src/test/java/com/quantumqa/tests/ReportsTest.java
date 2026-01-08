@@ -1,7 +1,6 @@
 package com.quantumqa.tests;
 
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.quantumqa.base.BaseTest;
@@ -18,15 +17,11 @@ public class ReportsTest extends BaseTest {
 		}
 	}
 
-	@Test(groups = "sms_summary_viewby", dependsOnGroups = "user_login", dataProvider = "smsSummaryViewPanelData", dataProviderClass = TestDataProvider.class)
-	public void verifySmsSummaryViewBy(String view) {
+	@Test(groups = "sms_summary_viewby", dependsOnGroups = "user_login")
+	public void verifySmsSummaryViewBy(String view) throws InterruptedException {
 
 		smsSummaryPage.openSmsSummary();
+		smsSummaryPage.selectViewOptionsAndDropdowns();
 
-		boolean actionTaken = smsSummaryPage.selectViewByIfPresent(view);
-
-		if (!actionTaken) {
-			throw new SkipException("View By not present in UI: " + view);
-		}
 	}
 }
