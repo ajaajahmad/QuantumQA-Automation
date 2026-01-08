@@ -8,8 +8,10 @@ import com.quantumqa.pages.components.ViewByComponent;
 
 public class SmsSummaryPage extends BasePage {
 
-	private MainMenuComponent menu;
-	private ViewByComponent viewBy;
+	private final MainMenuComponent menu;
+	private final ViewByComponent viewBy;
+
+	private final String[] viewOptions = { "Date & Campaign", "Date", "Campaign" };
 
 	public SmsSummaryPage(WebDriver driver) {
 		super(driver);
@@ -22,8 +24,17 @@ public class SmsSummaryPage extends BasePage {
 		sleep();
 	}
 
-	public boolean selectViewByIfPresent(String option) {
-		return viewBy.selectViewByIfPresent(option);
-	}
+	public void applyAllViewByOptions() {
 
+		for (String option : viewOptions) {
+			viewBy.selectViewByTab(option);
+		}
+
+		for (int i = 0; i < 11; i++) {
+			boolean selected = viewBy.selectMoreViewByOption(i);
+			if (!selected) {
+				break;
+			}
+		}
+	}
 }
