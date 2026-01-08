@@ -21,7 +21,7 @@ public class ReportsTest extends BaseTest {
 	public void verifySmsSummaryViewBy() throws InterruptedException {
 
 		smsSummaryPage.openSmsSummary();
-		smsSummaryPage.selectViewOptionsAndDropdowns();
+		smsSummaryPage.applyAllViewByOptions();
 
 	}
 }
