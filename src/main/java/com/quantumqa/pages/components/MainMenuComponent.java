@@ -12,7 +12,7 @@ public class MainMenuComponent extends BasePage {
 	private By sidebar = By.xpath("//div[contains(@class,'custom-new-menu-wrapper')]");
 
 	private WebElement root() {
-		sleep(1000);
+		sleep(5000);
 		return driver.findElement(sidebar);
 	}
 
