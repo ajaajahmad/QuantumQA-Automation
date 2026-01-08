@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
@@ -27,45 +27,40 @@ public class BaseTest {
 	protected LogoutComponent logoutComponent;
 	protected SmsSummaryPage smsSummaryPage;
 
-	@BeforeSuite
+	@BeforeClass(alwaysRun = true)
 	public void setUp() {
-		try {
+		String browserName = ConfigReader.get("browser");
 
-			String browserName = ConfigReader.get("browser");
-
-			if (browserName.equalsIgnoreCase("chrome")) {
-				driver = new ChromeDriver();
-			} else if (browserName.equalsIgnoreCase("firefox")) {
-				driver = new FirefoxDriver();
-			} else if (browserName.equalsIgnoreCase("edge")) {
-				driver = new EdgeDriver();
-			} else {
-				throw new RuntimeException("Browser not supported: " + browserName);
-			}
-
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-
-			String appUrl = ConfigReader.get("app_url");
-			driver.get(appUrl);
-
-			loginPage = new LoginPage(driver);
-			errorValidationPage = new ErrorValidationPage(driver);
-			smsCampaignPage = new SmsCampaignPage(driver);
-			wabaCampaignPage = new WhatsAppCampaignPage(driver);
-			logoutComponent = new LogoutComponent(driver);
-			smsSummaryPage = new SmsSummaryPage(driver);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+		if (browserName.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			driver = new FirefoxDriver();
+		} else if (browserName.equalsIgnoreCase("edge")) {
+			driver = new EdgeDriver();
+		} else {
+			throw new RuntimeException("Browser not supported: " + browserName);
 		}
+
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+
+		driver.get(ConfigReader.get("app_url"));
+
+		// Page object initialization
+		loginPage = new LoginPage(driver);
+		errorValidationPage = new ErrorValidationPage(driver);
+		smsCampaignPage = new SmsCampaignPage(driver);
+		wabaCampaignPage = new WhatsAppCampaignPage(driver);
+		logoutComponent = new LogoutComponent(driver);
+		smsSummaryPage = new SmsSummaryPage(driver);
 	}
 
-	@AfterSuite
+	@AfterClass(alwaysRun = true)
 	public void tearDown() {
-		logoutComponent.userLogout();
+		if (logoutComponent != null) {
+			logoutComponent.userLogout();
+		}
 		if (driver != null) {
 			driver.quit();
 		}
