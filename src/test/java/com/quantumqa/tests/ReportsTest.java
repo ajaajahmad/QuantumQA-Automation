@@ -18,7 +18,7 @@ public class ReportsTest extends BaseTest {
 	}
 
 	@Test(groups = "sms_summary_viewby", dependsOnGroups = "user_login")
-	public void verifySmsSummaryViewBy(String view) throws InterruptedException {
+	public void verifySmsSummaryViewBy() throws InterruptedException {
 
 		smsSummaryPage.openSmsSummary();
 		smsSummaryPage.selectViewOptionsAndDropdowns();
