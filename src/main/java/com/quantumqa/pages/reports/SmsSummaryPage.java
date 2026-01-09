@@ -1,13 +1,17 @@
 package com.quantumqa.pages.reports;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
+import com.quantumqa.utils.ScreenshotUtils;
 
 public class SmsSummaryPage extends BasePage {
 
+	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
 	private final ViewByComponent viewBy;
 
@@ -15,6 +19,7 @@ public class SmsSummaryPage extends BasePage {
 
 	public SmsSummaryPage(WebDriver driver) {
 		super(driver);
+		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
 	}
@@ -24,7 +29,7 @@ public class SmsSummaryPage extends BasePage {
 		sleep();
 	}
 
-	public void applyAllViewByOptions() {
+	public void applyAllViewByOptions(String screenshotTitle) throws IOException {
 
 		for (String option : viewOptions) {
 			viewBy.selectViewByTab(option);
@@ -32,6 +37,7 @@ public class SmsSummaryPage extends BasePage {
 
 		for (int i = 0; i < 11; i++) {
 			boolean selected = viewBy.selectMoreViewByOption(i);
+			screenshot.getScreenshot(driver, screenshotTitle + "_option_" + i);
 			if (!selected) {
 				break;
 			}
