@@ -1,11 +1,8 @@
 package com.quantumqa.pages.login;
 
-import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,8 +30,7 @@ public class LoginPage extends BasePage {
 
 	public void enterUsername(String username) throws IOException {
 		type(usernameInputBox, username);
-		File file = usernameInputBox.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(file, new File("./screenshot/loginpage.png"));
+
 	}
 
 	public void enterPassword(String password) {
