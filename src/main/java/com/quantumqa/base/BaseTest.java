@@ -1,13 +1,16 @@
 package com.quantumqa.base;
 
 import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
@@ -19,6 +22,11 @@ import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
 
+	static {
+		LogManager.getLogManager().reset();
+		Logger.getLogger("").setLevel(Level.SEVERE);
+	}
+
 	protected WebDriver driver;
 	protected LoginPage loginPage;
 	protected ErrorValidationPage errorValidationPage;
@@ -27,8 +35,9 @@ public class BaseTest {
 	protected LogoutComponent logoutComponent;
 	protected SmsSummaryPage smsSummaryPage;
 
-	@BeforeClass(alwaysRun = true)
+	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
+
 		String browserName = ConfigReader.get("browser");
 
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -47,7 +56,6 @@ public class BaseTest {
 
 		driver.get(ConfigReader.get("app_url"));
 
-		// Page object initialization
 		loginPage = new LoginPage(driver);
 		errorValidationPage = new ErrorValidationPage(driver);
 		smsCampaignPage = new SmsCampaignPage(driver);
@@ -56,13 +64,16 @@ public class BaseTest {
 		smsSummaryPage = new SmsSummaryPage(driver);
 	}
 
-	@AfterClass(alwaysRun = true)
+	@AfterSuite(alwaysRun = true)
 	public void tearDown() {
-		if (logoutComponent != null) {
-			logoutComponent.userLogout();
-		}
-		if (driver != null) {
-			driver.quit();
+		try {
+			if (logoutComponent != null) {
+				logoutComponent.userLogout();
+			}
+		} finally {
+			if (driver != null) {
+				driver.quit();
+			}
 		}
 	}
 }
