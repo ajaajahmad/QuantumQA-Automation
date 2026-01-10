@@ -33,17 +33,17 @@ public class SmsSummaryPage extends BasePage {
 		sleep();
 	}
 
-	public void applyAllViewByOptions(String screenshotTitle) throws IOException {
+	public void applyAllViewByOptions(String fileTitle) throws IOException {
 
 		for (String option : viewOptions) {
 			viewBy.selectViewByTab(option);
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, screenshotTitle + " - " + option, "reports/sms-summary",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/sms-summary-panel",
 					option.replaceAll("\\W+", "_"));
 
-			screenshot.getScreenshot(driver, screenshotTitle + "_" + option);
+			screenshot.getScreenshot(driver, fileTitle + "_" + option);
 		}
 
 		for (int i = 0; i < 11; i++) {
@@ -53,10 +53,10 @@ public class SmsSummaryPage extends BasePage {
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, screenshotTitle + " - More Option " + i, "reports/sms-summary",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - More Option " + i, "reports/sms-summary-panel",
 					"More_Option_" + i);
 
-			screenshot.getScreenshot(driver, screenshotTitle + "_option_" + i);
+			screenshot.getScreenshot(driver, fileTitle + "_option_" + i);
 		}
 	}
 }
