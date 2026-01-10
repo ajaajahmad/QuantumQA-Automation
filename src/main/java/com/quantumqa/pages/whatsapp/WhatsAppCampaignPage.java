@@ -15,7 +15,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	private TableSelectionManager tableSelectionManager;
 	private MainMenuComponent menu;
 	private CampaignCommonComponent campaignCommonComponent;
-	
+
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver);
