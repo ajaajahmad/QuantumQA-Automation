@@ -35,7 +35,6 @@ public class SmsSummaryPage extends BasePage {
 
 	public void applyAllViewByOptions(String screenshotTitle) throws IOException {
 
-		// Standard View By tabs
 		for (String option : viewOptions) {
 			viewBy.selectViewByTab(option);
 
@@ -47,7 +46,6 @@ public class SmsSummaryPage extends BasePage {
 			screenshot.getScreenshot(driver, screenshotTitle + "_" + option);
 		}
 
-		// More dropdown options
 		for (int i = 0; i < 11; i++) {
 			boolean selected = viewBy.selectMoreViewByOption(i);
 			if (!selected)
