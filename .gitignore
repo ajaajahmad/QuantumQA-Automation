@@ -36,6 +36,9 @@ bin/
 logs/
 test-output/
 surefire-reports/
+reports/
+reports
+screenshots
 
 # =========================
 # OS Files
