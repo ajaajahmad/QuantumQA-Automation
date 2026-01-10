@@ -12,11 +12,11 @@ import com.quantumqa.utils.DateTimeManager;
 
 public class ReportsTest extends BaseTest {
 
-	private String screenshotTitle;
+	private String fileTitle;
 
 	@BeforeTest
 	public void generateScreenshotText() {
-		screenshotTitle = DateTimeManager.appendLocalDateTime("screenshot");
+		fileTitle = DateTimeManager.appendLocalDateTime("screenshot");
 	}
 
 	@Test(groups = "user_login", dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
@@ -32,7 +32,7 @@ public class ReportsTest extends BaseTest {
 	public void verifySmsSummaryViewBy() throws InterruptedException, IOException {
 
 		smsSummaryPage.openSmsSummary();
-		smsSummaryPage.applyAllViewByOptions(screenshotTitle);
+		smsSummaryPage.applyAllViewByOptions(fileTitle);
 
 	}
 }
