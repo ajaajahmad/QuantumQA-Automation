@@ -28,11 +28,19 @@ public class ReportsTest extends BaseTest {
 		}
 	}
 
-	@Test(groups = "sms_summary_viewby", dependsOnGroups = "user_login")
-	public void verifySmsSummaryViewBy() throws InterruptedException, IOException {
+	@Test(groups = "sms_summary", enabled = false, dependsOnGroups = "user_login")
+	public void verifySmsSummary() throws InterruptedException, IOException {
 
 		smsSummaryPage.openSmsSummary();
 		smsSummaryPage.applyAllViewByOptions(fileTitle);
+
+	}
+
+	@Test(groups = "sms_summary", dependsOnGroups = "user_login")
+	public void verifySmsAdvanced() throws InterruptedException, IOException {
+
+		smsAdvancedPage.openSmsSummary();
+		smsAdvancedPage.applyAllViewByOptions(fileTitle);
 
 	}
 }
