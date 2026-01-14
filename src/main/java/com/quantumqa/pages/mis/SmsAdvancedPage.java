@@ -1,4 +1,4 @@
-package com.quantumqa.pages.reports;
+package com.quantumqa.pages.mis;
 
 import java.io.IOException;
 
