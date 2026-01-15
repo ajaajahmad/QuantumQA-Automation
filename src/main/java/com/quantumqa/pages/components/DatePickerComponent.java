@@ -4,40 +4,42 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import com.quantumqa.base.BasePage;
 
-public class DatePickerConponent extends BasePage {
+public class DatePickerComponent extends BasePage {
 
-	public DatePickerConponent(WebDriver driver) {
+	public DatePickerComponent(WebDriver driver) {
 		super(driver);
 	}
 
 	@FindBy(xpath = "//input[@placeholder='Select Date Range']")
-	private WebElement datePickerElement;
+	private WebElement rangeDatePickerInput;
 
 	@FindBy(xpath = "(//input[@placeholder='Select Date'])[1]")
-	private WebElement startDate;
+	private WebElement startDateInput;
 
 	@FindBy(xpath = "(//input[@placeholder='Select Date'])[2]")
-	private WebElement endDate;
+	private WebElement endDateInput;
 
-	public void chooseDateOnSummaryPage(String date) {
+	public void chooseDateOnSummaryPage(String dateValue) {
 		sleep();
-		datePickerElement.clear();
-		datePickerElement.sendKeys(date);
-		datePickerElement.sendKeys(Keys.ENTER);
+		rangeDatePickerInput.clear();
+		rangeDatePickerInput.sendKeys(dateValue);
+		rangeDatePickerInput.sendKeys(Keys.ENTER);
 		sleep();
 	}
 
-	public void chooseDateOnAdvancedPage(String date) {
+	public void chooseDateOnAdvancedPage(String startValue, String endValue) {
 		sleep();
-		startDate.clear();
-		startDate.sendKeys(date);
-		startDate.sendKeys(Keys.ENTER);
-		endDate.clear();
-		endDate.sendKeys(date);
-		endDate.sendKeys(Keys.ENTER);
+
+		startDateInput.clear();
+		startDateInput.sendKeys(startValue);
+		startDateInput.sendKeys(Keys.ENTER);
+
+		endDateInput.clear();
+		endDateInput.sendKeys(endValue);
+		endDateInput.sendKeys(Keys.ENTER);
+
 		sleep();
 	}
 }
