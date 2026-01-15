@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.quantumqa.base.BasePage;
+import com.quantumqa.pages.components.DatePickerConponent;
 import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
@@ -17,6 +18,7 @@ public class SmsSummaryPanelPage extends BasePage {
 	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
 	private final ViewByComponent viewBy;
+	private final DatePickerConponent date;
 
 	private final String[] viewOptions = { "Date & Campaign", "Date", "Campaign" };
 	private final By summaryTable = By.className("data-table");
@@ -26,11 +28,13 @@ public class SmsSummaryPanelPage extends BasePage {
 		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
+		this.date = new DatePickerConponent(driver);
 	}
 
 	public void openSmsSummary() {
 		menu.navigate("Reports", "SMS", "Summary");
 		sleep();
+		date.chooseDateOnSummaryPage("01/01/2026 - 01/15/2026");
 
 	}
 
