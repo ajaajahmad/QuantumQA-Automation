@@ -3,51 +3,41 @@ package com.quantumqa.pages.mis;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
+import com.quantumqa.pages.components.DatePickerConponent;
 import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
 import com.quantumqa.utils.ScreenshotUtils;
 
-public class SmsAdvancedPage extends BasePage {
+public class SmsAdvancedPanelPage extends BasePage {
 
 	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
 	private final ViewByComponent viewBy;
+	private final DatePickerConponent date;
 
 	private final String[] viewOptions = { "Date & Campaign", "Date", "Campaign" };
 	private final By summaryTable = By.className("data-table");
 
-	public SmsAdvancedPage(WebDriver driver) {
+	public SmsAdvancedPanelPage(WebDriver driver) {
 		super(driver);
 		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
+		this.date = new DatePickerConponent(driver);
 	}
-
-	@FindBy(xpath = "(//input[@placeholder='Select Date'])[1]")
-	private WebElement startDate;
-
-	@FindBy(xpath = "(//input[@placeholder='Select Date'])[2]")
-	private WebElement endDate;
 
 	@FindBy(xpath = "//button[contains(text(),'Search')]")
 	private WebElement searchButton;
 
 	public void openSmsSummary() {
 		menu.navigate("Reports", "SMS", "Advanced");
-		sleep();
-		startDate.clear();
-		startDate.sendKeys("2026-01-02");
-		startDate.sendKeys(Keys.ENTER);
-		endDate.clear();
-		endDate.sendKeys("2026-01-14");
-		endDate.sendKeys(Keys.ENTER);
+		date.chooseDateOnAdvancedPage("01/01/2026 - 01/15/2026");
 		searchButton.click();
 		sleep();
 	}
