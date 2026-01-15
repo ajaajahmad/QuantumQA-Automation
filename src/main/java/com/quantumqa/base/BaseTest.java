@@ -15,7 +15,8 @@ import org.testng.annotations.BeforeSuite;
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
-import com.quantumqa.pages.mis.SmsAdvancedPage;
+import com.quantumqa.pages.mis.SmsAdvancedApiPage;
+import com.quantumqa.pages.mis.SmsAdvancedPanelPage;
 import com.quantumqa.pages.mis.SmsSummaryApiPage;
 import com.quantumqa.pages.mis.SmsSummaryPanelPage;
 import com.quantumqa.pages.sms.SmsCampaignPage;
@@ -37,7 +38,8 @@ public class BaseTest {
 	protected LogoutComponent logoutComponent;
 	protected SmsSummaryPanelPage smsSummaryPanelPage;
 	protected SmsSummaryApiPage smsSummaryApiPage;
-	protected SmsAdvancedPage smsAdvancedPage;
+	protected SmsAdvancedPanelPage smsAdvancedPanelPage;
+	protected SmsAdvancedApiPage smsAdvancedApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
@@ -67,7 +69,8 @@ public class BaseTest {
 		logoutComponent = new LogoutComponent(driver);
 		smsSummaryPanelPage = new SmsSummaryPanelPage(driver);
 		smsSummaryApiPage = new SmsSummaryApiPage(driver);
-		smsAdvancedPage = new SmsAdvancedPage(driver);
+		smsAdvancedPanelPage = new SmsAdvancedPanelPage(driver);
+		smsAdvancedApiPage = new SmsAdvancedApiPage(driver);
 	}
 
 	@AfterSuite(alwaysRun = true)
