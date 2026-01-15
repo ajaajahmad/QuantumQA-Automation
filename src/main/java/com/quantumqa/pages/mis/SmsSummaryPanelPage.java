@@ -12,7 +12,7 @@ import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
 import com.quantumqa.utils.ScreenshotUtils;
 
-public class SmsSummaryPage extends BasePage {
+public class SmsSummaryPanelPage extends BasePage {
 
 	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
@@ -21,7 +21,7 @@ public class SmsSummaryPage extends BasePage {
 	private final String[] viewOptions = { "Date & Campaign", "Date", "Campaign" };
 	private final By summaryTable = By.className("data-table");
 
-	public SmsSummaryPage(WebDriver driver) {
+	public SmsSummaryPanelPage(WebDriver driver) {
 		super(driver);
 		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
@@ -31,6 +31,7 @@ public class SmsSummaryPage extends BasePage {
 	public void openSmsSummary() {
 		menu.navigate("Reports", "SMS", "Summary");
 		sleep();
+
 	}
 
 	public void applyAllViewByOptions(String fileTitle) throws IOException {
