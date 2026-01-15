@@ -28,7 +28,7 @@ public class ReportsTest extends BaseTest {
 		}
 	}
 
-	@Test(groups = "sms_summary", enabled = false, dependsOnGroups = "user_login")
+	@Test(groups = "sms_summary", enabled = true, dependsOnGroups = "user_login")
 	public void verifySmsSummaryPanel() throws InterruptedException, IOException {
 
 		smsSummaryPanelPage.openSmsSummary();
@@ -36,7 +36,7 @@ public class ReportsTest extends BaseTest {
 
 	}
 
-	@Test(groups = "sms_summary", enabled = true, dependsOnGroups = "user_login")
+	@Test(groups = "sms_summary", enabled = false, dependsOnGroups = "user_login")
 	public void verifySmsSummaryApi() throws InterruptedException, IOException {
 
 		smsSummaryApiPage.openSmsSummary();
@@ -47,8 +47,8 @@ public class ReportsTest extends BaseTest {
 	@Test(groups = "sms_summary", enabled = false, dependsOnGroups = "user_login")
 	public void verifySmsAdvanced() throws InterruptedException, IOException {
 
-		smsAdvancedPage.openSmsSummary();
-		smsAdvancedPage.applyAllViewByOptions(fileTitle);
+		smsAdvancedPanelPage.openSmsSummary();
+		smsAdvancedPanelPage.applyAllViewByOptions(fileTitle);
 
 	}
 }
