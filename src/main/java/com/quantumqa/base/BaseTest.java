@@ -16,7 +16,8 @@ import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
 import com.quantumqa.pages.mis.SmsAdvancedPage;
-import com.quantumqa.pages.mis.SmsSummaryPage;
+import com.quantumqa.pages.mis.SmsSummaryApiPage;
+import com.quantumqa.pages.mis.SmsSummaryPanelPage;
 import com.quantumqa.pages.sms.SmsCampaignPage;
 import com.quantumqa.pages.whatsapp.WhatsAppCampaignPage;
 import com.quantumqa.utils.ConfigReader;
@@ -34,7 +35,8 @@ public class BaseTest {
 	protected SmsCampaignPage smsCampaignPage;
 	protected WhatsAppCampaignPage wabaCampaignPage;
 	protected LogoutComponent logoutComponent;
-	protected SmsSummaryPage smsSummaryPage;
+	protected SmsSummaryPanelPage smsSummaryPanelPage;
+	protected SmsSummaryApiPage smsSummaryApiPage;
 	protected SmsAdvancedPage smsAdvancedPage;
 
 	@BeforeSuite(alwaysRun = true)
@@ -63,7 +65,8 @@ public class BaseTest {
 		smsCampaignPage = new SmsCampaignPage(driver);
 		wabaCampaignPage = new WhatsAppCampaignPage(driver);
 		logoutComponent = new LogoutComponent(driver);
-		smsSummaryPage = new SmsSummaryPage(driver);
+		smsSummaryPanelPage = new SmsSummaryPanelPage(driver);
+		smsSummaryApiPage = new SmsSummaryApiPage(driver);
 		smsAdvancedPage = new SmsAdvancedPage(driver);
 	}
 
