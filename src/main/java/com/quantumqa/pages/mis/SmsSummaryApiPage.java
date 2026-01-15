@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
+import com.quantumqa.pages.components.DatePickerConponent;
 import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
@@ -18,6 +19,7 @@ public class SmsSummaryApiPage extends BasePage {
 	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
 	private final ViewByComponent viewBy;
+	private final DatePickerConponent date;
 
 	private final String[] viewOptions = { "Date", "Sender ID", "Operator" };
 	private final By summaryTable = By.className("data-table");
@@ -27,6 +29,7 @@ public class SmsSummaryApiPage extends BasePage {
 		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
+		this.date = new DatePickerConponent(driver);
 	}
 
 	@FindBy(xpath = "//span[contains(text(),'Via API')]")
@@ -36,7 +39,7 @@ public class SmsSummaryApiPage extends BasePage {
 		menu.navigate("Reports", "SMS", "Summary");
 		sleep();
 		click(viaApiElement);
-		sleep();
+		date.chooseDateOnSummaryPage("01/01/2026 - 01/15/2026");
 	}
 
 	public void applyAllViewByOptions(String fileTitle) throws IOException {
