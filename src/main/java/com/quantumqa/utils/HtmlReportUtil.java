@@ -18,7 +18,6 @@ public final class HtmlReportUtil {
 		createDir(outputDir);
 
 		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-
 		String filePath = outputDir + "/" + filePrefix + "_" + timestamp + ".html";
 
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -28,13 +27,17 @@ public final class HtmlReportUtil {
 
 	private static String buildHtml(WebElement table, String title) {
 		StringBuilder html = new StringBuilder("""
-				    <html><head>
-				    <style>
-				        table { border-collapse: collapse; width: 100%; }
-				        th, td { border: 1px solid #333; padding: 8px; }
-				        th { background: #f2f2f2; }
-				    </style>
-				    </head><body>
+				<html><head>
+				<meta charset="UTF-8">
+				<style>
+				    body { font-family: sans-serif; }
+				    table { border-collapse: collapse; width: 100%; }
+				    th, td { border: 1px solid #333; padding: 8px; vertical-align: top; }
+				    th { background: #f2f2f2; }
+				    /* Optional: Add some spacing for inner divs if they are tight */
+				    td div { margin-bottom: 2px; }
+				</style>
+				</head><body>
 				""");
 
 		html.append("<h2>").append(title).append("</h2>");
@@ -43,9 +46,14 @@ public final class HtmlReportUtil {
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		for (WebElement row : rows) {
 			html.append("<tr>");
+
 			for (WebElement cell : row.findElements(By.xpath("./th|./td"))) {
-				html.append("<").append(cell.getTagName()).append(">").append(cell.getText()).append("</")
-						.append(cell.getTagName()).append(">");
+				html.append("<").append(cell.getTagName()).append(">");
+
+				String cellContent = cell.getAttribute("innerHTML");
+				html.append(cellContent);
+
+				html.append("</").append(cell.getTagName()).append(">");
 			}
 			html.append("</tr>");
 		}
