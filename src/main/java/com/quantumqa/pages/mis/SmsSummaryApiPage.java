@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
-import com.quantumqa.pages.components.DatePickerConponent;
+import com.quantumqa.pages.components.DatePickerComponent;
 import com.quantumqa.pages.components.MainMenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
@@ -19,7 +19,7 @@ public class SmsSummaryApiPage extends BasePage {
 	private final ScreenshotUtils screenshot;
 	private final MainMenuComponent menu;
 	private final ViewByComponent viewBy;
-	private final DatePickerConponent date;
+	private final DatePickerComponent date;
 
 	private final String[] viewOptions = { "Date", "Sender ID", "Operator" };
 	private final By summaryTable = By.className("data-table");
@@ -29,17 +29,17 @@ public class SmsSummaryApiPage extends BasePage {
 		this.screenshot = new ScreenshotUtils();
 		this.menu = new MainMenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
-		this.date = new DatePickerConponent(driver);
+		this.date = new DatePickerComponent(driver);
 	}
 
 	@FindBy(xpath = "//span[contains(text(),'Via API')]")
 	private WebElement viaApiElement;
 
-	public void openSmsSummary() {
+	public void openSmsSummary(String dateValue) {
 		menu.navigate("Reports", "SMS", "Summary");
 		sleep();
 		click(viaApiElement);
-		date.chooseDateOnSummaryPage("01/01/2026 - 01/15/2026");
+		date.chooseDateOnSummaryPage(dateValue);
 	}
 
 	public void applyAllViewByOptions(String fileTitle) throws IOException {
@@ -49,7 +49,7 @@ public class SmsSummaryApiPage extends BasePage {
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/sms-summary-panel",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/sms-summary-api",
 					option.replaceAll("\\W+", "_"));
 
 			screenshot.getScreenshot(driver, fileTitle + "_" + option);
@@ -62,7 +62,7 @@ public class SmsSummaryApiPage extends BasePage {
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, fileTitle + " - More Option " + i, "reports/sms-summary-panel",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - More Option " + i, "reports/sms-summary-api",
 					"More_Option_" + i);
 
 			screenshot.getScreenshot(driver, fileTitle + "_option_" + i);
