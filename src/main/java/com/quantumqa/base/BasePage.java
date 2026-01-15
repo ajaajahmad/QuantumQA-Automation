@@ -20,7 +20,7 @@ public class BasePage {
 	protected static LogUtils log;
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-	private static final long HARD_SLEEP_MS = 200;
+	private static final long HARD_SLEEP_MS = 300;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
