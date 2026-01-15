@@ -45,12 +45,11 @@ public class SmsAdvancedPage extends BasePage {
 		startDate.clear();
 		startDate.sendKeys("2026-01-02");
 		startDate.sendKeys(Keys.ENTER);
-
 		endDate.clear();
 		endDate.sendKeys("2026-01-14");
 		endDate.sendKeys(Keys.ENTER);
-
 		searchButton.click();
+		sleep();
 	}
 
 	public void applyAllViewByOptions(String fileTitle) throws IOException {
@@ -60,7 +59,7 @@ public class SmsAdvancedPage extends BasePage {
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/sms-summary-panel",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/sms-advanced-panel",
 					option.replaceAll("\\W+", "_"));
 
 			screenshot.getScreenshot(driver, fileTitle + "_" + option);
