@@ -38,7 +38,7 @@ public class SmsAdvancedApiPage extends BasePage {
 	@FindBy(xpath = "//button[contains(text(),'Search')]")
 	private WebElement searchButton;
 
-	public void openSmsSummary(String startValue, String endValue) {
+	public void openSmsAdvanced(String startValue, String endValue) {
 		menu.navigate("Reports", "SMS", "Advanced");
 		sleep();
 		click(viaApiElement);
