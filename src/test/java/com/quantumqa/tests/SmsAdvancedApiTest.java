@@ -31,7 +31,7 @@ public class SmsAdvancedApiTest extends BaseTest {
 	@Test()
 	public void verifySmsAdvancedApi() throws InterruptedException, IOException {
 
-		smsAdvancedApiPage.openSmsSummary("2026-01-01", "2026-01-15");
+		smsAdvancedApiPage.openSmsAdvanced("2026-01-01", "2026-01-15");
 		smsAdvancedApiPage.applyAllViewByOptions(fileTitle);
 
 	}
