@@ -19,6 +19,10 @@ import com.quantumqa.pages.mis.SmsAdvancedApiPage;
 import com.quantumqa.pages.mis.SmsAdvancedPanelPage;
 import com.quantumqa.pages.mis.SmsSummaryApiPage;
 import com.quantumqa.pages.mis.SmsSummaryPanelPage;
+import com.quantumqa.pages.mis.WhatsAppAdvancedApiPage;
+import com.quantumqa.pages.mis.WhatsAppAdvancedPanelPage;
+import com.quantumqa.pages.mis.WhatsAppSummaryApiPage;
+import com.quantumqa.pages.mis.WhatsAppSummaryPanelPage;
 import com.quantumqa.pages.sms.SmsCampaignPage;
 import com.quantumqa.pages.whatsapp.WhatsAppCampaignPage;
 import com.quantumqa.utils.ConfigReader;
@@ -40,6 +44,10 @@ public class BaseTest {
 	protected SmsSummaryApiPage smsSummaryApiPage;
 	protected SmsAdvancedPanelPage smsAdvancedPanelPage;
 	protected SmsAdvancedApiPage smsAdvancedApiPage;
+	protected WhatsAppSummaryPanelPage whatsAppSummaryPanelPage;
+	protected WhatsAppSummaryApiPage whatsAppSummaryApiPage;
+	protected WhatsAppAdvancedPanelPage whatsAppAdvancedPanelPage;
+	protected WhatsAppAdvancedApiPage whatsAppAdvancedApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
@@ -71,6 +79,10 @@ public class BaseTest {
 		smsSummaryApiPage = new SmsSummaryApiPage(driver);
 		smsAdvancedPanelPage = new SmsAdvancedPanelPage(driver);
 		smsAdvancedApiPage = new SmsAdvancedApiPage(driver);
+		whatsAppSummaryPanelPage = new WhatsAppSummaryPanelPage(driver);
+		whatsAppSummaryApiPage = new WhatsAppSummaryApiPage(driver);
+		whatsAppAdvancedPanelPage = new WhatsAppAdvancedPanelPage(driver);
+		whatsAppAdvancedApiPage = new WhatsAppAdvancedApiPage(driver);
 	}
 
 	@AfterSuite(alwaysRun = true)
