@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import com.quantumqa.base.campaign.WhatsAppCampaignPage;
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
@@ -23,8 +24,6 @@ import com.quantumqa.pages.mis.WhatsAppAdvancedApiPage;
 import com.quantumqa.pages.mis.WhatsAppAdvancedPanelPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryApiPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryPanelPage;
-import com.quantumqa.pages.sms.SmsCampaignPage;
-import com.quantumqa.pages.whatsapp.WhatsAppCampaignPage;
 import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
