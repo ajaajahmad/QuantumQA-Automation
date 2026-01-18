@@ -12,8 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.quantumqa.base.campaign.SmsCampaignPage;
-import com.quantumqa.base.campaign.WhatsAppCampaignPage;
+import com.quantumqa.campaign.SmsCampaignPage;
+import com.quantumqa.campaign.WhatsAppCampaignPage;
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
