@@ -1,4 +1,4 @@
-package com.quantumqa.base.campaign;
+package com.quantumqa.campaign;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
