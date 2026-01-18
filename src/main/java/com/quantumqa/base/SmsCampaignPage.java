@@ -1,10 +1,10 @@
-package com.quantumqa.pages.sms;
+package com.quantumqa.base;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import com.quantumqa.base.BasePage;
+
 import com.quantumqa.pages.components.CampaignCommonComponent;
 import com.quantumqa.utils.TableSelectionManager;
 
