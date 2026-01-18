@@ -1,4 +1,4 @@
-package com.quantumqa.pages.whatsapp;
+package com.quantumqa.base.campaign;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
