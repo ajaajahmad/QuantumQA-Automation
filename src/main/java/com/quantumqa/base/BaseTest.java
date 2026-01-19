@@ -33,6 +33,8 @@ import com.quantumqa.pages.mis.WhatsAppAdvancedApiPage;
 import com.quantumqa.pages.mis.WhatsAppAdvancedPanelPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryApiPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryPanelPage;
+import com.quantumqa.pages.users.UserAccountMisSmsApiPage;
+import com.quantumqa.pages.users.UserAccountMisSmsPanelPage;
 import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
@@ -64,6 +66,8 @@ public class BaseTest {
 	protected RcsSummaryApiPage rcsSummaryApiPage;
 	protected RcsAdvancedPanelPage rcsAdvancedPanelPage;
 	protected RcsAdvancedApiPage rcsAdvancedApiPage;
+	protected UserAccountMisSmsPanelPage userAccountMisSmsPanelPage;
+	protected UserAccountMisSmsApiPage userAccountMisSmsApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
@@ -107,6 +111,9 @@ public class BaseTest {
 		rcsSummaryApiPage = new RcsSummaryApiPage(driver);
 		rcsAdvancedPanelPage = new RcsAdvancedPanelPage(driver);
 		rcsAdvancedApiPage = new RcsAdvancedApiPage(driver);
+		userAccountMisSmsPanelPage = new UserAccountMisSmsPanelPage(driver);
+		userAccountMisSmsApiPage = new UserAccountMisSmsApiPage(driver);
+
 	}
 
 	@AfterSuite(alwaysRun = true)
