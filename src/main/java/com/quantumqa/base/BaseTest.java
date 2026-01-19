@@ -17,10 +17,18 @@ import com.quantumqa.pages.campaign.WhatsAppCampaignPage;
 import com.quantumqa.pages.components.LogoutComponent;
 import com.quantumqa.pages.login.ErrorValidationPage;
 import com.quantumqa.pages.login.LoginPage;
+import com.quantumqa.pages.mis.RcsAdvancedApiPage;
+import com.quantumqa.pages.mis.RcsAdvancedPanelPage;
+import com.quantumqa.pages.mis.RcsSummaryApiPage;
+import com.quantumqa.pages.mis.RcsSummaryPanelPage;
 import com.quantumqa.pages.mis.SmsAdvancedApiPage;
 import com.quantumqa.pages.mis.SmsAdvancedPanelPage;
 import com.quantumqa.pages.mis.SmsSummaryApiPage;
 import com.quantumqa.pages.mis.SmsSummaryPanelPage;
+import com.quantumqa.pages.mis.TruecallerAdvancedApiPage;
+import com.quantumqa.pages.mis.TruecallerAdvancedPanelPage;
+import com.quantumqa.pages.mis.TruecallerSummaryApiPage;
+import com.quantumqa.pages.mis.TruecallerSummaryPanelPage;
 import com.quantumqa.pages.mis.WhatsAppAdvancedApiPage;
 import com.quantumqa.pages.mis.WhatsAppAdvancedPanelPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryApiPage;
@@ -48,6 +56,14 @@ public class BaseTest {
 	protected WhatsAppSummaryApiPage whatsAppSummaryApiPage;
 	protected WhatsAppAdvancedPanelPage whatsAppAdvancedPanelPage;
 	protected WhatsAppAdvancedApiPage whatsAppAdvancedApiPage;
+	protected TruecallerSummaryPanelPage truecallerSummaryPanelPage;
+	protected TruecallerSummaryApiPage truecallerSummaryApiPage;
+	protected TruecallerAdvancedPanelPage truecallerAdvancedPanelPage;
+	protected TruecallerAdvancedApiPage truecallerAdvancedApiPage;
+	protected RcsSummaryPanelPage rcsSummaryPanelPage;
+	protected RcsSummaryApiPage rcsSummaryApiPage;
+	protected RcsAdvancedPanelPage rcsAdvancedPanelPage;
+	protected RcsAdvancedApiPage rcsAdvancedApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
@@ -83,6 +99,14 @@ public class BaseTest {
 		whatsAppSummaryApiPage = new WhatsAppSummaryApiPage(driver);
 		whatsAppAdvancedPanelPage = new WhatsAppAdvancedPanelPage(driver);
 		whatsAppAdvancedApiPage = new WhatsAppAdvancedApiPage(driver);
+		truecallerSummaryPanelPage = new TruecallerSummaryPanelPage(driver);
+		truecallerSummaryApiPage = new TruecallerSummaryApiPage(driver);
+		truecallerAdvancedPanelPage = new TruecallerAdvancedPanelPage(driver);
+		truecallerAdvancedApiPage = new TruecallerAdvancedApiPage(driver);
+		rcsSummaryPanelPage = new RcsSummaryPanelPage(driver);
+		rcsSummaryApiPage = new RcsSummaryApiPage(driver);
+		rcsAdvancedPanelPage = new RcsAdvancedPanelPage(driver);
+		rcsAdvancedApiPage = new RcsAdvancedApiPage(driver);
 	}
 
 	@AfterSuite(alwaysRun = true)
