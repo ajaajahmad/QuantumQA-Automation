@@ -33,8 +33,12 @@ import com.quantumqa.pages.mis.WhatsAppAdvancedApiPage;
 import com.quantumqa.pages.mis.WhatsAppAdvancedPanelPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryApiPage;
 import com.quantumqa.pages.mis.WhatsAppSummaryPanelPage;
+import com.quantumqa.pages.users.UserAccountMisRcsApiPage;
+import com.quantumqa.pages.users.UserAccountMisRcsPanelPage;
 import com.quantumqa.pages.users.UserAccountMisSmsApiPage;
 import com.quantumqa.pages.users.UserAccountMisSmsPanelPage;
+import com.quantumqa.pages.users.UserAccountMisWhatsAppApiPage;
+import com.quantumqa.pages.users.UserAccountMisWhatsAppPanelPage;
 import com.quantumqa.utils.ConfigReader;
 
 public class BaseTest {
@@ -68,6 +72,10 @@ public class BaseTest {
 	protected RcsAdvancedApiPage rcsAdvancedApiPage;
 	protected UserAccountMisSmsPanelPage userAccountMisSmsPanelPage;
 	protected UserAccountMisSmsApiPage userAccountMisSmsApiPage;
+	protected UserAccountMisWhatsAppPanelPage userAccountMisWhatsAppPanelPage;
+	protected UserAccountMisWhatsAppApiPage userAccountMisWhatsAppApiPage;
+	protected UserAccountMisRcsPanelPage userAccountMisRcsPanelPage;
+	protected UserAccountMisRcsApiPage userAccountMisRcsApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
@@ -113,6 +121,10 @@ public class BaseTest {
 		rcsAdvancedApiPage = new RcsAdvancedApiPage(driver);
 		userAccountMisSmsPanelPage = new UserAccountMisSmsPanelPage(driver);
 		userAccountMisSmsApiPage = new UserAccountMisSmsApiPage(driver);
+		userAccountMisWhatsAppPanelPage = new UserAccountMisWhatsAppPanelPage(driver);
+		userAccountMisWhatsAppApiPage = new UserAccountMisWhatsAppApiPage(driver);
+		userAccountMisRcsPanelPage = new UserAccountMisRcsPanelPage(driver);
+		userAccountMisRcsApiPage = new UserAccountMisRcsApiPage(driver);
 
 	}
 
