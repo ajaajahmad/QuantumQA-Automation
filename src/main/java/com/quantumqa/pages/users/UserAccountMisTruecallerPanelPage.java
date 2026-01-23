@@ -52,7 +52,7 @@ public class UserAccountMisTruecallerPanelPage extends BasePage {
 
 			WebElement table = driver.findElement(summaryTable);
 
-			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/account-mis-whatsapp-panel",
+			HtmlReportUtil.createHtmlTable(table, fileTitle + " - " + option, "reports/account-mis-truecaller-panel",
 					option.replaceAll("\\W+", "_"));
 
 			screenshot.getScreenshot(driver, fileTitle + "_" + option);
