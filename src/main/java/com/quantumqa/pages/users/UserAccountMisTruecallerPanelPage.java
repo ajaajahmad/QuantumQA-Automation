@@ -66,7 +66,7 @@ public class UserAccountMisTruecallerPanelPage extends BasePage {
 			WebElement table = driver.findElement(summaryTable);
 
 			HtmlReportUtil.createHtmlTable(table, fileTitle + " - More Option " + i,
-					"reports/account-mis-whatsapp-panel", "More_Option_" + i);
+					"reports/account-mis-truecaller-panel", "More_Option_" + i);
 
 			screenshot.getScreenshot(driver, fileTitle + "_option_" + i);
 		}
