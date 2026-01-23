@@ -35,9 +35,9 @@ public class UserAccountMisTruecallerPanelPage extends BasePage {
 	@FindBy(xpath = "//button[contains(text(),'Search')]")
 	private WebElement searchButton;
 
-	public void openUserAccountMisWhatsAppPanel(String startValue, String endValue) {
+	public void openUserAccountMisTruecallerPanel(String startValue, String endValue) {
 		sleep();
-		menu.navigate("Users", "Account MIS", "WhatsApp");
+		menu.navigate("Users", "Account MIS", "Truecaller");
 		sleep();
 		date.chooseDateOnAdvancedPage(startValue, endValue);
 		searchButton.click();
