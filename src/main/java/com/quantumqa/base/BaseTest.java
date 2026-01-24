@@ -127,6 +127,7 @@ public class BaseTest {
 		userAccountMisWhatsAppApiPage = new UserAccountMisWhatsAppApiPage(driver);
 		userAccountMisRcsPanelPage = new UserAccountMisRcsPanelPage(driver);
 		userAccountMisRcsApiPage = new UserAccountMisRcsApiPage(driver);
+		userAccountMisTruecallerPanelPage = new UserAccountMisTruecallerPanelPage(driver);
 
 	}
 
