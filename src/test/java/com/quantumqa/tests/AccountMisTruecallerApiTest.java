@@ -16,7 +16,7 @@ public class AccountMisTruecallerApiTest extends BaseTest {
 
 	@BeforeTest
 	public void generateScreenshotText() {
-		fileTitle = DateTimeManager.appendLocalDateTime("account_mis_whatsapp_api");
+		fileTitle = DateTimeManager.appendLocalDateTime("account_mis_truecaller_api");
 	}
 
 	@Test(groups = "user_login", dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
