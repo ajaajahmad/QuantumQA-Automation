@@ -31,7 +31,7 @@ public class AccountMisTruecallerApiTest extends BaseTest {
 	@Test()
 	public void verifyAccountMisTruecallerApi() throws InterruptedException, IOException {
 
-		userAccountMisWhatsAppApiPage.openUserAccountMisWhatsAppApi("2026-01-01", "2026-01-15");
+		userAccountMisWhatsAppApiPage.openUserAccountMisTruecallerApi("2026-01-01", "2026-01-15");
 		userAccountMisWhatsAppApiPage.applyAllViewByOptions(fileTitle);
 
 	}
