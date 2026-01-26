@@ -32,7 +32,7 @@ public class AccountMisTruecallerPanelTest extends BaseTest {
 	public void verifyAccountMisTruecallerPanel() throws InterruptedException, IOException {
 
 		userAccountMisTruecallerPanelPage.openUserAccountMisTruecallerPanel("2026-01-01", "2026-01-15");
-		userAccountMisWhatsAppPanelPage.applyAllViewByOptions(fileTitle);
+		userAccountMisTruecallerPanelPage.applyAllViewByOptions(fileTitle);
 
 	}
 }
