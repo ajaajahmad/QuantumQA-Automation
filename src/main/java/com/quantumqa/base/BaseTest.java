@@ -37,6 +37,7 @@ import com.quantumqa.pages.users.UserAccountMisRcsApiPage;
 import com.quantumqa.pages.users.UserAccountMisRcsPanelPage;
 import com.quantumqa.pages.users.UserAccountMisSmsApiPage;
 import com.quantumqa.pages.users.UserAccountMisSmsPanelPage;
+import com.quantumqa.pages.users.UserAccountMisTruecallerApiPage;
 import com.quantumqa.pages.users.UserAccountMisTruecallerPanelPage;
 import com.quantumqa.pages.users.UserAccountMisWhatsAppApiPage;
 import com.quantumqa.pages.users.UserAccountMisWhatsAppPanelPage;
@@ -78,6 +79,7 @@ public class BaseTest {
 	protected UserAccountMisRcsPanelPage userAccountMisRcsPanelPage;
 	protected UserAccountMisRcsApiPage userAccountMisRcsApiPage;
 	protected UserAccountMisTruecallerPanelPage userAccountMisTruecallerPanelPage;
+	protected UserAccountMisTruecallerApiPage userAccountMisTruecallerApiPage;
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() {
