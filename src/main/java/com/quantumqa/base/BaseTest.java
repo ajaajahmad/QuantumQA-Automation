@@ -128,6 +128,7 @@ public class BaseTest {
 		userAccountMisRcsPanelPage = new UserAccountMisRcsPanelPage(driver);
 		userAccountMisRcsApiPage = new UserAccountMisRcsApiPage(driver);
 		userAccountMisTruecallerPanelPage = new UserAccountMisTruecallerPanelPage(driver);
+		userAccountMisTruecallerApiPage = new UserAccountMisTruecallerApiPage(driver);
 
 	}
 
