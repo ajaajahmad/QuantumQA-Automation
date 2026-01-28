@@ -1,5 +1,6 @@
 package com.quantumqa.pages.campaign;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,8 +24,8 @@ public class SmsCampaignPage extends BasePage {
 	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
 	private WebElement smsMenu;
 
-	@FindBy(xpath = "//span[normalize-space()='Sender IDs']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
-	private WebElement campaignsSubMenu;
+	private By senderIdsElement = By.xpath("//span[normalize-space()='Sender IDs']");
+	private By campaignsElement = By.xpath("//span[normalize-space()='Campaigns']");
 
 	@FindBy(xpath = "//button[contains(text(),'OK')]")
 	private WebElement campaignsDltPopup;
