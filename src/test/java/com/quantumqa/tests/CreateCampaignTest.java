@@ -21,11 +21,11 @@ public class CreateCampaignTest extends BaseTest {
 
 	@BeforeMethod
 	public void generateCampaignName() {
-		campaignName = DateTimeManager.appendLocalDateTime("Selenium_Flow");
+		campaignName = DateTimeManager.appendLocalDateTime("Test_Camp");
 	}
 
 	@Test(groups = {
-			"sms_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
+			"sms_campaign" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
 	public void verifySmsCampaignCreation(String username, String password) throws IOException {
 
 		try {
@@ -56,7 +56,7 @@ public class CreateCampaignTest extends BaseTest {
 	}
 
 	@Test(groups = {
-			"whatsapp_campaign" }, enabled = true, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
+			"whatsapp_campaign" }, enabled = false, dataProvider = "excelUserData", dataProviderClass = TestDataProvider.class)
 	public void verifyWhatsappCampaignCreation(String username, String password)
 			throws InterruptedException, IOException {
 		try {
