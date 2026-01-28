@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
@@ -76,8 +77,12 @@ public class SmsCampaignPage extends BasePage {
 		click(smsMenu);
 	}
 
+	public WebElement getCampaignsSubMenu() {
+		return driver.findElement(with(campaignsElement).toLeftOf(senderIdsElement));
+	}
+
 	public void clickOnCampaignsSubMenu() {
-		click(campaignsSubMenu);
+		getCampaignsSubMenu().click();
 	}
 
 	public void acknowledgeDltPopupWindow() {
