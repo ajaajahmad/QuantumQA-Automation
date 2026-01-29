@@ -64,6 +64,12 @@ public class BasePage {
 		sleep();
 	}
 
+	protected void clickBy(By element) {
+		sleep();
+		waitForClickable(element).click();
+		sleep();
+	}
+
 	protected void type(WebElement element, String text) {
 		sleep();
 		waitForVisible(element);
