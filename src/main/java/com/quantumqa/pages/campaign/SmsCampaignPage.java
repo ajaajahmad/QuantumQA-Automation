@@ -87,14 +87,6 @@ public class SmsCampaignPage extends BasePage {
 		getCampaignsSubMenu().click();
 	}
 
-//	public void acknowledgeDltPopupWindow() {
-//		click(campaignsDltPopup);
-//	}
-//
-//	public void clickOnCreateCampaignButton() {
-//		click(createCampaign);
-//	}
-
 	public void acknowledgeDltPopupWindow() {
 		if (isElementPresent(campaignsDltPopup)) {
 			clickBy(campaignsDltPopup);
