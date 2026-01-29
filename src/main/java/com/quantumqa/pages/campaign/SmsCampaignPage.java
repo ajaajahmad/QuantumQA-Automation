@@ -28,8 +28,10 @@ public class SmsCampaignPage extends BasePage {
 	private By senderIdsElement = By.xpath("//span[normalize-space()='Sender IDs']");
 	private By campaignsElement = By.xpath("//span[normalize-space()='Campaigns']");
 
-	@FindBy(xpath = "//button[contains(text(),'OK')]")
-	private WebElement campaignsDltPopup;
+//	@FindBy(xpath = "//button[contains(text(),'OK')]")
+//	private WebElement campaignsDltPopup;
+
+	private By campaignsDltPopup = By.xpath("//button[contains(text(),'OK')]");
 
 	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
 	private WebElement createCampaign;
@@ -78,18 +80,29 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public WebElement getCampaignsSubMenu() {
-		return driver.findElement(with(campaignsElement).toLeftOf(senderIdsElement));
+		return driver.findElement(with(campaignsElement).above(senderIdsElement));
 	}
 
 	public void clickOnCampaignsSubMenu() {
 		getCampaignsSubMenu().click();
 	}
 
+//	public void acknowledgeDltPopupWindow() {
+//		click(campaignsDltPopup);
+//	}
+//
+//	public void clickOnCreateCampaignButton() {
+//		click(createCampaign);
+//	}
+
 	public void acknowledgeDltPopupWindow() {
-		click(campaignsDltPopup);
+		if (isElementPresent(campaignsDltPopup)) {
+			clickBy(campaignsDltPopup);
+		}
 	}
 
 	public void clickOnCreateCampaignButton() {
+		acknowledgeDltPopupWindow();
 		click(createCampaign);
 	}
 
