@@ -1,16 +1,14 @@
 package com.quantumqa.base;
 
 import java.time.Duration;
-import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.quantumqa.base.BasePage;
 import com.quantumqa.utils.LogUtils;
 
 public class BasePage {
@@ -20,25 +18,15 @@ public class BasePage {
 	protected static LogUtils log;
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-	private static final long HARD_SLEEP_MS = 300;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
-		BasePage.log = new LogUtils();
 		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
-		PageFactory.initElements(driver, this);
+		BasePage.log = new LogUtils();
 	}
 
 	protected WebElement waitForVisible(By locator) {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
-
-	protected WebElement waitForVisible(WebElement element) {
-		return wait.until(ExpectedConditions.visibilityOf(element));
-	}
-
-	protected WebElement waitForClickable(WebElement element) {
-		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
 	protected WebElement waitForClickable(By locator) {
@@ -53,36 +41,19 @@ public class BasePage {
 		return !driver.findElements(locator).isEmpty();
 	}
 
-	protected boolean isElementDisplayed(By locator) {
-		List<WebElement> elements = driver.findElements(locator);
-		return !elements.isEmpty() && elements.get(0).isDisplayed();
+	protected void clickBy(By locator) {
+		waitForClickable(locator).click();
 	}
 
-	protected void click(WebElement element) {
-		sleep();
-		waitForClickable(element).click();
-		sleep();
+	protected void typeAndEnter(By locator, String text) {
+		WebElement element = waitForVisible(locator);
+		element.clear();
+		element.sendKeys(text, Keys.ENTER);
 	}
 
-	protected void clickBy(By element) {
-		sleep();
-		waitForClickable(element).click();
-		sleep();
-	}
-
-	protected void type(WebElement element, String text) {
-		sleep();
-		waitForVisible(element);
+	protected void typeBy(By locator, String text) {
+		WebElement element = waitForVisible(locator);
 		element.clear();
 		element.sendKeys(text);
-		sleep();
-	}
-
-	protected void sleep() {
-		try {
-			Thread.sleep(HARD_SLEEP_MS);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
 	}
 }
