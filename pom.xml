@@ -10,8 +10,8 @@
 	<description>A professional, data-driven automation testing framework using
 		Java, Maven, TestNG, Selenium, and Page Object Model.</description>
 	<properties>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<selenium.version>4.20.0</selenium.version>
 		<testng.version>7.9.0</testng.version>
@@ -90,7 +90,6 @@
 		</dependency>
 
 		<!-- Common.io for FileUtility-->
-
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -114,8 +113,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.version}</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
 			</plugin>
 
