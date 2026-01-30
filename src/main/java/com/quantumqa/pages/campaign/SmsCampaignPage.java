@@ -1,10 +1,8 @@
 package com.quantumqa.pages.campaign;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 import com.quantumqa.base.BasePage;
@@ -22,61 +20,30 @@ public class SmsCampaignPage extends BasePage {
 		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
 	}
 
-	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_SMS')]]")
-	private WebElement smsMenu;
-
+	private By smsMenu = By.xpath("//div[contains(@class,'menu-event')]");
 	private By senderIdsElement = By.xpath("//span[normalize-space()='Sender IDs']");
 	private By campaignsElement = By.xpath("//span[normalize-space()='Campaigns']");
-
-//	@FindBy(xpath = "//button[contains(text(),'OK')]")
-//	private WebElement campaignsDltPopup;
-
 	private By campaignsDltPopup = By.xpath("//button[contains(text(),'OK')]");
-
-	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
-	private WebElement createCampaign;
-
-	@FindBy(xpath = "//input[@value='Personalised']")
-	private WebElement campaignType;
-
-	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
-	private WebElement importContacts;
-
-	@FindBy(xpath = "//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]")
-	private WebElement contactsListTab;
-
-	@FindBy(xpath = "//input[@placeholder='Search List']")
-	private WebElement contactsListSearchInput;
-
-	@FindBy(xpath = "//button[contains(text(),'Go')]")
-	private WebElement contactsListGoButton;
-
-	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
-	private WebElement contactsImportButton;
-
-	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
-	private WebElement chooseTemplateButton;
-
-	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
-	private WebElement searchTemplate;
-
-	@FindBy(id = "mat-radio-28-input")
-	private WebElement chooseTemplateRadioButton;
-
-	@FindBy(css = "button.import-btn.btn-design")
-	private WebElement tempmateSaveButton;
-
-	@FindBy(css = "button.import-btn.btn-design-white")
-	private WebElement templateCancelButton;
-
-	@FindBy(css = "button.btn-design.btn-send")
-	private WebElement campaingSendButton;
-
-	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
-	private WebElement campaignSendNowButton;
+	private By createCampaign = By
+			.xpath("//button[contains(@class,'btn-send')]//span[normalize-space()='Create Campaign']");
+	private By campaignType = By.xpath("//input[@value='Personalised");
+	private By importContacts = By.xpath("//button[contains(text(),'Import Contacts')]");
+	private By contactsListTab = By.xpath("//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]");
+	private By contactsListSearchInput = By.xpath("//input[@placeholder='Search List']");
+	private By contactsListGoButton = By.xpath("//button[normalize-space()='Go']");
+	private By contactsImportButton = By
+			.xpath("//button[contains(@class,'process-file') and normalize-space()='Import']");
+	private By chooseTemplateButton = By
+			.xpath("//button[contains(@class,'btn-design') and normalize-space()='Choose Template']");
+	private By searchTemplate = By.xpath("//input[contains(@class,'filter-search')]");
+	private By chooseTemplateRadioButton = By.id("mat-radio-28-input");
+	private By templateSaveButton = By.cssSelector("button.import-btn.btn-design");
+	private By templateCancelButton = By.cssSelector("button.import-btn.btn-design-white");
+	private By campaignSendButton = By.cssSelector("button.btn-design.btn-send");
+	private By campaignSendNowButton = By.xpath("//button[@type='button' and normalize-space()='Send Now']");
 
 	public void clickOnSmsMenu() {
-		click(smsMenu);
+		clickBy(smsMenu);
 	}
 
 	public WebElement getCampaignsSubMenu() {
@@ -95,7 +62,7 @@ public class SmsCampaignPage extends BasePage {
 
 	public void clickOnCreateCampaignButton() {
 		acknowledgeDltPopupWindow();
-		click(createCampaign);
+		clickBy(createCampaign);
 	}
 
 	public void enterCampaignName(String campaignName) {
@@ -107,19 +74,19 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void selectCampaignType() {
-		click(campaignType);
+		clickBy(campaignType);
 	}
 
 	public void clickOnImportContacts() {
-		click(importContacts);
+		clickBy(importContacts);
 	}
 
 	public void clickOnListTab() {
-		click(contactsListTab);
+		clickBy(contactsListTab);
 	}
 
 	public void searchContactList(String listName) {
-		type(contactsListSearchInput, listName);
+		typeBy(contactsListSearchInput, listName);
 	}
 
 	public void selectContactList(String contactListName) {
@@ -127,21 +94,19 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void clickOnGoButton() {
-		click(contactsListGoButton);
+		clickBy(contactsListGoButton);
 	}
 
 	public void clickOnImportButton() {
-		click(contactsImportButton);
+		clickBy(contactsImportButton);
 	}
 
 	public void clickOnChooseTemplate() {
-		click(chooseTemplateButton);
+		clickBy(chooseTemplateButton);
 	}
 
 	public void searchTemplate(String templateName) {
-		click(searchTemplate);
-		type(searchTemplate, templateName);
-		searchTemplate.sendKeys(Keys.ENTER);
+		typeAndEnter(searchTemplate, templateName);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -149,15 +114,15 @@ public class SmsCampaignPage extends BasePage {
 	}
 
 	public void clickOnSaveButton() {
-		click(tempmateSaveButton);
+		clickBy(templateSaveButton);
 	}
 
 	public void clickOnSendButton() {
-		click(campaingSendButton);
+		clickBy(campaignSendButton);
 	}
 
 	public void clickOnSendNowButton() {
-		click(campaignSendNowButton);
+		clickBy(campaignSendNowButton);
 	}
 
 }
