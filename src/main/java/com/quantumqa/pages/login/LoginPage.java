@@ -1,11 +1,7 @@
 package com.quantumqa.pages.login;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
 
@@ -15,44 +11,40 @@ public class LoginPage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
-	private WebElement usernameInputBox;
-	@FindBy(xpath = "//input[@formcontrolname='password']")
-	private WebElement passwordInputBox;
-	@FindBy(css = "button.submit")
-	private WebElement loginButton;
+	private By usernameInput = By.xpath("//input[@formcontrolname='username']");
 
-	By usernameLocator = By.xpath("//input[@formcontrolname='username']");
+	private By passwordInput = By.xpath("//input[@formcontrolname='password']");
 
-	public boolean isLoginPageDisplayed() {
-		return isElementDisplayed(usernameLocator);
+	private By loginButton = By.cssSelector("button.submit");
+
+	public boolean isElementPresent() {
+		return isElementPresent(usernameInput);
 	}
 
-	public void enterUsername(String username) throws IOException {
-		type(usernameInputBox, username);
-
+	public void enterUsername(String username) {
+		type(usernameInput, username);
 	}
 
 	public void enterPassword(String password) {
-		type(passwordInputBox, password);
+		type(passwordInput, password);
 	}
 
 	public void clickLoginButton() {
 		click(loginButton);
 	}
 
-	public void userLogin(String username, String password) throws IOException {
+	public void userLogin(String username, String password) {
 
 		if (username == null || username.isBlank() || password == null || password.isBlank()) {
 			throw new IllegalArgumentException("Username or Password cannot be empty");
 		}
 
-		if (isLoginPageDisplayed()) {
+		if (isElementPresent()) {
 			enterUsername(username);
 			enterPassword(password);
 			clickLoginButton();
 		} else {
-			System.out.println("Already logged in, skipping login");
+			log.info("Already logged in, skipping login");
 		}
 	}
 }
