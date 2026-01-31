@@ -13,14 +13,14 @@ public class LoginTest extends BaseTest {
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
 	public void validLoginTest(String username, String password) throws IOException {
-		Assert.assertTrue(loginPage.isLoginPageDisplayed(), "Login page is not displayed");
+		Assert.assertTrue(loginPage.isElementPresent(), "Login page is not displayed");
 		loginPage.userLogin(username, password);
 		System.out.println("Valid login test passed successfully");
 	}
 
 	@Test(enabled = false)
 	public void invalidLoginTest() {
-		Assert.assertTrue(loginPage.isLoginPageDisplayed(), "Login page is not displayed");
+		Assert.assertTrue(loginPage.isElementPresent(), "Login page is not displayed");
 		System.out.println("Invalid login test passed successfully");
 	}
 
