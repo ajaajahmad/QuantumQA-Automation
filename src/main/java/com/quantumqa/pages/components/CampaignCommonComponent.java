@@ -1,41 +1,31 @@
 package com.quantumqa.pages.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.quantumqa.base.BasePage;
 
 public class CampaignCommonComponent extends BasePage {
 
-	public CampaignCommonComponent(WebDriver driver, WebDriverWait wait) {
+	public CampaignCommonComponent(WebDriver driver) {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//button[@class='btn btn-design btn-send ng-star-inserted']//span[contains(text(),'Create Campaign')]")
-	private WebElement createCampaignButton;
+	// ========== LOCATORS ==========
 
-	@FindBy(xpath = "//div[@class='col-md-3 campaign-name ng-star-inserted']//input[@type='text']")
-	private WebElement campaignNameInputBox;
+	private By createCampaignButton = By
+			.xpath("//button[contains(@class,'btn-send')]//span[normalize-space()='Create Campaign']");
 
-	@FindBy(xpath = "//div[@class='ui floating dropdown labeled icon button ng-star-inserted']//span[contains(text(),'Select')]")
-	private WebElement categoryDropdown;
+	private By campaignNameInputBox = By.xpath("//div[contains(@class,'campaign-name')]//input[@type='text']");
 
-	@FindBy(xpath = "//input[@placeholder='Create New']")
-	private WebElement createCategoryInput;
+	private By categoryDropdown = By.xpath(
+			"//div[contains(@class,'dropdown') and contains(@class,'labeled')]//span[normalize-space()='Select']");
 
-	@FindBy(xpath = "//*[@id='Layer_1']")
-	private WebElement createCategoryAddIcon;
+	private By categorySearchInputBox = By.xpath("//input[@placeholder='Search ...']");
 
-	@FindBy(xpath = "//div[@class='scrolling menu']//div[@title='AutowSMS']")
-	private WebElement selectCategory;
+	private By selectSearchedCategory = By.xpath("//div[@title='automation']");
 
-	@FindBy(xpath = "//input[@placeholder='Search ...']")
-	private WebElement categorySearchInputBox;
-
-	@FindBy(xpath = "//div[@title='automation']")
-	private WebElement selectSearchedCategory;
+	// ========== ACTIONS ==========
 
 	public void clickOnCreateCampaignButton() {
 		click(createCampaignButton);
@@ -49,7 +39,5 @@ public class CampaignCommonComponent extends BasePage {
 		click(categoryDropdown);
 		type(categorySearchInputBox, categoryText);
 		click(selectSearchedCategory);
-
 	}
-
 }
