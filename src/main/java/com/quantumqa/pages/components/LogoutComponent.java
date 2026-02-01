@@ -1,8 +1,8 @@
 package com.quantumqa.pages.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 import com.quantumqa.base.BasePage;
 
 public class LogoutComponent extends BasePage {
@@ -11,15 +11,11 @@ public class LogoutComponent extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(css = ".user-name-alias")
-	private WebElement profileIcon;
-
-	@FindBy(xpath = "//a[contains(text(),'Logout')]")
-	private WebElement logoutButton;
+	private By profileIcon = By.cssSelector(".user-name-alias");
+	private By logoutButton = By.xpath("//a[normalize-space()='Logout']");
 
 	public void userLogout() {
 		click(profileIcon);
 		click(logoutButton);
 	}
-
 }
