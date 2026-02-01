@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.DatePickerComponent;
@@ -32,8 +31,7 @@ public class RcsSummaryApiPage extends BasePage {
 		this.date = new DatePickerComponent(driver);
 	}
 
-	@FindBy(xpath = "//span[contains(text(),'Via API')]")
-	private WebElement viaApiElement;
+	private By viaApiElement = By.xpath("//span[contains(text(),'Via API')]");
 
 	public void openRcsSummary(String dateValue) {
 		menu.navigate("Reports", "RCS", "Summary");
