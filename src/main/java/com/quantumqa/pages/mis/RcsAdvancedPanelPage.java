@@ -5,8 +5,6 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.DatePickerComponent;
 import com.quantumqa.pages.components.MainMenuComponent;
@@ -32,13 +30,12 @@ public class RcsAdvancedPanelPage extends BasePage {
 		this.date = new DatePickerComponent(driver);
 	}
 
-	@FindBy(xpath = "//button[contains(text(),'Search')]")
-	private WebElement searchButton;
+	private By searchButton = By.xpath("//button[contains(text(),'Search')]");
 
 	public void openRcsAdvanced(String startValue, String endValue) {
 		menu.navigate("Reports", "RCS", "Advanced");
 		date.chooseDateOnAdvancedPage(startValue, endValue);
-		searchButton.click();
+		click(searchButton);
 		sleep();
 	}
 
