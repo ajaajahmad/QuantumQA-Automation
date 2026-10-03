@@ -1,0 +1,26 @@
+{
+  "name": "quantumqa-playwright-automation",
+  "version": "2.0.0",
+  "description": "Enterprise Playwright TypeScript automation framework for QuantumQA.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:campaign": "playwright test tests/campaigns",
+    "test:reports": "playwright test tests/reports",
+    "test:auth": "playwright test tests/auth",
+    "typecheck": "tsc --noEmit",
+    "install:browsers": "playwright install",
+    "show-report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1",
+    "@types/node": "^22.15.0",
+    "read-excel-file": "9.0.6",
+    "typescript": "6.0.3"
+  }
+}

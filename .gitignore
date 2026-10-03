@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+reports/
+screenshots/
+logs/
+traces/
+playwright/.auth/
+auth/
+auth.json
+**/auth.json
+**/*.auth.json
+storageState.json
+storage-state.json
+**/storageState.json
+**/storage-state.json
+*.har
+**/*.har
+**/trace.zip
+**/*.webm
+
+# Local environment and private test data
+.env
+.env.*
+!.env.example
+test-data/userdata.json
+test-data/*.xlsx
+test-data/*.xls
+test-data/*.csv
+
+# TypeScript output
+dist/
+
+# Old Java/Maven generated output
+target/
+test-output/
+surefire-reports/
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak

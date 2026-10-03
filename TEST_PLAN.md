@@ -1,0 +1,176 @@
+# Cityflo QA Test Plan — Unlimited Monthly + Auto-Renew
+
+## Run record and status
+
+- Test start: 2026-10-03 16:33:34 IST
+- Test end: 2026-10-03 20:32 IST
+- Planned timebox: 2–4 focused hours; stop at four hours and record follow-up work.
+- Status: live verification reached a one-way ride booking confirmation via the user-directed Teen Haath Naka→Lakeshore route. This was not an Unlimited Monthly Ride Pack purchase path. The Ride Pack view showed no plan or active pack. Checkout, payment, purchase, Auto-Renew, and renewal requirements remain unverified; no payment or purchase attempt was made.
+- System under test: Cityflo rider staging web app, `https://app.cityflostaging.com`.
+- Account: only the candidate's own account and own phone number; do not record the full number here.
+- Product changes: none. QA only; do not fix defects.
+
+## Source of truth and working rules
+
+The PRD is intent; staging behavior is observed behavior. A mismatch must be classified as an application defect, a PRD error/contradiction, or an unresolved question. Do not silently turn assumptions into requirements. Obtain PM answers where possible and preserve provisional assumptions in this plan until answered.
+
+Staging is shared. Testing is hand-paced, with one purchase attempt maximum, no load/stress/fuzz/destructive actions, and no access to other users. Payment is permitted only through an unmistakable gateway sandbox test bank or test wallet. Stop if the gateway presents real UPI, a QR payment, or real card details. Do not induce renewal failures, alter dates or backend state, force expiry, or wait for a monthly renewal. If the environment appears unsafe, stop and document it.
+
+Seat-price and fare-breakdown display issues are P4 cosmetic for this cycle and must not be release blockers. Aditi permits at most one release-blocking bug.
+
+## Requirement-to-test matrix
+
+For payment, purchase, pack state, Auto-Renew, validity, and renewal, UI evidence alone is insufficient: capture a relevant request/response or trace in addition to UI evidence. Redact the candidate's phone number, saved addresses, tokens, session data, and sensitive payment information from anything shared.
+
+| ID | Requirement / source | Scenario | Expected behavior | Evidence to collect | Verification |
+|---|---|---|---|---|---|
+| R1 | PRD §2, §7: Ride Pack shows plans for the rider's route; Unlimited Monthly is among them. | Open Ride Pack from one selected trip. | The selected route has an Unlimited Monthly plan. | UI; plan-list response if available. | UI + network preferred |
+| R2 | PRD §1–2: pack is bound to route and pickup→drop stop pair. | Inspect one route through plan, checkout, and issued pack. | Route and stops remain bound to the pack. | UI and purchase/pack response. | Network required for pack state |
+| R3 | PRD §3: flat ₹3,000 on every route; pre-payment displayed price equals charged price. | Inspect checkout, then compare with the one approved sandbox transaction. | Displayed and charged amounts match ₹3,000. | Checkout UI; order/payment request and response or trace. | Network required |
+| R4 | PRD §2, §6: Auto-Renew can be chosen at checkout and defaults OFF. | Inspect checkout before payment. | Default is OFF; selected value is explicit in order state. | UI and order/checkout request. | Network required for submitted selection |
+| R5 | PRD §2: on successful purchase pack appears under Ride Pack with route, stops, validity dates, and rides remaining. | After one approved purchase, inspect the issued pack. | Pack details appear and match the selected route and purchase. | UI and pack issuance/state response or trace. | Network required |
+| R6 | PRD §4: unlimited means no ride cap during validity. | Inspect displayed plan and safely available usage/pack response. | No ride cap is applied within the valid period. | UI and usage/pack response. | Network required for cap/state claim |
+| R7 | PRD §5: purchased on day D, valid 30 calendar days from first use, D through D+29 inclusive. | Compare first-use and pack validity fields when observable. | Validity spans 30 days and ends D+29. | UI and pack payload with timestamps/timezone if present. | Network required |
+| R8 | PRD §5: pack shows validity window and days remaining. | Inspect active pack details. | Validity window and days remaining are displayed. | UI and pack response supporting dates/status. | UI + network preferred |
+| R9 | PRD §5: past last valid day pack says Expired and no longer covers rides. | Verify only if this occurs naturally for own account; otherwise leave unverified. | Expired status and no active coverage after end date. | UI and pack/eligibility response. | Network required |
+| R10 | PRD §6: Auto-Renew is opt-in, checkout default OFF; a rider can change it from pack screen before cutoff. | Verify default and, only if approved, change and revert well before cutoff. | No opt-in unless selected; pack-screen change persists. | UI and setting update/read request/response. | Network required |
+| R11 | PRD §6: ON attempts charge on renewal date using saved method; same ₹3,000. | Inspect schedule/payment payload if exposed; do not trigger renewal. | Scheduled date, method reference, and amount agree with the defined behavior. | Renewal/payment schedule payload and UI. | Network required |
+| R12 | PRD §6: successful renewal issues next pack beginning day after old expiry for full 30 days. | No live renewal attempt; report only safely available evidence. | Next pack follows old pack without an unspecified gap and lasts 30 days. | Renewal transaction and pack issuance response/trace. | Network required |
+| R13 | PRD §6: failed renewal keeps Auto-Renew ON, notifies rider, retries next day; no active pack until charge succeeds. | Do not induce a failure/retry; record as unverified unless naturally observable. | State, notification, retry, and access match this rule. | Failure/retry payment payloads, notification evidence, pack state. | Network required |
+| R14 | PRD §6: Auto-Renew cancellable through 24 hours before renewal; locked afterward. | Inspect UI/state and exact schedule if exposed; do not alter time or force boundary. | Before cutoff it can be disabled; after cutoff upcoming renewal is locked. | UI and setting/schedule response. | Network required |
+| R15 | PRD §3: applicable refunds processed within three business days to original payment method. | Do not initiate a refund; only document a naturally available, safe observation. | Applicable refund returns to original method within stated interval. | Refund and transaction response. | Network required |
+| R16 | PRD §7: no-active-pack empty state invites purchase; lapsed pack shows lapsed state and repurchase option. | Inspect only if these states naturally exist on own account. | Correct empty or lapsed state and CTA appear. | UI; pack status response for lapsed state. | UI; network for actual state |
+| R17 | PRD §8: phone + OTP; six digits, valid 10 minutes; incorrect code shows inline error and permits retry. ACCESS: manual OTP; wait out rate limits. | Manually authenticate. Do not deliberately submit bad/repeated OTP in this initial slice. | Valid manual OTP permits access; invalid-code behavior remains unverified unless safely tested later. | UI; redact any auth details. | UI sufficient for error presentation |
+| R18 | HANDOFF: seat-price and fare-breakdown display issues are P4 cosmetic and off blocker list. | If encountered incidentally, note without elevating severity. | P4, not a blocker. | Redacted UI evidence. | UI sufficient |
+| R19 | BRIEF: deliver `TEST_PLAN.md`, runnable tests, `BUGS.md`, `DECISION.md`, and `decisions.jsonl`; submit public repo/gist and raw session log only when authorized. | This plan is being created first; other artifacts depend on verified testing and later authorization. | No suspected issue filed as confirmed; no release decision before evidence. | Files and transcript cross-check at the appropriate later stage. | Process requirement |
+| R20 | ACCESS: use own account; manual OTP; sandbox only; hand-paced; mask PII; Playwright storageState; ignore auth/HAR/traces. | Apply to all later testing and evidence handling. | No other accounts or real payment; sensitive artifacts remain local and ignored. | Redacted notes and artifact handling. | Process requirement |
+
+## PM questions and provisional assumptions
+
+No PM answers have been received. All assumptions below are provisional and must not be represented as confirmed requirements.
+
+| ID | Explicit question for PM | Why it matters | Provisional assumption for testing |
+|---|---|---|---|
+| Q1 | Is D the purchase date, first-use date, or activation date? What happens if the rider never first-uses the pack? | PRD says “purchased on day D” but also “from first use”; these dates may differ. | Treat first use as start because that is the more specific validity clause; record purchase and first-use separately. |
+| Q2 | Which timezone and exact time define the validity day, D+29 expiry, and days remaining? | Boundary handling can add or remove access. | Record observed timezone/timestamps; do not infer boundary behavior. |
+| Q3 | What should “rides remaining” show for Unlimited Monthly? | Required pack details include a count, but unlimited has no cap. | Expect “Unlimited” or equivalent; ask PM about any finite-looking value. |
+| Q4 | Does “monthly” always mean exactly 30 days, or a calendar month? | Label and explicit duration may conflict. | Use the explicit 30-day rule. |
+| Q5 | How is renewal date calculated from first-use-based validity? Is charge attempted before expiry, on the last valid day, or after expiry? | Overview says renew before lapse; §6 says charge on renewal date; next pack begins after old expiry. | Expect intended continuity but do not infer the exact schedule without payload or PM answer. |
+| Q6 | Is the 24-hour cancellation cutoff an exact timestamp or calendar-day rule, and what is the timezone/boundary behavior? | Needed for consistent cancellation testing. | Assume exact 24 hours before scheduled renewal using its timezone; avoid boundary-specific conclusions. |
+| Q7 | Can Auto-Renew be turned back on after being disabled? Can it be re-enabled after cutoff? | “Change it before cutoff” doesn’t explain re-enrollment or post-cutoff behavior. | Assume changes are allowed before cutoff and locked after; verify only observed behavior. |
+| Q8 | Does disabling Auto-Renew preserve current pack access through expiry? Is there a separate pack-cancellation action? | PRD describes disabling renewal, not cancellation of an active pack. | Assume disable affects future renewal only; don’t treat this as confirmed. |
+| Q9 | When/how is the payment method saved, authorized, changed, or removed for renewal? | Renewal depends on a saved method; enrollment/mandate details are absent. | Verify visible behavior and safe payload only; infer no authorization model. |
+| Q10 | What should happen for pending, declined, timed-out, duplicate, or late purchase payments? How is retry made idempotent? | PRD has no purchase failure or duplicate-charge rules. | Do not induce failure; if incidentally observed, preserve evidence and ask PM. |
+| Q11 | How many daily renewal retries occur, when do they stop, and what happens to Auto-Renew after repeated failures? | “Retry next day” is incomplete. | Only next-day retry is stated; count/stop policy is unknown. |
+| Q12 | Which notification channel, content, and timing satisfy “notify the rider”? | Cannot verify notification requirement without an expected channel and timing. | Record only what is observed; don’t infer delivery from a state field. |
+| Q13 | If renewal succeeds after a delay, does the new pack begin after old expiry or after payment success? | Determines gaps/overlaps after failures. | Apply “day after old expiry” literally; label delayed-success behavior unverified. |
+| Q14 | What refund cases are applicable, and how do refunds affect pack access and Auto-Renew? | Refund eligibility and state transitions are unspecified. | Do not initiate refund; make no refund-flow claim. |
+| Q15 | Does “unlimited” mean rides consumed/booked, and are seat capacity or trip availability constraints separate? | Daily ride promise may depend on operational availability not in PRD. | Verify only stated ride-cap behavior and route binding; infer no seat guarantee. |
+| Q16 | What OTP lockout/rate-limit rules apply beyond the six-digit, 10-minute code and retry behavior? | ACCESS says wait out rate limits but defines no thresholds. | Do not test invalid/repeated OTP in this slice. |
+| Q17 | When does the three-business-day refund clock begin, and how are holidays/weekends treated? | Needed for any meaningful SLA check. | Treat it as a stated target only; no SLA claim without a defined start and natural observation. |
+| Q18 | Is residential and office address setup required before route search and Ride Pack access? What is the expected empty/profile-incomplete state? | Own-account profile currently has neither address configured; Search is disabled and direct Ride Pack navigation does not show the PRD's empty-state invitation. | Treat address configuration as a prerequisite and do not mutate the account without the owner's action/authorization; classify the flow as unresolved, not a confirmed defect. |
+
+## Selected scope and explicit cuts
+
+Target approximately three focused hours and stop by four. If blocked by OTP or unsafe payment options, stop that path and record the limitation rather than improvising.
+
+1. **0:00–0:25:** Confirm requirement matrix, assumptions, and evidence checklist.
+2. **0:25–0:45:** Open normal rider login; manually enter OTP in browser; save Playwright storageState locally. Keep it ignored and never expose its contents.
+3. **0:45–1:30:** Hand-paced inspect one route, plan listing, route/stops, checkout amount, and Auto-Renew default. Inspect payment options before any payment.
+4. **1:30–2:15:** If explicitly approved and sandbox test bank/wallet is unmistakable, perform at most one purchase attempt and inspect order/payment/pack evidence.
+5. **2:15–2:45:** Automate three or four high-value cases; inspect Auto-Renew setting only if safe and authorized. Do not leave Auto-Renew enabled intentionally.
+6. **2:45–3:30:** Triage verified evidence, record scope cuts and unknowns, prepare bug reports and evidence-based release decision later.
+
+Do not test real UPI, QR, card, multiple/concurrent/repeated purchases, another account, load/stress/fuzz/destructive behavior, backend mutation, forced dates/expiry, induced renewal failures, real monthly renewal, high-volume rides, invalid/repeated OTPs, refunds, or out-of-scope ride-count/multi-route/family/proration/pause behavior. Do not fix product defects. Do not make seat-price/fare-breakdown display issues blockers; they are P4 by handoff.
+
+## Proposed Playwright tests
+
+The scenarios below were proposed before live verification. Outcomes and unverified items are recorded in “Execution observations (IST)” below. Payment remains sandbox-only under ACCESS.md; capture network request/response or trace evidence for money and pack state in addition to UI evidence.
+
+### PW1 — Plan and checkout preflight (no payment)
+
+- **Risk:** Wrong route/stops, price, or accidental Auto-Renew enrollment.
+- **Value:** Detects errors before money is involved.
+- **Setup:** Own authenticated account, one selected route/trip, plan and checkout preview; stop before payment.
+- **OTP:** Manually enter the real OTP in the controlled browser once; save `storageState` locally and reuse it. Never write OTP to code, files, or chat.
+- **Network evidence:** Plan list and checkout/order preview, including route/stops, ₹3,000 amount, and renewal selection; redact identifiers/tokens.
+
+### PW2 — One sandbox purchase and pack issuance
+
+- **Risk:** Wrong/duplicate charge, paid purchase without issued pack, or pack bound to wrong route.
+- **Value:** Covers the financial and core access path end to end.
+- **Setup:** PW1 passes; explicit authorization for one purchase; inspect checkout first and proceed only with gateway sandbox test bank or test wallet. One attempt maximum.
+- **OTP:** Reuse storageState; if expired, pause for manual login.
+- **Network evidence:** Order creation, gateway request/response, amount/status, pack issuance/state response, and trace if available. Compare UI to payload; never expose payment or session secrets.
+
+### PW3 — Auto-Renew default and setting lifecycle
+
+- **Risk:** Unwanted recurring charge or inability to disable before cutoff.
+- **Value:** Recurring-money behavior is the PM’s highest stated concern.
+- **Setup:** Confirm OFF at checkout. Only if authorized, enable and immediately disable well before cutoff; do not trigger renewal or leave it scheduled.
+- **OTP:** Reuse storageState; if expired, pause for manual login.
+- **Network evidence:** Checkout selection and setting update/read responses; renewal schedule/date if exposed. A UI toggle alone does not prove persisted state.
+
+### PW4 — Pack validity/state presentation
+
+- **Risk:** Wrong start/end date, misleading remaining days, or loss/extension of access.
+- **Value:** Validity is central to the daily commuter promise and renewal timing.
+- **Setup:** Use the single issued pack if purchase is approved. Test expiry/lapsed state only if it occurs naturally on own account; never force it.
+- **OTP:** Reuse storageState.
+- **Network evidence:** Pack state including route/stops, timestamps, status, and eligibility, alongside UI. Renewal/expiry behavior remains unverified if only inferred from schedule data.
+
+## OTP and sensitive evidence handling
+
+- Use normal rider login. Pause when OTP is required so the account owner can enter it directly in the browser. Never ask for or record the OTP in chat, source, test output, or files.
+- Save Playwright `storageState` locally for subsequent test runs. Never show or commit its contents. If it expires, pause for another manual login.
+- Ignore `auth.json`, storage-state files, Playwright auth directories, HAR files, traces, videos, screenshots, and test result/report directories. HARs/traces/screenshots shared later must be reviewed and redacted for phone numbers, addresses, tokens, and payment data.
+- For purchase, payment, pack state, validity, Auto-Renew, or renewal findings, capture relevant network request/response or trace plus UI evidence. UI assertion alone is insufficient.
+
+## Bug and release-decision discipline
+
+No suspected issue is a confirmed bug. Create a `BUGS.md` entry only after a reproducible observation with evidence. Use the supplied template: title, severity, one-line rationale, area/environment/masked account, PRD reference, repro, expected/actual, evidence, optional notes. For money or pack state, include network request/response or trace.
+
+Preliminary severity rule (not a classification of any issue):
+
+- **P1:** Wrong, duplicate, or unauthorized money movement, or paying rider silently loses access.
+- **P2:** A documented core feature promise fails without direct money loss (e.g. materially wrong validity or documented failure path).
+- **P3:** Degraded experience, missing state, or accessibility issue while core task remains possible.
+- **P4:** Cosmetic/copy/polish. Seat-price and fare-breakdown display issues are P4 for this cycle.
+
+At most one verified issue may block release. The eventual decision must state one repeatable rule, the case where that rule gives an uncomfortable answer and why it remains, cost and who pays, what observation changes the decision, what is knowingly shipping, and what was observed/inferred/could not be verified for renewal. No `DECISION.md` release recommendation is to be created before evidence exists.
+
+## Deliverables and submission boundary
+
+- `TEST_PLAN.md`: created and updated with actual scope, observations, outcomes, and cuts.
+- `BUGS.md`: contains the one reproduced issue; unresolved observations are not classified as bugs.
+- `DECISION.md`: records the evidence-based inconclusive assessment, rule/counterexample/cost, change-of-mind evidence, and observed/inferred/unverified distinctions.
+- `decisions.jsonl`: records consequential decisions with `decision`, exact user quote, and transcript anchor.
+- Runnable test: `tests/cityflo/session-inspection.spec.ts`; local setup and OTP/storageState notes are in `SUBMISSION.md`.
+- The raw session transcript is not part of the repository; it must be transferred separately through Cityflo's session-log mechanism. Authentication state, traces, and other sensitive artifacts stay out of the public deliverable.
+
+## Execution observations (IST)
+
+- **2026-10-03 16:45 onward — login/home:** Owner manually completed OTP in the visible browser. Playwright `codegen --save-storage=auth.json` exited and saved local state; `.gitignore` matches `auth.json`. Authenticated home rendered with title `Cityflo - Premium Bus Service`. Read-only profile/home requests returned HTTP 200. The sanitized profile response indicates no residential or office address is configured; the home response says `has_active_subscription: false`. No full profile fields were recorded.
+- **Ride Pack navigation:** Clicking the visible Ride Pack control navigated to `/rides`. The rendered page showed no Unlimited Monthly plan, validity details, expired state, or empty-pack invitation. No plan-list/pack request was observed; home-data requests repeated. The optional `/api/ride-protect/v1/summary/` request returned 404; it is unrelated and is not classified as a bug.
+- **Route-search attempt:** Search was disabled on both `/rides` and Home before route selection. No booking or payment was submitted.
+- **2026-10-03 17:30 onward — own-account setup and route selector:** The owner configured residential and office locations in the staging UI. Authenticated profile evidence now indicates both are configured; no address values were retained in shared output. In the pickup selector, the saved Home row remained visible, but normal pointer clicks were intercepted by a full-screen `aria-hidden=true` overlay in repeated attempts. No forced click was used. Typing a public stop query worked; the public Powai stop suggestion returned through `/api/v2/routes/get-search-suggestions-for-customer/` with HTTP 200 and was selected. Search remained disabled until a dropoff was selected.
+- **Dropoff and route-results exploration (2026-10-03 17:40 IST):** A public BKC query returned HTTP 200 and contained a matching public stop signal. Selecting the visible suggestion triggered `/api/v2/routes/get-places-details/` with HTTP 200. The selector remained open until Escape closed it; afterward the Search button was enabled. Clicking Search navigated to `/search-results`. The page showed Pickup, Dropoff, and route-details guidance, but no route card or plan. The captured network log had no route-option/plan request after Search; observed API responses were limited to profile/home, suggestion, place-details, and unrelated waitlist/telemetry endpoints. No booking, checkout, or payment action was taken.
+- **Directed route combinations (2026-10-03 17:45–17:53 IST):** With the refreshed manually authenticated storageState, searched Powai→BKC, BKC→Powai, Andheri East→BKC, and BKC→Andheri East using public stop names. Each visible stop suggestion/place-details flow returned HTTP 200 and Search reached `/search-results`. None exposed a route card or a route-options/pack request. One intermediate run timed out because it assumed the initial pickup prompt despite the account already displaying masked pickup/dropoff values; the next run opened the Pickup/Dropoff controls directly and completed. No OTP was captured by the test, no addresses were retained in output, and no booking/payment was attempted.
+- **Current classification:** The saved-address row being unclickable is a reproducible UI defect in the selector; a manual public-stop search is a workaround, so it is recorded as P3. The selector’s remaining open after place details and needing Escape is a usability concern, but selection eventually enabled Search; do not file separately without stronger expected-behavior evidence. Five directed public-stop searches, the own saved route, and the saved-plus-public-landmark case returned no route card, so route availability remains unresolved and the Ride Pack/checkout requirements are still unverified; this is not classified as a confirmed pack bug.
+- **No-active-pack recheck (2026-10-03 17:55 IST):** After the public route searches, opened Ride Pack again. `/api/users/get-home-data-main/` returned HTTP 200 with `has_active_subscription: false`; no plan, pack, or checkout endpoint was observed. `/rides` showed the rider home route form, with no Unlimited Monthly copy, empty-pack invitation, validity, expiry, or price. This is recorded as an unresolved PRD/UI question because no route card was available and the PRD ties plan selection to a selected trip. No checkout or purchase attempt occurred.
+- **Own saved-route E2E (2026-10-03 18:00 IST):** Reused the already-selected pickup/dropoff on the candidate's own account (values masked) and clicked Search. The enabled control navigated to `/search-results`; the page showed no route card or actionable “View Route Details” control. No route-options request was observed. Navigating to Ride Pack returned `/rides`, which showed the route form and no plan, empty-pack invitation, or checkout. Profile/home endpoints returned HTTP 200 and `has_active_subscription: false`. The Playwright run passed; no purchase or payment occurred. The flow is unresolved as service availability versus missing route search behavior, so no additional defect was filed.
+- **Checkout discovery (2026-10-03 18:01 IST):** Searched one additional public pair, Thane→BKC, then opened Ride Pack. Search reached `/search-results` but exposed no route card; `/rides` showed no pack or checkout content. Suggestion/place-details requests returned HTTP 200, while no route-options, checkout, or payment request was observed. Payment methods therefore could not be inspected, and no payment attempt was made. The existing one-purchase/sandbox-only constraints remain in force.
+- **Booking/confirmation checks (2026-10-03 18:11 IST):** Repeated the end-to-end Search path using the already-saved own-account pickup/dropoff, then tested a public non-saved landmark address as the dropoff with a public pickup stop. In both cases, `/search-results` showed no route card; observed `routeDetailsActionCount: 0` and `bookingActionCount: 0`. Public suggestion/place-details requests returned HTTP 200. No booking confirmation, checkout, or payment UI was reachable. No booking or payment attempt occurred. The result is blocked by route availability/flow, not classified as a booking defect without a served route.
+- **User-provided Thane route (2026-10-03 18:45 IST):** Searched the specified Teen Haath Naka / Wagle Estate Lakeshore pair using their distinctive names and selected one matching result from each `Cityflo Stops` group. The suggestion endpoints returned HTTP 200. Search navigated to `/search-results`; repeating Search once from that screen left the same result state. Both snapshots had zero route-details actions and zero booking actions; no route-options, checkout, or payment request appeared. This differs from the user's expectation that the pair has a booking card. Treat the discrepancy as unresolved (stop alias, schedule, fixture, or route-search issue) until we can establish why this selected pair yields no card. No booking or payment attempt occurred.
+- **Current classification:** The saved-address row being unclickable is a reproducible UI defect in the selector; a manual public-stop search is a workaround, so it is recorded as P3. The selector’s remaining open after place details and needing Escape is a usability concern, but selection eventually enabled Search; do not file separately without stronger expected-behavior evidence. Initial route attempts returned no cards. The later directed run returned cards, but did not verify the Wagle Estate drop-off context and did not reach the pack flow; all Ride Pack requirements remain unverified.
+- **Evidence:** Playwright spec `tests/cityflo/session-inspection.spec.ts`; durable sanitized observations are in `evidence/latest-run-summary.md`. Raw storage state and generated reports remain local/ignored. Sensitive account values are redacted from captured summaries.
+- **Decision at that point:** Booking and payment attempts were not possible because route results exposed no actionable booking path or checkout UI. Payment methods could not be inspected, so no payment attempt was made. One verified P3 UI defect is documented. Renewal, purchase, activation, validity, and payment behaviors remained unverified.
+- **2026-10-03 20:09–20:10 IST — final directed route run:** Reused the locally saved Playwright storageState and searched the user-specified Teen Haath Naka / Lakeshore route, entering the provided name and email only if the Confirm Booking form appeared. Suggestion signals matched Teen Haath Naka and Lakeshore; the Wagle Estate context signal was false. `/api/v4/routes/search/` returned HTTP 200 with `cards_data`; the visible result list showed fares starting at ₹49 and Proceed controls. Clicking Proceed changed the URL to `/booking/ride-type`, but the captured page still showed the route result list; no Confirm Booking form, booking request, checkout, or payment options were observed. The run then opened Ride Pack (`/rides`), which showed the rider route form and no Unlimited Monthly plan, active pack, validity, or empty-pack purchase invitation. No booking or payment request was sent. User separately reported a Google Maps `AuthFailure` message on search results; the route data request succeeded despite that rendering error. This map message is not filed as a confirmed Ride Pack defect.
+- **Latest network evidence:** `/api/v4/routes/search/` POST returned HTTP 200 and included `cards_data`. No booking, checkout, payment, pack issuance/state, or renewal endpoint was observed in the earlier search run. Sanitized durable evidence summary: `evidence/latest-run-summary.md`; raw Playwright output remains ignored under `test-results/`.
+- **Final test limits:** One end-to-end route search and one Proceed navigation were observed. The form/payment path could not be reached, so no sandbox option was available to inspect. Purchase, activation, amount matching, default Auto-Renew, Auto-Renew persistence/cancellation, validity, expiry, renewal success/failure, and refund behavior are all **not tested**, not passed. Expiry and renewal scenarios were additionally excluded by ACCESS.md (no date manipulation, forced expiry, induced renewal failure, or waiting a month). Test work stopped within the four-hour timebox.
+- **Decision status:** Evidence is insufficient for a release verdict on Unlimited Monthly Ride Pack. The purchase and pack flow remained inaccessible from the observed Ride Pack page, and the directed route context did not verify Wagle Estate. No purchase/payment attempt was made. The only confirmed defect remains CF-001 in `BUGS.md`; no new bug was classified from the map error or unresolved route flow.
+- **Inspection command:** `CITYFLO_INSPECT_ONLY=1 CITYFLO_BOOKING_NAME='<rider name>' CITYFLO_BOOKING_EMAIL='<rider email>' CITYFLO_PICKUP_TERM='Teen Haath Naka' CITYFLO_PICKUP_MATCH='Teen Haath Naka' CITYFLO_PICKUP_CONTEXT='Central Thane' CITYFLO_DROPOFF_TERM=Lakeshore CITYFLO_DROPOFF_MATCH=Lakeshore CITYFLO_REPORT_NAME=thane-wagle-confirm-form-inspect.json node_modules/.bin/playwright test tests/cityflo/session-inspection.spec.ts --reporter=line`. Inspect-only mode does not click booking/payment actions. Requires local `auth.json`; if expired, owner must complete OTP in the visible browser. Do not share `auth.json` or raw traces.
+- **2026-10-03 20:24–20:31 IST — refreshed session and one-way confirmation inspection:** The previous storageState had expired and redirected to login. The owner manually completed OTP in Playwright Codegen; the refreshed state stayed local in ignored `auth.json`. A follow-up exact full-text stop search did not produce a selectable stop with verifiable Wagle Estate context. Per the owner’s explicit route instruction, a search for the single Cityflo “Lakeshore” stop was then used. Search results showed Teen Haath Naka and “In front of Lakeshore mall (Viviana) before Jupiter Hospital” with a displayed starting fare of ₹1; the Wagle Estate locality was not independently visible in the stop metadata. Selecting the normal Mon, 5 Oct date changed the result card to Centrum IT Park→Tattvagyan Vidhyapith while the search header still showed Teen Haath Naka and the selected drop-off. Proceed then reached `/booking/confirmation` for a one-way ride. This route mismatch is unresolved; the run did not establish a Ride Pack path. On the confirmation screen the payment summary remained “Calculating…”, Continue to Payment was disabled, and after entering the previously provided profile details the inputs were blank again in the captured snapshot. No booking/payment action was clicked. The map displayed the reported `AuthFailure`. Network evidence showed route-search POSTs returning HTTP 200; no booking, checkout, payment, pack, or renewal request was observed. This is not filed as a Ride Pack defect because the intended pack flow was never reached and the route/date transition needs product clarification.
+- **Evidence:** The raw report `test-results/cityflo/thane-wagle-confirm-form-inspect.json` is ignored by Git and may be regenerated by a later run. The durable, sanitized observations are in `evidence/latest-run-summary.md`.
+- **Final test limits:** No Ride Pack plan or pack state became available. Purchase, payment method inspection, amount matching, activation, unlimited usage, Auto-Renew defaults/persistence/cancellation, validity, expiry, renewal success/failure, and refunds are **not tested**, not passed. Expiry/renewal scenarios are also prohibited by ACCESS.md constraints (no date manipulation, forced expiry, induced failure, or waiting a month). No purchase or payment attempt occurred. Testing stopped within the four-hour timebox.
+- **Final decision status:** Evidence is insufficient for a release verdict on Unlimited Monthly Ride Pack. The one-way booking path exposed a route/date mismatch and an uncalculated payment summary, but neither is attributed to the pack feature without a matching PRD path and reproducible network evidence. CF-001 remains the only confirmed bug in `BUGS.md`.
