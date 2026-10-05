@@ -18,3 +18,7 @@ Only issues reproduced against the staging app are listed here. Personal data an
 - **Workaround:** Type a public Cityflo stop into the address search and select the returned stop. The public Powai suggestion was selected successfully.
 - **Evidence:** Reproduced in multiple earlier Playwright runs. The sanitized observation is summarized in [evidence/latest-run-summary.md](evidence/latest-run-summary.md); the original raw report was stored under ignored `test-results/` and is not included in this package. No screenshot, trace, address, phone number, token, or session data is included.
 - **PRD impact:** Route setup is a prerequisite to reaching Ride Pack plans. This issue can impede the flow for riders relying on saved addresses; the manual search workaround makes it non-blocking for this assignment's release decision unless broader impact is established.
+
+## Current run disposition — 2026-10-05
+
+No new Ride Pack bug is confirmed. The authenticated Ride Pack Search sent `POST /api/v4/routes/search/` and received HTTP 200 with both morning/evening route-card fields null; the UI showed no Proceed action. The separate plan-details endpoint was not requested. This supports an empty route result for this attempt, but does not establish why the selected route was ineligible or prove a product defect.

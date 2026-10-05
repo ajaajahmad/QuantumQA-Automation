@@ -1,0 +1,1686 @@
+{
+  "observedAt": "2026-10-05T16:59:29.961Z",
+  "scope": "Read-only route form inspection; no stop values edited and no booking, checkout, or payment action clicked.",
+  "routeSearchClicked": true,
+  "routeSearchOutcome": {
+    "receivedResponse": true,
+    "status": 200,
+    "resourceType": "xhr",
+    "featureKeyPaths": [
+      "$.cards_data",
+      "$.cards_data.morning_vsp",
+      "$.cards_data.evening_vsp",
+      "$.search_result_extra_info_v2",
+      "$.search_result_extra_info_v2.reduced_frequency_message_in_search_results",
+      "$.search_result_extra_info_v2.reduced_frequency_message_in_changetime_results",
+      "$.search_result_extra_info_v2.results_prompt",
+      "$.search_result_extra_info_v2.results_prompt.title",
+      "$.search_result_extra_info_v2.results_prompt.sub_title",
+      "$.search_result_extra_info_v2.results_prompt.icon_url",
+      "$.search_result_extra_info_v2.results_prompt.cta_text",
+      "$.search_result_extra_info_v2.results_prompt.action",
+      "$.search_result_extra_info_v2.results_prompt.result_type",
+      "$.search_result_extra_info_v2.results_prompt.secondary_cta",
+      "$.search_result_extra_info_v2.results_header",
+      "$.search_result_extra_info_v2.first_ride_banner",
+      "$.search_result_extra_info_v2.variable_pricing_shown",
+      "$.search_result_type",
+      "$.search_result_tabs",
+      "$.search_result_tabs[0].icon_url",
+      "$.search_result_tabs[0].selected_hex_color",
+      "$.search_result_tabs[0].unselected_hex_color",
+      "$.search_result_tabs[0].title",
+      "$.search_result_tabs[0].slug",
+      "$.search_result_tabs[0].action_url"
+    ],
+    "arrayCounts": [
+      {
+        "keyPath": "$.search_result_tabs",
+        "count": 1
+      }
+    ],
+    "featureFieldShapes": [
+      {
+        "keyPath": "$.cards_data",
+        "type": "object"
+      },
+      {
+        "keyPath": "$.cards_data.morning_vsp",
+        "type": "null"
+      },
+      {
+        "keyPath": "$.cards_data.evening_vsp",
+        "type": "null"
+      }
+    ]
+  },
+  "planRequestsBeforeRouteSearch": 0,
+  "sessionResponseStatuses": [
+    {
+      "path": "/api/v2/users/get-user-profile/",
+      "status": 200
+    },
+    {
+      "path": "/api/users/get-home-data-main/",
+      "status": 200
+    },
+    {
+      "path": "/api/users/get-home-data-main/",
+      "status": 200
+    }
+  ],
+  "snapshots": [
+    {
+      "step": "home",
+      "urlPath": "/",
+      "titleIsCityflo": true,
+      "searchButtonCount": 1,
+      "searchEnabled": true,
+      "routeButtons": [
+        {
+          "label": "Ride Pack",
+          "enabled": true
+        },
+        {
+          "label": "Search",
+          "enabled": true
+        }
+      ],
+      "inputs": [],
+      "uiSignals": {
+        "routeResultActionPresent": false,
+        "unlimitedMonthlyCopyPresent": false,
+        "rupeePricePresent": false,
+        "checkoutControlPresent": false
+      }
+    },
+    {
+      "step": "ride-pack-entry",
+      "urlPath": "/rides",
+      "titleIsCityflo": true,
+      "searchButtonCount": 1,
+      "searchEnabled": true,
+      "routeButtons": [
+        {
+          "label": "Ride Pack",
+          "enabled": true
+        },
+        {
+          "label": "Search",
+          "enabled": true
+        }
+      ],
+      "inputs": [],
+      "uiSignals": {
+        "routeResultActionPresent": false,
+        "unlimitedMonthlyCopyPresent": false,
+        "rupeePricePresent": false,
+        "checkoutControlPresent": false
+      }
+    },
+    {
+      "step": "after-ride-pack-search-submit",
+      "urlPath": "/search-results",
+      "titleIsCityflo": true,
+      "searchButtonCount": 1,
+      "searchEnabled": true,
+      "routeButtons": [
+        {
+          "label": "Ride Pack",
+          "enabled": true
+        },
+        {
+          "label": "Search",
+          "enabled": true
+        }
+      ],
+      "inputs": [],
+      "uiSignals": {
+        "routeResultActionPresent": false,
+        "unlimitedMonthlyCopyPresent": false,
+        "rupeePricePresent": false,
+        "checkoutControlPresent": false
+      }
+    }
+  ],
+  "network": [
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "document",
+      "path": "/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "document",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/css2"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/index-C9FiMPwr.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-react-BdSru3Tn.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-tamagui-DNFjKldY.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-query-A_h9FD-Q.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/truesightPlatform-C8wKTsi-.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-motion-CLzMWXIQ.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-maps-nOK2QNrc.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/index-DtwJ6q0n.css"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "document",
+      "path": "/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/index-DtwJ6q0n.css",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/index-DtwJ6q0n.css"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-query-A_h9FD-Q.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-query-A_h9FD-Q.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-tamagui-DNFjKldY.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-tamagui-DNFjKldY.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/truesightPlatform-C8wKTsi-.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/truesightPlatform-C8wKTsi-.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-maps-nOK2QNrc.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-maps-nOK2QNrc.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-react-BdSru3Tn.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-react-BdSru3Tn.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-motion-CLzMWXIQ.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/vendor-motion-CLzMWXIQ.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/css2"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/css2",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/index-C9FiMPwr.js"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/index-C9FiMPwr.js",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "font",
+      "path": "/l/font"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/cityflo-bus-DRHPZujp.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/corporate-shuttle-Bto4g7WU.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/users/get-user-profile/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/cityflo-bus-DRHPZujp.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/corporate-shuttle-Bto4g7WU.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/cityflo-bus-DRHPZujp.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/assets/corporate-shuttle-Bto4g7WU.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "font",
+      "path": "/l/font"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "font",
+      "path": "/l/font",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/decide"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/users/get-user-profile/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/1.BoardingTheBus.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/2.GettingToStop.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/3.IdentifyingTheBus.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/4.ReachingOnTime.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/5.GettingDown.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/users/get-user-profile/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/",
+      "status": 200,
+      "featureKeyPaths": [
+        "$.has_active_subscription",
+        "$.pack_badge"
+      ],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/2.GettingToStop.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/1.BoardingTheBus.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/5.GettingDown.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/3.IdentifyingTheBus.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/4.ReachingOnTime.png",
+      "status": 200
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/2.GettingToStop.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/1.BoardingTheBus.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/5.GettingDown.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/3.IdentifyingTheBus.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/anti-anxiety-videos/4.ReachingOnTime.png"
+    },
+    {
+      "phase": "home-load",
+      "kind": "request-finished",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/decide"
+    },
+    {
+      "phase": "home-load",
+      "kind": "response",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/decide",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RidePack-EUE0z8_Z.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useFaqs-jPgJ1gLM.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/useFaqs-_DPzUKmK.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackCard-BRGzRAuc.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackCard-B0KUX8ac.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/juspayStatus-DskwkQ-t.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/uuid-DQGx0bmO.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useJuspayPayment-SPoYoQu-.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/webPaymentHints-CBofYnbE.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useRideProtect-DofNJtsX.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/rideProtect-Mc6q_1Sw.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/paymentAttempt-NtWnH06r.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectRow-CGbegw5V.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/CoverBreakdown-DKt8TmyG.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/CoverBreakdown-BVX50wgP.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectTermsContent-pZ5zxSTa.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectTermsContent-BO22aklw.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectRow-B34YI8rS.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackPurchaseSuccess-DpRDMZ5F.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackPurchaseSuccess-Cd67kfYF.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RidePack-BdeTTcpR.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/ondc/transit/tickets/"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/CoverBreakdown-DKt8TmyG.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RidePack-EUE0z8_Z.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackPurchaseSuccess-DpRDMZ5F.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/CoverBreakdown-DKt8TmyG.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/rideProtect-Mc6q_1Sw.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RidePack-EUE0z8_Z.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackPurchaseSuccess-DpRDMZ5F.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/rideProtect-Mc6q_1Sw.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RidePack-BdeTTcpR.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/useFaqs-_DPzUKmK.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RidePack-BdeTTcpR.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackCard-B0KUX8ac.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/CoverBreakdown-BVX50wgP.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectTermsContent-BO22aklw.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/useFaqs-_DPzUKmK.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectRow-B34YI8rS.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackCard-B0KUX8ac.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/CoverBreakdown-BVX50wgP.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectTermsContent-BO22aklw.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/RideProtectRow-B34YI8rS.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackPurchaseSuccess-Cd67kfYF.css"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/PackPurchaseSuccess-Cd67kfYF.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackCard-BRGzRAuc.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/paymentAttempt-NtWnH06r.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useJuspayPayment-SPoYoQu-.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectRow-CGbegw5V.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useRideProtect-DofNJtsX.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useFaqs-jPgJ1gLM.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/PackCard-BRGzRAuc.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/paymentAttempt-NtWnH06r.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/webPaymentHints-CBofYnbE.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/juspayStatus-DskwkQ-t.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectTermsContent-pZ5zxSTa.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/uuid-DQGx0bmO.js"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useJuspayPayment-SPoYoQu-.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectRow-CGbegw5V.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useRideProtect-DofNJtsX.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/useFaqs-jPgJ1gLM.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/webPaymentHints-CBofYnbE.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/juspayStatus-DskwkQ-t.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/RideProtectTermsContent-pZ5zxSTa.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/uuid-DQGx0bmO.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/"
+    },
+    {
+      "phase": "ride-pack-entry",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/rides/seat-waitlist/active/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/ondc/transit/tickets/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-data-main/",
+      "status": 200,
+      "featureKeyPaths": [
+        "$.has_active_subscription",
+        "$.pack_badge"
+      ],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/v2/ondc/transit/tickets/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch",
+      "status": 202,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/users/get-home-screen-data/",
+      "status": 200,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/ride-protect/v1/summary/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "POST",
+      "resourceType": "fetch",
+      "path": "/v1/events/batch",
+      "status": 202,
+      "featureKeyPaths": [],
+      "arrayCounts": [],
+      "featureFieldShapes": []
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/ride-protect/v1/summary/",
+      "status": 404
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "xhr",
+      "path": "/api/ride-protect/v1/summary/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsRoute-Dk-j3NDS.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "other",
+      "path": "/favicon.png",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsRoute-Dk-j3NDS.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsRoute-Dk-j3NDS.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsV4-AkzG_oIJ.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchDeeplinkParams-DgMFxYqp.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/StatusLabel-Bg4f4JPK.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchRequest-DMx2xXSv.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/searchDeeplinkParams-DXvCmrmn.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/NudgeMessage-D5M0qsaX.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/NudgeMessage--ao2B3Qy.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/AnimatedPage-CSouaF6_.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/SearchResultsV4-B2gPrO_P.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/NudgeMessage--ao2B3Qy.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/NudgeMessage--ao2B3Qy.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/SearchResultsV4-B2gPrO_P.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/searchDeeplinkParams-DXvCmrmn.css"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/SearchResultsV4-B2gPrO_P.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/NudgeMessage-D5M0qsaX.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsV4-AkzG_oIJ.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/StatusLabel-Bg4f4JPK.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchRequest-DMx2xXSv.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchDeeplinkParams-DgMFxYqp.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "stylesheet",
+      "path": "/assets/searchDeeplinkParams-DXvCmrmn.css",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/AnimatedPage-CSouaF6_.js"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/NudgeMessage-D5M0qsaX.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/SearchResultsV4-AkzG_oIJ.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/StatusLabel-Bg4f4JPK.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchRequest-DMx2xXSv.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/searchDeeplinkParams-DgMFxYqp.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "script",
+      "path": "/assets/AnimatedPage-CSouaF6_.js",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "POST",
+      "resourceType": "xhr",
+      "path": "/api/v4/routes/search/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "POST",
+      "resourceType": "xhr",
+      "path": "/api/v4/routes/search/"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/images/no-bus-error.png"
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "POST",
+      "resourceType": "xhr",
+      "path": "/api/v4/routes/search/",
+      "status": 200,
+      "featureKeyPaths": [
+        "$.cards_data",
+        "$.cards_data.morning_vsp",
+        "$.cards_data.evening_vsp",
+        "$.search_result_extra_info_v2",
+        "$.search_result_extra_info_v2.reduced_frequency_message_in_search_results",
+        "$.search_result_extra_info_v2.reduced_frequency_message_in_changetime_results",
+        "$.search_result_extra_info_v2.results_prompt",
+        "$.search_result_extra_info_v2.results_prompt.title",
+        "$.search_result_extra_info_v2.results_prompt.sub_title",
+        "$.search_result_extra_info_v2.results_prompt.icon_url",
+        "$.search_result_extra_info_v2.results_prompt.cta_text",
+        "$.search_result_extra_info_v2.results_prompt.action",
+        "$.search_result_extra_info_v2.results_prompt.result_type",
+        "$.search_result_extra_info_v2.results_prompt.secondary_cta",
+        "$.search_result_extra_info_v2.results_header",
+        "$.search_result_extra_info_v2.first_ride_banner",
+        "$.search_result_extra_info_v2.variable_pricing_shown",
+        "$.search_result_type",
+        "$.search_result_tabs",
+        "$.search_result_tabs[0].icon_url",
+        "$.search_result_tabs[0].selected_hex_color",
+        "$.search_result_tabs[0].unselected_hex_color",
+        "$.search_result_tabs[0].title",
+        "$.search_result_tabs[0].slug",
+        "$.search_result_tabs[0].action_url"
+      ],
+      "arrayCounts": [
+        {
+          "keyPath": "$.search_result_tabs",
+          "count": 1
+        }
+      ],
+      "featureFieldShapes": [
+        {
+          "keyPath": "$.cards_data",
+          "type": "object"
+        },
+        {
+          "keyPath": "$.cards_data.morning_vsp",
+          "type": "null"
+        },
+        {
+          "keyPath": "$.cards_data.evening_vsp",
+          "type": "null"
+        }
+      ]
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "response",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/images/no-bus-error.png",
+      "status": 200
+    },
+    {
+      "phase": "ride-pack-search-submit",
+      "kind": "request-finished",
+      "method": "GET",
+      "resourceType": "image",
+      "path": "/images/no-bus-error.png"
+    }
+  ]
+}

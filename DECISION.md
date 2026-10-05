@@ -31,3 +31,26 @@ Re-run on an accessible staging route and plan. Inspect checkout first, then use
 This test run does not clear the Ride Pack for release; it also does not confirm a Ride Pack defect. If the product ships without further evidence, purchase, pack issuance, Auto-Renew, validity, and renewal behavior would ship unverified. The uncomfortable choice is to hold approval despite no confirmed pack bug; keep the hold because the rider's payment and access risks were not tested.
 
 No release approval is given by this report. A product release decision remains with the product owner after the missing Ride Pack evidence is collected.
+
+## 2026-10-05 live preflight update
+
+The separate October 5 run still supports an **inconclusive** assessment. The authenticated session showed no active subscription, and Ride Pack displayed only its route form. Tested public-stop searches did not produce a supported pickup/drop-off pair that reached a route result or plan. No checkout or payment option appeared, so the requested one sandbox purchase was not attempted. The timebox was narrowed to avoid selecting ambiguous place suggestions or continuing arbitrary route permutations.
+
+### Observed
+
+- Profile and home data requests returned HTTP 200; home data reported `has_active_subscription: false`.
+- Powai and Andheri East had Cityflo pickup suggestions. BKC results lacked a Cityflo Stops group. The Lakeshore suggestions did not verify the requested Wagle Estate context.
+- The earlier saved-route Home search changed the URL to `/search-results` but showed the home route form; that probe captured no route-search XHR/fetch request. A separate authenticated Search from the Ride Pack route form sent `POST /api/v4/routes/search/`, which returned HTTP 200 with `cards_data.morning_vsp: null` and `cards_data.evening_vsp: null`. The UI showed no route card or Proceed action.
+- The loaded Ride Pack bundle contains a separate plan-details API client, but no request to it was observed; the route-search payload contained no plan fields. Four read-only entry/precondition tests and the route-form diagnostic passed.
+
+### Inferred
+
+- The authenticated search returned no route cards, so the plan lookup was not reached. This is evidence for an empty route result in this attempt; it is not evidence that the search rendered available cards incorrectly or that a Ride Pack defect is confirmed. The exact route eligibility cause remains unknown because request-body stop IDs were intentionally not retained.
+
+### Could not verify
+
+- Displayed/charged price, sandbox transaction, payment status, pack issuance and route binding, Auto-Renew default/persistence/cancellation, validity, and renewal scheduling.
+- Renewal success and renewal failure, retries, notifications, and access during a failure are explicitly **could not verify**. No failure or expiry was induced, and no date was changed.
+- Expiry/lapsed state, refunds, and unlimited ride usage also remain unverified.
+
+CF-001 remains the only confirmed bug. No new issue from the inaccessible route flow was added to `BUGS.md` without a reproducible requirement-level failure.

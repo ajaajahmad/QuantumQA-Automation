@@ -494,7 +494,7 @@ test('read-only authenticated staging inspection', async ({ browser }) => {
             if (routeResponse) await routeResponse.finished().catch(() => undefined);
             snapshots.push(await snapshot('route-results'));
             const futureDate = page.getByRole('button', { name: /^Mon, 5th Oct$/i }).first();
-            if (await futureDate.count() && await futureDate.isEnabled()) {
+            if (process.env.CITYFLO_SKIP_DATE_SELECTION !== '1' && await futureDate.count() && await futureDate.isEnabled()) {
               const futureSearchResponse = page.waitForResponse(
                 (response) => response.url().includes('/api/v4/routes/search/'),
                 { timeout: 30000 },
