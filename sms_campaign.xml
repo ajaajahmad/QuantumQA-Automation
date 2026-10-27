@@ -4,7 +4,7 @@
 	<test name="Sms Campaign Tests">
 		<groups>
 			<run>
-				<include name="sms campaign" />
+				<include name="sms_campaign" />
 			</run>
 		</groups>
 		<classes>

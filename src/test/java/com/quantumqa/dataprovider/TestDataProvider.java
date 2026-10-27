@@ -1,42 +1,52 @@
 package com.quantumqa.dataprovider;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+
 import org.testng.annotations.DataProvider;
-import com.quantumqa.utils.ExcelUtils;
-import java.util.stream.Stream;
+
+import com.quantumqa.utils.ExcelDataReader;
+import com.quantumqa.utils.JsonDataReader;
 
 public class TestDataProvider {
 
-	@DataProvider(name = "loginData")
-	public Object[][] loginData() {
-		Object[][] allData = ExcelUtils.getExcelData();
+	@DataProvider(name = "excelUserData")
+	public Object[][] excelUserData() {
+		Object[][] data = ExcelDataReader.getExcelData();
 
-		Stream<Object[]> validDataStream = Stream.of(allData).filter(this::isValidLoginRow);
-
-		Object[][] validData = validDataStream.toArray(Object[][]::new);
-
-		if (validData.length == 0) {
-			throw new RuntimeException(
-					"No valid login data found in Excel. Please check the Excel file and ensure username and password are not blank.");
+		if (data.length == 0) {
+			throw new RuntimeException("No valid login data found in Excel. Please check the Excel file.");
 		}
-
-		return validData;
+		return data;
 	}
 
-	private boolean isValidLoginRow(Object[] row) {
-		if (row == null || row.length < 2) {
-			return false;
+	@DataProvider(name = "smsSummaryViewPanelData")
+	public Object[][] smsSummaryViewPanelData() {
+		Object[][] data = ExcelDataReader.getSmsSummaryViewPanelData();
+
+		if (data.length == 0) {
+			throw new RuntimeException("No valid SMS summary view panel data found in Excel.");
+		}
+		return data;
+	}
+
+	@DataProvider(name = "jsonUserData")
+	public Object[][] getJsonUserData() throws IOException {
+
+		JsonDataReader jsonReader = new JsonDataReader();
+		String filePath = System.getProperty("user.dir") + "/src/test/resources/testdata/userdata.json";
+
+		List<HashMap<String, String>> dataList = jsonReader.getJsonDataToMap(filePath);
+
+		Object[][] dataArray = new Object[dataList.size()][2];
+
+		for (int i = 0; i < dataList.size(); i++) {
+			HashMap<String, String> userData = dataList.get(i);
+			dataArray[i][0] = userData.get("username");
+			dataArray[i][1] = userData.get("password");
 		}
 
-		Object usernameObj = row[0];
-		if (usernameObj == null || usernameObj.toString().isBlank()) {
-			return false;
-		}
-
-		Object passwordObj = row[1];
-		if (passwordObj == null || passwordObj.toString().isBlank()) {
-			return false;
-		}
-
-		return true;
+		return dataArray;
 	}
 }

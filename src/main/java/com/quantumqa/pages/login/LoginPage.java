@@ -2,8 +2,6 @@ package com.quantumqa.pages.login;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
 
@@ -13,25 +11,32 @@ public class LoginPage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
-	private WebElement userName;
-	@FindBy(xpath = "//input[@formcontrolname='password']")
-	private WebElement passWord;
-	@FindBy(css = "button.submit")
-	private WebElement loginButton;
-	
-	By usernameLocator = By.xpath("//input[@formcontrolname='username']");
+	private By darkThemeButton = By.xpath("//button[text()='Ok']");
 
-	public boolean isLoginPageDisplayed() {
-		return isElementDisplayed(usernameLocator);
+	private By usernameInput = By.xpath("//input[@formcontrolname='username']");
+
+	private By passwordInput = By.xpath("//input[@formcontrolname='password']");
+
+	private By loginButton = By.cssSelector("button.submit");
+
+	private By authenticatedUser = By.cssSelector(".user-name-alias");
+
+	public void clickDarkThemeButtonIfVisible() {
+		if (isElementDisplayed(darkThemeButton)) {
+			click(darkThemeButton);
+		}
+	}
+
+	public boolean isElementPresent() {
+		return isElementPresent(usernameInput);
 	}
 
 	public void enterUsername(String username) {
-		type(userName, username);
+		type(usernameInput, username);
 	}
 
 	public void enterPassword(String password) {
-		type(passWord, password);
+		type(passwordInput, password);
 	}
 
 	public void clickLoginButton() {
@@ -44,12 +49,19 @@ public class LoginPage extends BasePage {
 			throw new IllegalArgumentException("Username or Password cannot be empty");
 		}
 
-		if (isLoginPageDisplayed()) {
+		wait.until(driver -> isElementDisplayed(darkThemeButton)
+				|| isElementDisplayed(usernameInput)
+				|| isElementDisplayed(authenticatedUser));
+
+		clickDarkThemeButtonIfVisible();
+		wait.until(driver -> isElementDisplayed(usernameInput) || isElementDisplayed(authenticatedUser));
+
+		if (isElementDisplayed(usernameInput)) {
 			enterUsername(username);
 			enterPassword(password);
 			clickLoginButton();
 		} else {
-			System.out.println("Already logged in, skipping login");
+			log.info("Already logged in, skipping login");
 		}
 	}
 }

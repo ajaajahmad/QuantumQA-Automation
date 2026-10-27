@@ -4,35 +4,35 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.quantumqa.utils.LogUtils;
 
 public class BasePage {
 
 	protected WebDriver driver;
 	protected WebDriverWait wait;
+	protected static LogUtils log;
 
-	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
+	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
+	private static final long HARD_SLEEP_MS = 300;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
+		BasePage.log = new LogUtils();
 		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
-		PageFactory.initElements(driver, this);
 	}
 
 	protected WebElement waitForVisible(By locator) {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	protected WebElement waitForVisible(WebElement element) {
-		return wait.until(ExpectedConditions.visibilityOf(element));
-	}
-
-	protected WebElement waitForClickable(WebElement element) {
-		return wait.until(ExpectedConditions.elementToBeClickable(element));
+	protected List<WebElement> waitForVisibleElements(By locator) {
+		return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
 
 	protected WebElement waitForClickable(By locator) {
@@ -41,6 +41,14 @@ public class BasePage {
 
 	protected boolean waitForInvisible(By locator) {
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
+
+	protected WebElement getElement(By locator) {
+		return driver.findElement(locator);
+	}
+
+	protected List<WebElement> getElements(By locator) {
+		return driver.findElements(locator);
 	}
 
 	protected boolean isElementPresent(By locator) {
@@ -52,13 +60,35 @@ public class BasePage {
 		return !elements.isEmpty() && elements.get(0).isDisplayed();
 	}
 
-	protected void click(WebElement element) {
-		waitForClickable(element).click();
+	protected void click(By locator) {
+		sleep();
+		waitForClickable(locator).click();
+		sleep();
 	}
 
-	protected void type(WebElement element, String text) {
-		waitForVisible(element);
+	protected void type(By locator, String text) {
+		sleep();
+		WebElement element = waitForVisible(locator);
 		element.clear();
 		element.sendKeys(text);
+		sleep();
+	}
+
+	protected void typeAndEnter(By locator, String text) {
+		WebElement element = waitForVisible(locator);
+		element.clear();
+		element.sendKeys(text, Keys.ENTER);
+	}
+
+	protected String getText(By locator) {
+		return waitForVisible(locator).getText();
+	}
+
+	protected void sleep() {
+		try {
+			Thread.sleep(HARD_SLEEP_MS);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 }

@@ -36,6 +36,9 @@ bin/
 logs/
 test-output/
 surefire-reports/
+reports/
+reports
+screenshots
 
 # =========================
 # OS Files
@@ -67,4 +70,11 @@ geckodriver
 *.xls
 *.csv
 *.txt
+*.pdf
+*.properties.metadata/
 *.properties
+
+# IDE
+.metadata/
+.idea/
+*.iml
