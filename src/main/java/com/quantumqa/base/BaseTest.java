@@ -7,8 +7,13 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.TimeoutException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -87,20 +92,32 @@ public class BaseTest {
 		String browserName = ConfigReader.get("browser");
 
 		if (browserName.equalsIgnoreCase("chrome")) {
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			driver = new ChromeDriver(options);
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
+			FirefoxOptions options = new FirefoxOptions();
+			options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			driver = new FirefoxDriver(options);
 		} else if (browserName.equalsIgnoreCase("edge")) {
-			driver = new EdgeDriver();
+			EdgeOptions options = new EdgeOptions();
+			options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			driver = new EdgeDriver(options);
 		} else {
 			throw new RuntimeException("Browser not supported: " + browserName);
 		}
 
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+		driver.manage().timeouts()
+				.pageLoadTimeout(Duration.ofSeconds(Long.parseLong(ConfigReader.get("timeout"))));
 
-		driver.get(ConfigReader.get("app_url"));
+		try {
+			driver.get(ConfigReader.get("app_url"));
+		} catch (TimeoutException e) {
+			System.err.println("Page load timed out; continuing so the loaded application state can be checked: "
+					+ e.getMessage());
+		}
 
 		loginPage = new LoginPage(driver);
 		errorValidationPage = new ErrorValidationPage(driver);

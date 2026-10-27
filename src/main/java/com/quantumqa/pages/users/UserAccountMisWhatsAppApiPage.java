@@ -5,11 +5,10 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import com.quantumqa.base.BasePage;
+
 import com.quantumqa.pages.components.DatePickerComponent;
-import com.quantumqa.pages.components.MainMenuComponent;
+import com.quantumqa.pages.components.MenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
 import com.quantumqa.utils.ScreenshotUtils;
@@ -17,7 +16,7 @@ import com.quantumqa.utils.ScreenshotUtils;
 public class UserAccountMisWhatsAppApiPage extends BasePage {
 
 	private final ScreenshotUtils screenshot;
-	private final MainMenuComponent menu;
+	private final MenuComponent menu;
 	private final ViewByComponent viewBy;
 	private final DatePickerComponent date;
 
@@ -27,16 +26,14 @@ public class UserAccountMisWhatsAppApiPage extends BasePage {
 	public UserAccountMisWhatsAppApiPage(WebDriver driver) {
 		super(driver);
 		this.screenshot = new ScreenshotUtils();
-		this.menu = new MainMenuComponent(driver);
+		this.menu = new MenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
 		this.date = new DatePickerComponent(driver);
 	}
 
-	@FindBy(xpath = "//span[contains(text(),'Via API')]")
-	private WebElement viaApiElement;
+	private By viaApiElement = By.xpath("//span[contains(text(),'Via API')]");
 
-	@FindBy(xpath = "//button[contains(text(),'Search')]")
-	private WebElement searchButton;
+	private By searchButton = By.xpath("//button[contains(text(),'Search')]");
 
 	public void openUserAccountMisWhatsAppApi(String startValue, String endValue) {
 		menu.navigate("Users", "Account MIS", "WhatsApp");
@@ -44,8 +41,7 @@ public class UserAccountMisWhatsAppApiPage extends BasePage {
 		click(viaApiElement);
 		sleep();
 		date.chooseDateOnAdvancedPage(startValue, endValue);
-		searchButton.click();
-		sleep();
+		click(searchButton);
 	}
 
 	public void applyAllViewByOptions(String fileTitle) throws IOException {

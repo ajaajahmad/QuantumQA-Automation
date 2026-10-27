@@ -11,11 +11,21 @@ public class LoginPage extends BasePage {
 		super(driver);
 	}
 
+	private By darkThemeButton = By.xpath("//button[text()='Ok']");
+
 	private By usernameInput = By.xpath("//input[@formcontrolname='username']");
 
 	private By passwordInput = By.xpath("//input[@formcontrolname='password']");
 
 	private By loginButton = By.cssSelector("button.submit");
+
+	private By authenticatedUser = By.cssSelector(".user-name-alias");
+
+	public void clickDarkThemeButtonIfVisible() {
+		if (isElementDisplayed(darkThemeButton)) {
+			click(darkThemeButton);
+		}
+	}
 
 	public boolean isElementPresent() {
 		return isElementPresent(usernameInput);
@@ -39,7 +49,14 @@ public class LoginPage extends BasePage {
 			throw new IllegalArgumentException("Username or Password cannot be empty");
 		}
 
-		if (isElementPresent()) {
+		wait.until(driver -> isElementDisplayed(darkThemeButton)
+				|| isElementDisplayed(usernameInput)
+				|| isElementDisplayed(authenticatedUser));
+
+		clickDarkThemeButtonIfVisible();
+		wait.until(driver -> isElementDisplayed(usernameInput) || isElementDisplayed(authenticatedUser));
+
+		if (isElementDisplayed(usernameInput)) {
 			enterUsername(username);
 			enterPassword(password);
 			clickLoginButton();

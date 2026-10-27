@@ -1,96 +1,55 @@
 package com.quantumqa.pages.campaign;
 
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
+
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.CampaignCommonComponent;
-import com.quantumqa.pages.components.MainMenuComponent;
+import com.quantumqa.pages.components.MenuComponent;
 import com.quantumqa.utils.TableSelectionManager;
 
 public class WhatsAppCampaignPage extends BasePage {
 
 	private TableSelectionManager tableSelectionManager;
-	private MainMenuComponent menu;
+	private MenuComponent menu;
 	private CampaignCommonComponent campaignCommonComponent;
 
 	public WhatsAppCampaignPage(WebDriver driver) {
 		super(driver);
 		this.tableSelectionManager = new TableSelectionManager(driver);
-		this.campaignCommonComponent = new CampaignCommonComponent(driver, wait);
-		this.menu = new MainMenuComponent(driver);
+		this.campaignCommonComponent = new CampaignCommonComponent(driver);
+		this.menu = new MenuComponent(driver);
 	}
 
-	@FindBy(xpath = "//div[contains(@class, 'menu-event') and .//span[contains(@class, 'icon-Menu_WhatsApp')]]")
-	private WebElement whatsappMenu;
-
-	@FindBy(xpath = "//span[normalize-space()='Templates']/ancestor::li[1]/preceding-sibling::li[1]//span[normalize-space()='Campaigns']")
-	private WebElement campaignsSubMenu;
-
-	@FindBy(css = ".wa-business-number")
-	private WebElement wabaNumberDropdown;
-
-	@FindBy(xpath = "//span[normalize-space()='+91-8448098743 (TestDG)']")
-	private WebElement chooseWabaNumber;
-
-	@FindBy(xpath = "//button[contains(text(),'Import Contacts')]")
-	private WebElement importContactsButton;
-
-	@FindBy(xpath = "//span[@class='mdc-tab__text-label'][contains(text(),'Lists')]")
-	private WebElement contactsListTab;
-
-	@FindBy(xpath = "//input[@placeholder='Search List']")
-	private WebElement contactsListSearchInput;
-
-	@FindBy(xpath = "//button[contains(text(),'Go')]")
-	private WebElement contactsListGoButton;
-
-	@FindBy(xpath = "//button[contains(@class,'process-file') and contains(normalize-space(),'Import')]")
-	private WebElement contactsImportButton;
-
-	@FindBy(xpath = "//button[contains(@class,'btn-design') and contains(text(),'Choose Template')]")
-	private WebElement chooseTemplateButton;
-
-	@FindBy(xpath = "//input[contains(@class,'filter-search')]")
-	private WebElement searchTemplate;
-
-	@FindBy(css = "button.import-btn.btn-design")
-	private WebElement templateSaveButton;
-
-	@FindBy(css = "button.import-btn.btn-design-white")
-	private WebElement templateCancelButton;
-
-	@FindBy(xpath = "//span[@class='ellipsis-text custom-placement-ltr'][contains(text(),'Select')]")
-	private WebElement selectLanguageDropdown;
-
-	@FindBy(xpath = "//div[contains(@class, 'drop-item') and .//span[contains(text(), 'English')]]")
-	private WebElement selectEnglishOption;
-
-	@FindBy(xpath = "//a[contains(@class,'variable-text')][1]")
-	private WebElement variable;
-
-	@FindBy(xpath = "//span[contains(text(),'Personalise')]")
-	private WebElement personaliseText;
-
-	@FindBy(xpath = "//span[normalize-space()='All Variables']")
-	private WebElement allVariableText;
-
-	@FindBy(xpath = "//input[@placeholder='Static text goes here']")
-	private WebElement variableInputBox;
-
-	@FindBy(xpath = "//button[normalize-space()='Save' and not(contains(@class,'import-btn'))]")
-	private WebElement saveButton;
-
-	@FindBy(css = "button.btn-design.btn-send")
-	private WebElement campaignSendButton;
-
-	@FindBy(xpath = "//button[@type='button' and contains(normalize-space(.),'Send Now')]")
-	private WebElement campaignSendNowButton;
+	private By wabaNumberDropdown = By.cssSelector(".wa-business-number");
+	private By chooseWabaNumber = By.xpath("//span[normalize-space()='+91-8448098743 (TestDG)']");
+	private By importContactsButton = By.xpath("//button[normalize-space()='Import Contacts']");
+	private By contactsListTab = By
+			.xpath("//span[contains(@class,'mdc-tab__text-label') and normalize-space()='Lists']");
+	private By contactsListSearchInput = By.xpath("//input[@placeholder='Search List']");
+	private By contactsListGoButton = By.xpath("//button[normalize-space()='Go']");
+	private By contactsImportButton = By
+			.xpath("//button[contains(@class,'process-file') and normalize-space()='Import']");
+	private By chooseTemplateButton = By
+			.xpath("//button[contains(@class,'btn-design') and normalize-space()='Choose Template']");
+	private By searchTemplate = By.xpath("//input[contains(@class,'filter-search')]");
+	private By templateSaveButton = By.cssSelector("button.import-btn.btn-design");
+	// private By templateCancelButton =
+	// By.cssSelector("button.import-btn.btn-design-white");
+	private By selectLanguageDropdown = By
+			.xpath("//span[contains(@class,'ellipsis-text') and normalize-space()='Select']");
+	private By selectEnglishOption = By.xpath("//div[contains(@class,'drop-item')]//span[normalize-space()='English']");
+	private By variable = By.xpath("(//a[contains(@class,'variable-text')])[1]");
+	private By personaliseText = By.xpath("//span[normalize-space()='Personalise']");
+	private By allVariableText = By.xpath("//span[normalize-space()='All Variables']");
+	private By variableInputBox = By.xpath("//input[@placeholder='Static text goes here']");
+	private By saveButton = By.xpath("//button[normalize-space()='Save' and not(contains(@class,'import-btn'))]");
+	private By campaignSendButton = By.cssSelector("button.btn-design.btn-send");
+	private By campaignSendNowButton = By.xpath("//button[@type='button' and normalize-space()='Send Now']");
 
 	public void clickOnWabaMenu() {
-		menu.navigate("Whatsapp");
+		menu.navigate("WhatsApp");
 	}
 
 	public void clickOnCampaignsSubMenu() {
@@ -123,7 +82,6 @@ public class WhatsAppCampaignPage extends BasePage {
 
 	public void clickOnGoButton() {
 		click(contactsListGoButton);
-
 	}
 
 	public void clickOnImportButton() {
@@ -135,9 +93,7 @@ public class WhatsAppCampaignPage extends BasePage {
 	}
 
 	public void searchTemplate(String templateName) {
-		click(searchTemplate);
-		type(searchTemplate, templateName);
-		searchTemplate.sendKeys(Keys.ENTER);
+		typeAndEnter(searchTemplate, templateName);
 	}
 
 	public void selectTemplate(String templateName) {
@@ -151,19 +107,19 @@ public class WhatsAppCampaignPage extends BasePage {
 	public void selectLanguage() {
 		click(selectLanguageDropdown);
 		click(selectEnglishOption);
-
 	}
 
-	public void variablePersonalisation(String value) throws InterruptedException {
-		Actions action = new Actions(driver);
-		action.contextClick(variable).perform();
-		Thread.sleep(500);
-		action.moveToElement(personaliseText).perform();
-		Thread.sleep(2000);
-		action.moveToElement(allVariableText).click().perform();
+	public void variablePersonalisation(String value) {
+		Actions actions = new Actions(driver);
+
+		actions.contextClick(waitForVisible(variable)).perform();
+		sleep();
+		actions.moveToElement(waitForVisible(personaliseText)).perform();
+		sleep();
+		actions.moveToElement(waitForVisible(allVariableText)).click().perform();
+
 		type(variableInputBox, value);
 		click(saveButton);
-
 	}
 
 	public void clickOnSendButton() {
@@ -173,5 +129,4 @@ public class WhatsAppCampaignPage extends BasePage {
 	public void clickOnSendNowButton() {
 		click(campaignSendNowButton);
 	}
-
 }

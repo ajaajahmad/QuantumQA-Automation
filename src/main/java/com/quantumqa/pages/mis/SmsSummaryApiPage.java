@@ -5,11 +5,9 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.DatePickerComponent;
-import com.quantumqa.pages.components.MainMenuComponent;
+import com.quantumqa.pages.components.MenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
 import com.quantumqa.utils.ScreenshotUtils;
@@ -17,7 +15,7 @@ import com.quantumqa.utils.ScreenshotUtils;
 public class SmsSummaryApiPage extends BasePage {
 
 	private final ScreenshotUtils screenshot;
-	private final MainMenuComponent menu;
+	private final MenuComponent menu;
 	private final ViewByComponent viewBy;
 	private final DatePickerComponent date;
 
@@ -27,13 +25,12 @@ public class SmsSummaryApiPage extends BasePage {
 	public SmsSummaryApiPage(WebDriver driver) {
 		super(driver);
 		this.screenshot = new ScreenshotUtils();
-		this.menu = new MainMenuComponent(driver);
+		this.menu = new MenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
 		this.date = new DatePickerComponent(driver);
 	}
 
-	@FindBy(xpath = "//span[contains(text(),'Via API')]")
-	private WebElement viaApiElement;
+	private By viaApiElement = By.xpath("//span[contains(text(),'Via API')]");
 
 	public void openSmsSummary(String dateValue) {
 		menu.navigate("Reports", "SMS", "Summary");

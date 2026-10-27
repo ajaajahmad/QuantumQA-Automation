@@ -27,8 +27,6 @@ public class BasePage {
 		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
 	}
 
-	// ================= WAITS =================
-
 	protected WebElement waitForVisible(By locator) {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
@@ -45,8 +43,6 @@ public class BasePage {
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-	// ================= FIND =================
-
 	protected WebElement getElement(By locator) {
 		return driver.findElement(locator);
 	}
@@ -54,8 +50,6 @@ public class BasePage {
 	protected List<WebElement> getElements(By locator) {
 		return driver.findElements(locator);
 	}
-
-	// ================= VALIDATION =================
 
 	protected boolean isElementPresent(By locator) {
 		return !driver.findElements(locator).isEmpty();
@@ -65,8 +59,6 @@ public class BasePage {
 		List<WebElement> elements = driver.findElements(locator);
 		return !elements.isEmpty() && elements.get(0).isDisplayed();
 	}
-
-	// ================= ACTIONS =================
 
 	protected void click(By locator) {
 		sleep();
@@ -91,8 +83,6 @@ public class BasePage {
 	protected String getText(By locator) {
 		return waitForVisible(locator).getText();
 	}
-
-	// ================= UTILS =================
 
 	protected void sleep() {
 		try {

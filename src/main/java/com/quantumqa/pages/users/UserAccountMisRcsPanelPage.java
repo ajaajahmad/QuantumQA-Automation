@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.quantumqa.base.BasePage;
 import com.quantumqa.pages.components.DatePickerComponent;
-import com.quantumqa.pages.components.MainMenuComponent;
+import com.quantumqa.pages.components.MenuComponent;
 import com.quantumqa.pages.components.ViewByComponent;
 import com.quantumqa.utils.HtmlReportUtil;
 import com.quantumqa.utils.ScreenshotUtils;
@@ -17,7 +17,7 @@ import com.quantumqa.utils.ScreenshotUtils;
 public class UserAccountMisRcsPanelPage extends BasePage {
 
 	private final ScreenshotUtils screenshot;
-	private final MainMenuComponent menu;
+	private final MenuComponent menu;
 	private final ViewByComponent viewBy;
 	private final DatePickerComponent date;
 
@@ -27,7 +27,7 @@ public class UserAccountMisRcsPanelPage extends BasePage {
 	public UserAccountMisRcsPanelPage(WebDriver driver) {
 		super(driver);
 		this.screenshot = new ScreenshotUtils();
-		this.menu = new MainMenuComponent(driver);
+		this.menu = new MenuComponent(driver);
 		this.viewBy = new ViewByComponent(driver);
 		this.date = new DatePickerComponent(driver);
 	}

@@ -15,6 +15,10 @@ public class LogoutComponent extends BasePage {
 	private By logoutButton = By.xpath("//a[normalize-space()='Logout']");
 
 	public void userLogout() {
+		if (!isElementDisplayed(profileIcon)) {
+			return;
+		}
+
 		click(profileIcon);
 		click(logoutButton);
 	}

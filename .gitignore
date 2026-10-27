@@ -71,4 +71,10 @@ geckodriver
 *.csv
 *.txt
 *.pdf
+*.properties.metadata/
 *.properties
+
+# IDE
+.metadata/
+.idea/
+*.iml

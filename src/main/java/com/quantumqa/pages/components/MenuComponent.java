@@ -3,9 +3,9 @@ package com.quantumqa.pages.components;
 import org.openqa.selenium.*;
 import com.quantumqa.base.BasePage;
 
-public class MainMenuComponent extends BasePage {
+public class MenuComponent extends BasePage {
 
-	public MainMenuComponent(WebDriver driver) {
+	public MenuComponent(WebDriver driver) {
 		super(driver);
 	}
 
